@@ -216,7 +216,7 @@
   <data name="BatchSetIsCritical" xml:space="preserve">
     <value>Batch set property IsCritical</value>
   </data>
-  <data name="BatchChangeFlickDirection" xml:space="preserve">
+  <data name="BatchSwitchFlickDirection" xml:space="preserve">
     <value>Batch switch flick direction</value>
   </data>
   <data name="BeatSplit" xml:space="preserve">

@@ -615,6 +615,9 @@ namespace OngekiFumenEditor.Modules.FumenVisualEditor.ViewModels
                 return;
             }
 
+            UndoRedoManager.ExecuteAction(LambdaUndoAction.Create(Resources.BatchSwitchFlickDirection, ChangeFlicks, ChangeFlicks));
+            return;
+
             void ChangeFlicks()
             {
                 foreach (var flick in selectedFlicks)
@@ -622,8 +625,6 @@ namespace OngekiFumenEditor.Modules.FumenVisualEditor.ViewModels
                         ? Flick.FlickDirection.Right
                         : Flick.FlickDirection.Left;
             }
-
-            UndoRedoManager.ExecuteAction(LambdaUndoAction.Create(Resources.BatchChangeFlickDirection, ChangeFlicks, ChangeFlicks));
         }
 
         public bool CheckAndNotifyIfPlaceBeyondDuration(Point placePoint)
