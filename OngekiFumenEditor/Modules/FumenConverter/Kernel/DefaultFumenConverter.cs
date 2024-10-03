@@ -11,7 +11,7 @@ namespace OngekiFumenEditor.Modules.FumenConverter.Kernel
     [Export(typeof(IFumenConverter))]
     public class DefaultFumenConverter : IFumenConverter
     {
-        public async Task<byte[]> ConvertToOgkrAsync(OngekiFumen fumen, FumenConvertOption option)
+        public async Task<byte[]> ConvertFumenAsync(OngekiFumen fumen, FumenConvertOption option)
         {
             var parserManager = IoC.Get<IFumenParserManager>();
             

@@ -6,6 +6,6 @@ namespace OngekiFumenEditor.Modules.FumenConverter
 {
 	public interface IFumenConverter
 	{
-		Task<byte[]> ConvertToOgkrAsync(OngekiFumen fumen, FumenConvertOption option);
+		Task<byte[]> ConvertFumenAsync(OngekiFumen fumen, FumenConvertOption option);
 	}
 }

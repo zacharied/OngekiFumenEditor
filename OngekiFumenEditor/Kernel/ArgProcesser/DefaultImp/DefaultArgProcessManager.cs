@@ -187,7 +187,7 @@ namespace OngekiFumenEditor.Kernel.ArgProcesser.DefaultImp
                 await using var inputFileStream = File.OpenRead(opt.InputFumenFilePath);
                 var input = await deserializable.DeserializeAsync(inputFileStream);
 
-                await converter.ConvertToOgkrAsync(input, opt);
+                await converter.ConvertFumenAsync(input, opt);
             }
             catch (Exception e)
             {

@@ -111,7 +111,7 @@ namespace OngekiFumenEditor.Modules.FumenConverter.ViewModels
             }
 			
             try {
-                await IoC.Get<IFumenConverter>().ConvertToOgkrAsync(input, option);
+                await IoC.Get<IFumenConverter>().ConvertFumenAsync(input, option);
             }
             catch (FumenConvertException e) {
                 MessageBox.Show(e.Message);
