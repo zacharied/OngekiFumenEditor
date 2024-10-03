@@ -21,6 +21,7 @@ using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 using System.Windows;
+using OngekiFumenEditor.Modules.FumenConverter;
 using Expression = System.Linq.Expressions.Expression;
 
 namespace OngekiFumenEditor.Kernel.ArgProcesser.DefaultImp
@@ -68,6 +69,7 @@ namespace OngekiFumenEditor.Kernel.ArgProcesser.DefaultImp
 
             var rootCommand = new RootCommand("CommandLine for OngekiFumenEditor");
             rootCommand.AddCommand(GenerateVerbCommands<GenerateOption>("svg", "生成预览谱面.svg文件", ProcessSvgCommand));
+            rootCommand.AddCommand(GenerateVerbCommands<FumenConvertOption>("convert", "example.ogkr", ConvertFumenCommand));
             await rootCommand.InvokeAsync(args);
             Exit();
         }
@@ -165,5 +167,35 @@ namespace OngekiFumenEditor.Kernel.ArgProcesser.DefaultImp
 
             Exit();
         }
+        
+        private async Task ConvertFumenCommand(FumenConvertOption opt)
+        {
+            Log.Instance.AddOutputIfNotExist<ConsoleLogOutput>();
+
+            try {
+                var converter = IoC.Get<IFumenConverter>();
+                var parserManager = IoC.Get<IFumenParserManager>();
+
+                if (opt.InputFumenFilePath == default) {
+                    throw new("Missing input file");
+                }
+                    
+                if (parserManager.GetDeserializer(opt.InputFumenFilePath) is not { } deserializable) {
+                    throw new("Invalid input file format");
+                }
+
+                await using var inputFileStream = File.OpenRead(opt.InputFumenFilePath);
+                var input = await deserializable.DeserializeAsync(inputFileStream);
+
+                await converter.ConvertToOgkrAsync(input, opt);
+            }
+            catch (Exception e)
+            {
+                Log.LogError(Resources.ConvertFail, e);
+            }
+
+            Exit();
+        }
     }
+    
 }
