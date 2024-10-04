@@ -1548,4 +1548,13 @@
   <data name="ResetAllSettingComfirm" xml:space="preserve">
     <value>Do you want to reset all settings for application?</value>
   </data>
+  <data name="ProgramCommandDescriptionSvg" xml:space="preserve">
+    <value>Generate a preview SVG file</value>
+  </data>
+  <data name="ProgramCommandDescriptionConvert" xml:space="preserve">
+    <value>Convert charts between formats</value>
+  </data>
+  <data name="ProgramOptionDescriptionVerbose" xml:space="preserve">
+    <value>Show log output</value>
+  </data>
 </root>

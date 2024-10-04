@@ -22,6 +22,8 @@ using System.Reflection;
 using System.Threading.Tasks;
 using System.Windows;
 using OngekiFumenEditor.Modules.FumenConverter;
+using OngekiFumenEditor.Modules.OptionGeneratorTools.Kernel;
+using OngekiFumenEditor.Modules.OptionGeneratorTools.Models;
 using Expression = System.Linq.Expressions.Expression;
 
 namespace OngekiFumenEditor.Kernel.ArgProcesser.DefaultImp
@@ -53,7 +55,7 @@ namespace OngekiFumenEditor.Kernel.ArgProcesser.DefaultImp
             {
                 var filePath = args[0];
 
-                if (File.Exists(filePath))
+                if (File.Exists(filePath) && File.GetAttributes(filePath).HasFlag(FileAttributes.Normal)) 
                 {
                     Log.LogInfo($"arg.filePath: {filePath}");
 
@@ -66,11 +68,16 @@ namespace OngekiFumenEditor.Kernel.ArgProcesser.DefaultImp
                     return;
                 }
             }
+            
+            Log.Instance.AddOutputIfNotExist<ConsoleLogOutput>();
 
             var rootCommand = new RootCommand("CommandLine for OngekiFumenEditor");
-            rootCommand.AddCommand(GenerateVerbCommands<GenerateOption>("svg", "生成预览谱面.svg文件", ProcessSvgCommand));
-            rootCommand.AddCommand(GenerateVerbCommands<FumenConvertOption>("convert", "example.ogkr", ConvertFumenCommand));
+            rootCommand.AddCommand(GenerateVerbCommands<GenerateOption>("svg", Resources.ProgramCommandDescriptionSvg, ProcessSvgCommand));
+            rootCommand.AddCommand(GenerateVerbCommands<FumenConvertOption>("convert", Resources.ProgramCommandDescriptionConvert, ConvertFumenCommand));
+            rootCommand.AddCommand(GenerateVerbCommands<JacketGenerateOption>("jacket", Resources.ProgramCommandDescriptionConvert, ProcessJacketCommand));
+            rootCommand.AddCommand(GenerateVerbCommands<AcbGenerateOption>("acb", Resources.ProgramCommandDescriptionConvert, ProcessAcbCommand));
             await rootCommand.InvokeAsync(args);
+            
             Exit();
         }
 
@@ -132,8 +139,6 @@ namespace OngekiFumenEditor.Kernel.ArgProcesser.DefaultImp
 
         private async Task ProcessSvgCommand(GenerateOption opt)
         {
-            Log.Instance.AddOutputIfNotExist<ConsoleLogOutput>();
-
             try
             {
                 using var fumenFileStream = File.OpenRead(opt.InputFumenFilePath);
@@ -170,8 +175,6 @@ namespace OngekiFumenEditor.Kernel.ArgProcesser.DefaultImp
         
         private async Task ConvertFumenCommand(FumenConvertOption opt)
         {
-            Log.Instance.AddOutputIfNotExist<ConsoleLogOutput>();
-
             try {
                 var converter = IoC.Get<IFumenConverter>();
                 var parserManager = IoC.Get<IFumenParserManager>();
@@ -196,6 +199,31 @@ namespace OngekiFumenEditor.Kernel.ArgProcesser.DefaultImp
 
             Exit();
         }
+
+        private async Task ProcessJacketCommand(JacketGenerateOption arg)
+        {
+            if (!Path.IsPathRooted(arg.InputImageFilePath)) {
+                arg.InputImageFilePath = Path.GetFullPath(arg.InputImageFilePath);
+            }
+            
+            if (!Path.IsPathRooted(arg.OutputAssetbundleFolderPath)) {
+                arg.OutputAssetbundleFolderPath = Path.GetFullPath(arg.OutputAssetbundleFolderPath);
+            }
+            
+            var result = await JacketGenerateWrapper.Generate(arg);
+            if (!result.IsSuccess) {
+                await Console.Error.WriteLineAsync($"Failed to generate jacket: {result.Message}");
+            }
+            Exit();
+        }
+
+        private async Task ProcessAcbCommand(AcbGenerateOption arg)
+        {
+            var result = await AcbGeneratorFuckWrapper.Generate(arg);
+            if (!result.IsSuccess) {
+                Console.Error.WriteLine($"Failed to generate acb: {result.Message}");
+            }
+            Exit();
+        }
     }
-    
 }
