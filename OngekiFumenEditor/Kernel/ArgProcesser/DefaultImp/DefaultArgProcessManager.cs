@@ -73,7 +73,7 @@ namespace OngekiFumenEditor.Kernel.ArgProcesser.DefaultImp
 
             var rootCommand = new RootCommand("CommandLine for OngekiFumenEditor");
             rootCommand.AddCommand(GenerateVerbCommands<GenerateOption>("svg", Resources.ProgramCommandDescriptionSvg, ProcessSvgCommand));
-            rootCommand.AddCommand(GenerateVerbCommands<FumenConvertOption>("convert", Resources.ProgramCommandDescriptionConvert, ConvertFumenCommand));
+            rootCommand.AddCommand(GenerateVerbCommands<FumenConvertOption>("convert", Resources.ProgramCommandDescriptionConvert, ProcessConvertCommand));
             rootCommand.AddCommand(GenerateVerbCommands<JacketGenerateOption>("jacket", Resources.ProgramCommandDescriptionConvert, ProcessJacketCommand));
             rootCommand.AddCommand(GenerateVerbCommands<AcbGenerateOption>("acb", Resources.ProgramCommandDescriptionConvert, ProcessAcbCommand));
             await rootCommand.InvokeAsync(args);
@@ -173,7 +173,7 @@ namespace OngekiFumenEditor.Kernel.ArgProcesser.DefaultImp
             Exit();
         }
         
-        private async Task ConvertFumenCommand(FumenConvertOption opt)
+        private async Task ProcessConvertCommand(FumenConvertOption opt)
         {
             try {
                 var converter = IoC.Get<IFumenConverter>();
