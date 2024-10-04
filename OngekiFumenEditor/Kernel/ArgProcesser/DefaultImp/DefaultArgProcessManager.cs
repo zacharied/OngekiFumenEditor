@@ -22,6 +22,7 @@ using System.Reflection;
 using System.Threading.Tasks;
 using System.Windows;
 using OngekiFumenEditor.Modules.FumenConverter;
+using OngekiFumenEditor.Modules.OptionGeneratorTools.Base;
 using OngekiFumenEditor.Modules.OptionGeneratorTools.Kernel;
 using OngekiFumenEditor.Modules.OptionGeneratorTools.Models;
 using Expression = System.Linq.Expressions.Expression;
@@ -31,9 +32,9 @@ namespace OngekiFumenEditor.Kernel.ArgProcesser.DefaultImp
     [Export(typeof(IProgramArgProcessManager))]
     internal class DefaultArgProcessManager : IProgramArgProcessManager
     {
-        void Exit() => ErrorExit(string.Empty, true);
+        void Exit(int code = 0) => ErrorExit(string.Empty, true, code);
 
-        void ErrorExit(string message, bool noDialog)
+        void ErrorExit(string message, bool noDialog, int code = 0)
         {
             if (!string.IsNullOrWhiteSpace(message))
             {
@@ -43,7 +44,7 @@ namespace OngekiFumenEditor.Kernel.ArgProcesser.DefaultImp
                     MessageBox.Show(message, Resources.Error, MessageBoxButton.OK, MessageBoxImage.Stop);
             }
 
-            Application.Current.Shutdown();
+            Application.Current.Shutdown(code);
         }
 
         public async Task ProcessArgs(string[] args)
@@ -168,6 +169,7 @@ namespace OngekiFumenEditor.Kernel.ArgProcesser.DefaultImp
             catch (Exception e)
             {
                 Log.LogError(Resources.CallGenerateSvgAsyncFail, e);
+                Exit(1);
             }
 
             Exit();
@@ -180,11 +182,11 @@ namespace OngekiFumenEditor.Kernel.ArgProcesser.DefaultImp
                 var parserManager = IoC.Get<IFumenParserManager>();
 
                 if (opt.InputFumenFilePath == default) {
-                    throw new("Missing input file");
+                    throw new FileNotFoundException("Missing input file");
                 }
                     
                 if (parserManager.GetDeserializer(opt.InputFumenFilePath) is not { } deserializable) {
-                    throw new("Invalid input file format");
+                    throw new FileFormatException("Invalid input file format");
                 }
 
                 await using var inputFileStream = File.OpenRead(opt.InputFumenFilePath);
@@ -194,7 +196,8 @@ namespace OngekiFumenEditor.Kernel.ArgProcesser.DefaultImp
             }
             catch (Exception e)
             {
-                Log.LogError(Resources.ConvertFail, e);
+                await Console.Error.WriteLineAsync($"{Resources.ConvertFail}: {e}");
+                Exit(1);
             }
 
             Exit();
@@ -210,10 +213,19 @@ namespace OngekiFumenEditor.Kernel.ArgProcesser.DefaultImp
                 arg.OutputAssetbundleFolderPath = Path.GetFullPath(arg.OutputAssetbundleFolderPath);
             }
             
-            var result = await JacketGenerateWrapper.Generate(arg);
+            GenerateResult result;
+            try {
+                result = await JacketGenerateWrapper.Generate(arg);
+            }
+            catch (Exception e) {
+                result = new GenerateResult(false, e.Message);
+            }
+            
             if (!result.IsSuccess) {
                 await Console.Error.WriteLineAsync($"Failed to generate jacket: {result.Message}");
+                Exit(1);
             }
+            
             Exit();
         }
 
@@ -221,7 +233,8 @@ namespace OngekiFumenEditor.Kernel.ArgProcesser.DefaultImp
         {
             var result = await AcbGeneratorFuckWrapper.Generate(arg);
             if (!result.IsSuccess) {
-                Console.Error.WriteLine($"Failed to generate acb: {result.Message}");
+                await Console.Error.WriteLineAsync($"Failed to generate acb: {result.Message}");
+                Exit(1);
             }
             Exit();
         }
