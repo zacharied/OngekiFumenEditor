@@ -1548,7 +1548,7 @@
   <data name="ResetAllSettingComfirm" xml:space="preserve">
     <value>是否重置本应用所有配置选项?</value>
   </data>
-  <data name="ProgramCommandDescriptionSvg" xml:space="preserve">
+  <data name="CliCommandDescriptionSvg" xml:space="preserve">
     <value>生成预览谱面.svg文件</value>
   </data>
 </root>

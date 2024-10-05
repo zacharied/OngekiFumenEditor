@@ -735,6 +735,69 @@ namespace OngekiFumenEditor.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Relative paths are not allowed.
+        /// </summary>
+        public static string CliArgumentNotAbsolutePath {
+            get {
+                return ResourceManager.GetString("CliArgumentNotAbsolutePath", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Generate ACB audio files.
+        /// </summary>
+        public static string CliCommandDescriptionAcb {
+            get {
+                return ResourceManager.GetString("CliCommandDescriptionAcb", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Convert charts between formats.
+        /// </summary>
+        public static string CliCommandDescriptionConvert {
+            get {
+                return ResourceManager.GetString("CliCommandDescriptionConvert", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Generate/update jacket asset files.
+        /// </summary>
+        public static string CliCommandDescriptionJacket {
+            get {
+                return ResourceManager.GetString("CliCommandDescriptionJacket", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Generate a preview SVG file.
+        /// </summary>
+        public static string CliCommandDescriptionSvg {
+            get {
+                return ResourceManager.GetString("CliCommandDescriptionSvg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Command line error.
+        /// </summary>
+        public static string CliInputErrorHeader {
+            get {
+                return ResourceManager.GetString("CliInputErrorHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show internal log output.
+        /// </summary>
+        public static string CliOptionDescriptionVerbose {
+            get {
+                return ResourceManager.GetString("CliOptionDescriptionVerbose", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to clone.
         /// </summary>
         public static string ClonePallete {
@@ -3170,24 +3233,6 @@ namespace OngekiFumenEditor.Properties {
         public static string ProcessProriotyUpgrade {
             get {
                 return ResourceManager.GetString("ProcessProriotyUpgrade", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Convert charts between formats.
-        /// </summary>
-        public static string ProgramCommandDescriptionConvert {
-            get {
-                return ResourceManager.GetString("ProgramCommandDescriptionConvert", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Generate a preview SVG file.
-        /// </summary>
-        public static string ProgramCommandDescriptionSvg {
-            get {
-                return ResourceManager.GetString("ProgramCommandDescriptionSvg", resourceCulture);
             }
         }
         

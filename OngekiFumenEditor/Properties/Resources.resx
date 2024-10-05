@@ -1548,13 +1548,28 @@
   <data name="ResetAllSettingComfirm" xml:space="preserve">
     <value>Do you want to reset all settings for application?</value>
   </data>
-  <data name="ProgramCommandDescriptionSvg" xml:space="preserve">
+  <data name="CliCommandDescriptionSvg" xml:space="preserve">
     <value>Generate a preview SVG file</value>
   </data>
-  <data name="ProgramCommandDescriptionConvert" xml:space="preserve">
+  <data name="CliCommandDescriptionConvert" xml:space="preserve">
     <value>Convert charts between formats</value>
   </data>
   <data name="ProgramOptionDescriptionVerbose" xml:space="preserve">
     <value>Show log output</value>
+  </data>
+  <data name="CliArgumentNotAbsolutePath" xml:space="preserve">
+    <value>Relative paths are not allowed</value>
+  </data>
+  <data name="CliInputErrorHeader" xml:space="preserve">
+    <value>Command line error</value>
+  </data>
+  <data name="CliCommandDescriptionJacket" xml:space="preserve">
+    <value>Generate/update jacket asset files</value>
+  </data>
+  <data name="CliCommandDescriptionAcb" xml:space="preserve">
+    <value>Generate ACB audio files</value>
+  </data>
+  <data name="CliOptionDescriptionVerbose" xml:space="preserve">
+    <value>Show internal log output</value>
   </data>
 </root>
