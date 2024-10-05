@@ -11,26 +11,14 @@ namespace OngekiFumenEditor.Modules.FumenConverter.Kernel
     [Export(typeof(IFumenConverter))]
     public class DefaultFumenConverter : IFumenConverter
     {
-        public async Task<byte[]> ConvertFumenAsync(OngekiFumen fumen, FumenConvertOption option)
+        public async Task<byte[]> ConvertFumenAsync(OngekiFumen fumen, string savePathOrFormat = "ogkr")
         {
             var parserManager = IoC.Get<IFumenParserManager>();
-            
-            if (fumen is null) {
-                throw new FumenConvertException(Resources.NoFumenInput);
-            }
 
-            if (parserManager.GetDeserializer(option.InputFumenFilePath) is not IFumenDeserializable deserializable) {
-                throw new FumenConvertException(Resources.FumenFileDeserializeNotSupport);
-            }
-
-            if (string.IsNullOrWhiteSpace(option.OutputFumenFilePath)) {
-                throw new FumenConvertException(Resources.OutputFumenFileNotSelect);
-            }
-
-            if (parserManager.GetSerializer(option.OutputFumenFilePath) is not IFumenSerializable serializable) {
+            if (parserManager.GetSerializer(savePathOrFormat) is not IFumenSerializable serializable) {
                 throw new FumenConvertException(Resources.OutputFumenNotSupport);
             }
-
+            
             try {
                 return await serializable.SerializeAsync(fumen);
             }

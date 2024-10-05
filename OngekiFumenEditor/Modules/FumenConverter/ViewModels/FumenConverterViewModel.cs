@@ -79,8 +79,8 @@ namespace OngekiFumenEditor.Modules.FumenConverter.ViewModels
                 OutputFumenFilePath = OutputFumenFilePath
             };
 
-            OngekiFumen input;			
-			
+            OngekiFumen input = null;	
+            
             if (!IsUseInputFile) {
                 var editor = IoC.Get<IEditorDocumentManager>().CurrentActivatedEditor;
                 if (editor is not null) {
@@ -91,30 +91,10 @@ namespace OngekiFumenEditor.Modules.FumenConverter.ViewModels
                     return;
                 }
             }
-            else {
-                var parserManager = IoC.Get<IFumenParserManager>();
-                if (parserManager.GetDeserializer(option.InputFumenFilePath) is not IFumenDeserializable deserializable)
-                {
-                    MessageBox.Show(Resources.FumenFileDeserializeNotSupport);
-                    return;
-                }
-                
-                try
-                {
-                    await using var stream = File.OpenRead(option.InputFumenFilePath);
-                    input = await deserializable.DeserializeAsync(stream);
-                } catch (Exception e)
-                {
-                    MessageBox.Show($"{Resources.FumenLoadFailed}{e.Message}");
-                    return;
-                }
-            }
 			
-            try {
-                await IoC.Get<IFumenConverter>().ConvertFumenAsync(input, option);
-            }
-            catch (FumenConvertException e) {
-                MessageBox.Show(e.Message);
+            var result = await FumenConverterWrapper.Generate(option, input);
+            if (!result.IsSuccess) {
+                MessageBox.Show(result.Message);
             }	
         }
     }

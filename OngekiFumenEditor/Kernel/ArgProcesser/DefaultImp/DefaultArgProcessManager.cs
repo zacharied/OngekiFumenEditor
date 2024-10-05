@@ -19,6 +19,7 @@ using System.Reflection;
 using System.Threading.Tasks;
 using System.Windows;
 using OngekiFumenEditor.Modules.FumenConverter;
+using OngekiFumenEditor.Modules.FumenConverter.Kernel;
 using OngekiFumenEditor.Modules.OptionGeneratorTools.Base;
 using OngekiFumenEditor.Modules.OptionGeneratorTools.Kernel;
 using OngekiFumenEditor.Modules.OptionGeneratorTools.Models;
@@ -154,19 +155,9 @@ namespace OngekiFumenEditor.Kernel.ArgProcesser.DefaultImp
             var converter = IoC.Get<IFumenConverter>();
             var parserManager = IoC.Get<IFumenParserManager>();
                     
-            try {
-                if (parserManager.GetDeserializer(opt.InputFumenFilePath) is not { } deserializable) {
-                    throw new FileFormatException("Invalid input file format");
-                }
-
-                await using var inputFileStream = File.OpenRead(opt.InputFumenFilePath);
-                var input = await deserializable.DeserializeAsync(inputFileStream);
-
-                await converter.ConvertFumenAsync(input, opt);
-            }
-            catch (Exception e)
-            {
-                await Console.Error.WriteLineAsync($"{Resources.ConvertFail}: {e}");
+            var result = await FumenConverterWrapper.Generate(opt);
+            if (!result.IsSuccess) {
+                await Console.Error.WriteLineAsync($"{Resources.ConvertFail}: {result.Message}");
                 Exit(1);
                 return;
             }
