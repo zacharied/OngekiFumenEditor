@@ -3282,6 +3282,15 @@ namespace OngekiFumenEditor.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to absolute path of the file to read (*.nyageki).
+        /// </summary>
+        public static string ProgramOptionInputFileNyageki {
+            get {
+                return ResourceManager.GetString("ProgramOptionInputFileNyageki", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to height (in px) of the generated jacket file.
         /// </summary>
         public static string ProgramOptionJacketOutputHeight {
@@ -3368,6 +3377,78 @@ namespace OngekiFumenEditor.Properties {
         public static string ProgramOptionPreviewEnd {
             get {
                 return ResourceManager.GetString("ProgramOptionPreviewEnd", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to maximum X grid bounds.
+        /// </summary>
+        public static string ProgramOptionSvgMaxXGrid {
+            get {
+                return ResourceManager.GetString("ProgramOptionSvgMaxXGrid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to output file as png.
+        /// </summary>
+        public static string ProgramOptionSvgRenderAsPng {
+            get {
+                return ResourceManager.GetString("ProgramOptionSvgRenderAsPng", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to change behavior for soflans.
+        /// </summary>
+        public static string ProgramOptionSvgSoflanMode {
+            get {
+                return ResourceManager.GetString("ProgramOptionSvgSoflanMode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to vertical scale of the output image.
+        /// </summary>
+        public static string ProgramOptionSvgVerticalScale {
+            get {
+                return ResourceManager.GetString("ProgramOptionSvgVerticalScale", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to view width of the output image.
+        /// </summary>
+        public static string ProgramOptionSvgViewWidth {
+            get {
+                return ResourceManager.GetString("ProgramOptionSvgViewWidth", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to threshold for soflans to be weighted.
+        /// </summary>
+        public static string ProgramOptionSvgWeightedSoflanOffset {
+            get {
+                return ResourceManager.GetString("ProgramOptionSvgWeightedSoflanOffset", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to rate of change for weighted soflans.
+        /// </summary>
+        public static string ProgramOptionSvgWeightedSoflanSlope {
+            get {
+                return ResourceManager.GetString("ProgramOptionSvgWeightedSoflanSlope", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to minimum vertical compression for weigthed soflans.
+        /// </summary>
+        public static string ProgramOptionSvgWeightedSoflanStress {
+            get {
+                return ResourceManager.GetString("ProgramOptionSvgWeightedSoflanStress", resourceCulture);
             }
         }
         

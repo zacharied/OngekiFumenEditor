@@ -1611,4 +1611,31 @@
   <data name="ProgramOptionJacketOutputHeightSmall" xml:space="preserve">
     <value>height (in px) of the small generated jacket file</value>
   </data>
+  <data name="ProgramOptionSvgMaxXGrid" xml:space="preserve">
+    <value>maximum X grid bounds</value>
+  </data>
+  <data name="ProgramOptionSvgViewWidth" xml:space="preserve">
+    <value>view width of the output image</value>
+  </data>
+  <data name="ProgramOptionSvgVerticalScale" xml:space="preserve">
+    <value>vertical scale of the output image</value>
+  </data>
+  <data name="ProgramOptionSvgSoflanMode" xml:space="preserve">
+    <value>change behavior for soflans</value>
+  </data>
+  <data name="ProgramOptionSvgWeightedSoflanOffset" xml:space="preserve">
+    <value>threshold for soflans to be weighted</value>
+  </data>
+  <data name="ProgramOptionSvgWeightedSoflanStress" xml:space="preserve">
+    <value>minimum vertical compression for weigthed soflans</value>
+  </data>
+  <data name="ProgramOptionSvgWeightedSoflanSlope" xml:space="preserve">
+    <value>rate of change for weighted soflans</value>
+  </data>
+  <data name="ProgramOptionSvgRenderAsPng" xml:space="preserve">
+    <value>output file as png</value>
+  </data>
+  <data name="ProgramOptionInputFileNyageki" xml:space="preserve">
+    <value>absolute path of the file to read (*.nyageki)</value>
+  </data>
 </root>
