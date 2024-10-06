@@ -6,7 +6,7 @@ namespace OngekiFumenEditor.Modules.OptionGeneratorTools.Models
 	public class AcbGenerateOption : PropertyChangedBase
 	{
 		private int musicId = -1;
-		[OptionBindingAttrbute<int>("musicId", "", -1, Require = true)]
+		[LocalizableOptionBinding<int>("musicId", "ProgramOptionMusicId", -1, true)]
 		public int MusicId
 		{
 			get => musicId;
@@ -14,7 +14,7 @@ namespace OngekiFumenEditor.Modules.OptionGeneratorTools.Models
 		}
 
 		private string inputAudioFilePath;
-		[OptionBindingAttrbute<string>("inputFile", "", "", Require = true)]
+		[LocalizableOptionBinding<string>("inputFile", "ProgramOptionInputFileAudio", "", true)]
 		public string InputAudioFilePath
 		{
 			get => inputAudioFilePath;
@@ -22,7 +22,7 @@ namespace OngekiFumenEditor.Modules.OptionGeneratorTools.Models
 		}
 
 		private string outputFolderPath;
-		[OptionBindingAttrbute<string>("outputFolder", "", "", Require = true)]
+		[LocalizableOptionBinding<string>("outputFolder", "ProgramOptionOutputFolder", "", true)]
 		public string OutputFolderPath
 		{
 			get => outputFolderPath;
@@ -30,7 +30,7 @@ namespace OngekiFumenEditor.Modules.OptionGeneratorTools.Models
 		}
 
 		private int previewBeginTime = 60000;
-		[OptionBindingAttrbute<int>("previewBegin", "", 60000)]
+		[LocalizableOptionBinding<int>("previewBegin", "ProgramOptionPreviewBegin", 60000)]
 		public int PreviewBeginTime
 		{
 			get => previewBeginTime;
@@ -41,7 +41,7 @@ namespace OngekiFumenEditor.Modules.OptionGeneratorTools.Models
 		}
 
 		private int previewEndTime = 80000;
-		[OptionBindingAttrbute<int>("previewEnd", "", 80000)]
+		[LocalizableOptionBinding<int>("previewEnd", "ProgramOptionPreviewEnd", 80000)]
 		public int PreviewEndTime
 		{
 			get => previewEndTime;

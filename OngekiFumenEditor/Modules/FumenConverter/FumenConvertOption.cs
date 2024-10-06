@@ -4,9 +4,9 @@ namespace OngekiFumenEditor.Modules.FumenConverter;
 
 public class FumenConvertOption
 {
-    [OptionBindingAttrbute<string>("inputFile", "", default, Require = true)]
+    [LocalizableOptionBinding<string>("inputFile", "ProgramOptionInputFile", default, Require = true)]
     public string InputFumenFilePath { get; set; }
     
-    [OptionBindingAttrbute<string>("outputFile", "", default, Require = true)]
+    [LocalizableOptionBinding<string>("outputFile", "ProgramOptionOutputFile", default, Require = true)]
     public string OutputFumenFilePath { get; set; }
 }

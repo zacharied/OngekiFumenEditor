@@ -1572,4 +1572,43 @@
   <data name="CliOptionDescriptionVerbose" xml:space="preserve">
     <value>Show internal log output</value>
   </data>
+  <data name="ProgramOptionInputFile" xml:space="preserve">
+    <value>absolute path of the file to read</value>
+  </data>
+  <data name="ProgramOptionOutputFile" xml:space="preserve">
+    <value>absolute path to the file to output to</value>
+  </data>
+  <data name="ProgramOptionMusicId" xml:space="preserve">
+    <value>music ID to use for option generation (0000-9999)</value>
+  </data>
+  <data name="ProgramOptionInputFileAudio" xml:space="preserve">
+    <value>absolute path of the file to read (*.wav, *.mp3, *.hca)</value>
+  </data>
+  <data name="ProgramOptionOutputFolder" xml:space="preserve">
+    <value>absolute path to the directory that will store generated files</value>
+  </data>
+  <data name="ProgramOptionPreviewBegin" xml:space="preserve">
+    <value>the time in audio that the preview should play from (msec)</value>
+  </data>
+  <data name="ProgramOptionPreviewEnd" xml:space="preserve">
+    <value>the time in audio that the preview should end at (msec)</value>
+  </data>
+  <data name="ProgramOptionOutputFolderAsset" xml:space="preserve">
+    <value>absolute path to the directory that will store generated files (may contain assets.bytes)</value>
+  </data>
+  <data name="ProgramOptionInputFileJacket" xml:space="preserve">
+    <value>absolute path of the file to read (*.png)</value>
+  </data>
+  <data name="ProgramOptionJacketOutputHeight" xml:space="preserve">
+    <value>height (in px) of the generated jacket file</value>
+  </data>
+  <data name="ProgramOptionJacketOutputWidth" xml:space="preserve">
+    <value>width (in px) of the generated jacket file</value>
+  </data>
+  <data name="ProgramOptionJacketOutputWidthSmall" xml:space="preserve">
+    <value>width (in px) of the small generated jacket file</value>
+  </data>
+  <data name="ProgramOptionJacketOutputHeightSmall" xml:space="preserve">
+    <value>height (in px) of the small generated jacket file</value>
+  </data>
 </root>

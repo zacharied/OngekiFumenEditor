@@ -3255,6 +3255,123 @@ namespace OngekiFumenEditor.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to absolute path of the file to read.
+        /// </summary>
+        public static string ProgramOptionInputFile {
+            get {
+                return ResourceManager.GetString("ProgramOptionInputFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to absolute path of the file to read (*.wav, *.mp3, *.hca).
+        /// </summary>
+        public static string ProgramOptionInputFileAudio {
+            get {
+                return ResourceManager.GetString("ProgramOptionInputFileAudio", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to absolute path of the file to read (*.png).
+        /// </summary>
+        public static string ProgramOptionInputFileJacket {
+            get {
+                return ResourceManager.GetString("ProgramOptionInputFileJacket", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to height (in px) of the generated jacket file.
+        /// </summary>
+        public static string ProgramOptionJacketOutputHeight {
+            get {
+                return ResourceManager.GetString("ProgramOptionJacketOutputHeight", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to height (in px) of the small generated jacket file.
+        /// </summary>
+        public static string ProgramOptionJacketOutputHeightSmall {
+            get {
+                return ResourceManager.GetString("ProgramOptionJacketOutputHeightSmall", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to width (in px) of the generated jacket file.
+        /// </summary>
+        public static string ProgramOptionJacketOutputWidth {
+            get {
+                return ResourceManager.GetString("ProgramOptionJacketOutputWidth", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to width (in px) of the small generated jacket file.
+        /// </summary>
+        public static string ProgramOptionJacketOutputWidthSmall {
+            get {
+                return ResourceManager.GetString("ProgramOptionJacketOutputWidthSmall", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to music ID to use for option generation (0000-9999).
+        /// </summary>
+        public static string ProgramOptionMusicId {
+            get {
+                return ResourceManager.GetString("ProgramOptionMusicId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to absolute path to the file to output to.
+        /// </summary>
+        public static string ProgramOptionOutputFile {
+            get {
+                return ResourceManager.GetString("ProgramOptionOutputFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to absolute path to the directory that will store generated files.
+        /// </summary>
+        public static string ProgramOptionOutputFolder {
+            get {
+                return ResourceManager.GetString("ProgramOptionOutputFolder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to absolute path to the directory that will store generated files (may contain assets.bytes).
+        /// </summary>
+        public static string ProgramOptionOutputFolderAsset {
+            get {
+                return ResourceManager.GetString("ProgramOptionOutputFolderAsset", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to the time in audio that the preview should play from (msec).
+        /// </summary>
+        public static string ProgramOptionPreviewBegin {
+            get {
+                return ResourceManager.GetString("ProgramOptionPreviewBegin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to the time in audio that the preview should end at (msec).
+        /// </summary>
+        public static string ProgramOptionPreviewEnd {
+            get {
+                return ResourceManager.GetString("ProgramOptionPreviewEnd", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The program has captured an unhandled exception. Logs and dump files have been stored in the corresponding folder in the program directory. You can send them to the developers for further analysis.
         /// </summary>
         public static string ProgramThrowAndDump {
