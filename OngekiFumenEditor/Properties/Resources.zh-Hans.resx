@@ -216,9 +216,6 @@
   <data name="BatchSetIsCritical" xml:space="preserve">
     <value>快速批量设置IsCritical</value>
   </data>
-  <data name="BatchSwitchFlickDirection" xml:space="preserve">
-    <value>批量改变Flick物件方向</value>
-  </data>
   <data name="BeatSplit" xml:space="preserve">
     <value>节奏线细分倍率:</value>
   </data>
@@ -957,15 +954,6 @@
   <data name="MenuSelecting" xml:space="preserve">
     <value>选取...</value>
   </data>
-  <data name="MenuMirrorSelectionXGrid" xml:space="preserve">
-    <value>按整体全体范围水平镜像移动</value>
-  </data>
-  <data name="MenuMirrorSelectionXGridZero" xml:space="preserve">
-    <value>按X[0,0]为基准水平镜像移动</value>
-  </data>
-  <data name="MenuMirrorSelectionLaneColors" xml:space="preserve">
-    <value>镜像击打轨道颜色</value>
-  </data>
   <data name="MissingBossEnemySet" xml:space="preserve">
     <value>缺少Boss的EnemySet物件,建议放置一个来钦定boss出现的时机</value>
   </data>
@@ -1016,9 +1004,6 @@
   </data>
   <data name="NoObjectCouldBeSetIsCritical" xml:space="preserve">
     <value>无合适物件批量设置IsCritical属性</value>
-  </data>
-  <data name="NoFlickCouldBeSwitched" xml:space="preserve">
-    <value>请先选择Flick物件再更改方向</value>
   </data>
   <data name="NotInterpolatedCurve" xml:space="preserve">
     <value>轨道物件曲线还没被插值</value>
@@ -1563,16 +1548,43 @@
   <data name="ResetAllSettingComfirm" xml:space="preserve">
     <value>是否重置本应用所有配置选项?</value>
   </data>
-  <data name="MirrorSelectionXGrid" xml:space="preserve">
-    <value>按整体全体范围水平镜像移动</value>
+  <data name="ProgramCommandDescriptionSvg" xml:space="preserve">
+    <value>生成预览谱面.svg文件</value>
   </data>
-  <data name="MirrorSelectionXGridZero" xml:space="preserve">
-    <value>按X[0,0]为基准水平镜像移动</value>
+  <data name="ProgramOptionSvgMaxXGrid" xml:space="preserve">
+    <value>最大显示XGrid范围</value>
   </data>
-  <data name="MirrorSelectionLaneColors" xml:space="preserve">
-    <value>镜像击打轨道颜色</value>
+  <data name="ProgramOptionSvgViewWidth" xml:space="preserve">
+    <value>画面宽度</value>
   </data>
-  <data name="NoLimit" xml:space="preserve">
-    <value>(无限制)</value>
+  <data name="ProgramOptionSvgVerticalScale" xml:space="preserve">
+    <value>垂直缩放</value>
+  </data>
+  <data name="ProgramOptionInputFile" xml:space="preserve">
+    <value>要生成的谱面文件路径</value>
+  </data>
+  <data name="ProgramOptionInputFileNyageki" xml:space="preserve">
+    <value>要生成的谱面文件路径</value>
+  </data>
+  <data name="ProgramOptionOutputFile" xml:space="preserve">
+    <value>生成文件保存路径</value>
+  </data>
+  <data name="ProgramOptionInputFileAudio" xml:space="preserve">
+    <value>音频文件,用来获取谱面总长度</value>
+  </data>
+  <data name="ProgramOptionSvgSoflanMode" xml:space="preserve">
+    <value>变速模式,不同选项有不同的物件表现</value>
+  </data>
+  <data name="ProgramOptionSvgWeightedSoflanOffset" xml:space="preserve">
+    <value>WeightedSoflan模式下,soflan超过(或在附近)这个值会被加权计算</value>
+  </data>
+  <data name="ProgramOptionSvgWeightedSoflanStress" xml:space="preserve">
+    <value>WeightedSoflan模式下,soflan最低能压到原来的(1-stress)倍</value>
+  </data>
+  <data name="ProgramOptionSvgWeightedSoflanSlope" xml:space="preserve">
+    <value>WeightedSoflan模式下,加权变化速率</value>
+  </data>
+  <data name="ProgramOptionSvgRenderAsPng" xml:space="preserve">
+    <value>是否生成png图片</value>
   </data>
 </root>

@@ -216,9 +216,6 @@
   <data name="BatchSetIsCritical" xml:space="preserve">
     <value>Batch set property IsCritical</value>
   </data>
-  <data name="BatchSwitchFlickDirection" xml:space="preserve">
-    <value>Batch switch flick direction</value>
-  </data>
   <data name="BeatSplit" xml:space="preserve">
     <value>Subdivision multiplier for the meter:</value>
   </data>
@@ -957,15 +954,6 @@
   <data name="MenuSelecting" xml:space="preserve">
     <value>Select...</value>
   </data>
-  <data name="MenuMirrorSelectionXGrid" xml:space="preserve">
-    <value>Mirror _horizontally over selection center</value>
-  </data>
-  <data name="MenuMirrorSelectionXGridZero" xml:space="preserve">
-    <value>Mirror horizontally over _field center</value>
-  </data>
-  <data name="MenuMirrorSelectionLaneColors" xml:space="preserve">
-    <value>Mirror lane _colors</value>
-  </data>
   <data name="MissingBossEnemySet" xml:space="preserve">
     <value>Missing EnemySet(Boss) object. It is recommended to place one to designate the timing of the boss's appearance</value>
   </data>
@@ -1016,9 +1004,6 @@
   </data>
   <data name="NoObjectCouldBeSetIsCritical" xml:space="preserve">
     <value>No suitable objects to setting property IsCritical</value>
-  </data>
-  <data name="NoFlickCouldBeSwitched" xml:space="preserve">
-    <value>No flicks to switch in selection</value>
   </data>
   <data name="NotInterpolatedCurve" xml:space="preserve">
     <value>The curve lane has not been interpolated yet</value>
@@ -1441,7 +1426,7 @@
     <value>To paste...</value>
   </data>
   <data name="ToSelectedObjects" xml:space="preserve">
-    <value>For _selected objects...</value>
+    <value>For selected objects...</value>
   </data>
   <data name="Tutorial" xml:space="preserve">
     <value>Getting Started Tutorial</value>
@@ -1563,16 +1548,91 @@
   <data name="ResetAllSettingComfirm" xml:space="preserve">
     <value>Do you want to reset all settings for application?</value>
   </data>
-  <data name="MirrorSelectionXGrid" xml:space="preserve">
-    <value>Mirror horizontally over selection center</value>
+  <data name="ProgramCommandDescriptionSvg" xml:space="preserve">
+    <value>Generate a preview image for a chart</value>
   </data>
-  <data name="MirrorSelectionXGridZero" xml:space="preserve">
-    <value>Mirror horizontally over field center</value>
+  <data name="ProgramCommandConvert" xml:space="preserve">
+    <value>Convert a chart to a different format</value>
   </data>
-  <data name="MirrorSelectionLaneColors" xml:space="preserve">
-    <value>Mirror lane colors</value>
+  <data name="ProgramOptionDescriptionVerbose" xml:space="preserve">
+    <value>Show log output</value>
   </data>
-  <data name="NoLimit" xml:space="preserve">
-    <value>(No Limit)</value>
+  <data name="CliArgumentNotAbsolutePath" xml:space="preserve">
+    <value>Relative paths are not allowed</value>
+  </data>
+  <data name="CliInputErrorHeader" xml:space="preserve">
+    <value>Command line error</value>
+  </data>
+  <data name="ProgramCommandJacket" xml:space="preserve">
+    <value>Generate &amp; update jacket asset files</value>
+  </data>
+  <data name="ProgramCommandAcb" xml:space="preserve">
+    <value>Generate ACB audio files</value>
+  </data>
+  <data name="ProgramOptionInputFile" xml:space="preserve">
+    <value>absolute path of the file to read</value>
+  </data>
+  <data name="ProgramOptionOutputFile" xml:space="preserve">
+    <value>absolute path to the file to output to</value>
+  </data>
+  <data name="ProgramOptionMusicId" xml:space="preserve">
+    <value>music ID to use for option generation (0000-9999)</value>
+  </data>
+  <data name="ProgramOptionInputFileAudio" xml:space="preserve">
+    <value>absolute path of the file to read (*.wav, *.mp3, *.hca)</value>
+  </data>
+  <data name="ProgramOptionOutputFolder" xml:space="preserve">
+    <value>absolute path to the directory that will store generated files</value>
+  </data>
+  <data name="ProgramOptionPreviewBegin" xml:space="preserve">
+    <value>the time in audio that the preview should play from (msec)</value>
+  </data>
+  <data name="ProgramOptionPreviewEnd" xml:space="preserve">
+    <value>the time in audio that the preview should end at (msec)</value>
+  </data>
+  <data name="ProgramOptionOutputFolderAsset" xml:space="preserve">
+    <value>absolute path to the directory that will store generated files (may contain assets.bytes)</value>
+  </data>
+  <data name="ProgramOptionInputFileJacket" xml:space="preserve">
+    <value>absolute path of the file to read (*.png)</value>
+  </data>
+  <data name="ProgramOptionJacketOutputHeight" xml:space="preserve">
+    <value>height (in px) of the generated jacket file</value>
+  </data>
+  <data name="ProgramOptionJacketOutputWidth" xml:space="preserve">
+    <value>width (in px) of the generated jacket file</value>
+  </data>
+  <data name="ProgramOptionJacketOutputWidthSmall" xml:space="preserve">
+    <value>width (in px) of the small generated jacket file</value>
+  </data>
+  <data name="ProgramOptionJacketOutputHeightSmall" xml:space="preserve">
+    <value>height (in px) of the small generated jacket file</value>
+  </data>
+  <data name="ProgramOptionSvgMaxXGrid" xml:space="preserve">
+    <value>maximum X grid bounds</value>
+  </data>
+  <data name="ProgramOptionSvgViewWidth" xml:space="preserve">
+    <value>view width of the output image</value>
+  </data>
+  <data name="ProgramOptionSvgVerticalScale" xml:space="preserve">
+    <value>vertical scale of the output image</value>
+  </data>
+  <data name="ProgramOptionSvgSoflanMode" xml:space="preserve">
+    <value>change behavior for soflans</value>
+  </data>
+  <data name="ProgramOptionSvgWeightedSoflanOffset" xml:space="preserve">
+    <value>threshold for soflans to be weighted</value>
+  </data>
+  <data name="ProgramOptionSvgWeightedSoflanStress" xml:space="preserve">
+    <value>minimum vertical compression for weigthed soflans</value>
+  </data>
+  <data name="ProgramOptionSvgWeightedSoflanSlope" xml:space="preserve">
+    <value>rate of change for weighted soflans</value>
+  </data>
+  <data name="ProgramOptionSvgRenderAsPng" xml:space="preserve">
+    <value>output file as png</value>
+  </data>
+  <data name="ProgramOptionInputFileNyageki" xml:space="preserve">
+    <value>absolute path of the file to read (*.nyageki)</value>
   </data>
 </root>
