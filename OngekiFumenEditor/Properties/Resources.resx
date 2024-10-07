@@ -1548,11 +1548,11 @@
   <data name="ResetAllSettingComfirm" xml:space="preserve">
     <value>Do you want to reset all settings for application?</value>
   </data>
-  <data name="CliCommandDescriptionSvg" xml:space="preserve">
-    <value>Generate a preview SVG file</value>
+  <data name="ProgramCommandDescriptionSvg" xml:space="preserve">
+    <value>Generate a preview image for a chart</value>
   </data>
-  <data name="CliCommandDescriptionConvert" xml:space="preserve">
-    <value>Convert charts between formats</value>
+  <data name="ProgramCommandConvert" xml:space="preserve">
+    <value>Convert a chart to a different format</value>
   </data>
   <data name="ProgramOptionDescriptionVerbose" xml:space="preserve">
     <value>Show log output</value>
@@ -1563,14 +1563,11 @@
   <data name="CliInputErrorHeader" xml:space="preserve">
     <value>Command line error</value>
   </data>
-  <data name="CliCommandDescriptionJacket" xml:space="preserve">
-    <value>Generate/update jacket asset files</value>
+  <data name="ProgramCommandJacket" xml:space="preserve">
+    <value>Generate &amp; update jacket asset files</value>
   </data>
-  <data name="CliCommandDescriptionAcb" xml:space="preserve">
+  <data name="ProgramCommandAcb" xml:space="preserve">
     <value>Generate ACB audio files</value>
-  </data>
-  <data name="CliOptionDescriptionVerbose" xml:space="preserve">
-    <value>Show internal log output</value>
   </data>
   <data name="ProgramOptionInputFile" xml:space="preserve">
     <value>absolute path of the file to read</value>

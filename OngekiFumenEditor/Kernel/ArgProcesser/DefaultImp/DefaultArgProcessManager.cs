@@ -75,12 +75,12 @@ namespace OngekiFumenEditor.Kernel.ArgProcesser.DefaultImp
             }
             
             var rootCommand = new RootCommand("CommandLine for OngekiFumenEditor");
-            rootCommand.AddCommand(GenerateVerbCommands<GenerateOption>("svg", Resources.CliCommandDescriptionSvg, ProcessSvgCommand));
-            rootCommand.AddCommand(GenerateVerbCommands<FumenConvertOption>("convert", Resources.CliCommandDescriptionConvert, ProcessConvertCommand));
-            rootCommand.AddCommand(GenerateVerbCommands<JacketGenerateOption>("jacket", Resources.CliCommandDescriptionJacket, ProcessJacketCommand));
-            rootCommand.AddCommand(GenerateVerbCommands<AcbGenerateOption>("acb", Resources.CliCommandDescriptionAcb, ProcessAcbCommand));
+            rootCommand.AddCommand(GenerateVerbCommands<GenerateOption>("svg", Resources.ProgramCommandDescriptionSvg, ProcessSvgCommand));
+            rootCommand.AddCommand(GenerateVerbCommands<FumenConvertOption>("convert", Resources.ProgramCommandConvert, ProcessConvertCommand));
+            rootCommand.AddCommand(GenerateVerbCommands<JacketGenerateOption>("jacket", Resources.ProgramCommandJacket, ProcessJacketCommand));
+            rootCommand.AddCommand(GenerateVerbCommands<AcbGenerateOption>("acb", Resources.ProgramCommandAcb, ProcessAcbCommand));
 
-            var verbosityOption = new Option<bool>(new[] {"--verbose", "-v"}, Resources.CliOptionDescriptionVerbose);
+            var verbosityOption = new Option<bool>(new[] {"--verbose", "-v"}, Resources.ProgramOptionDescriptionVerbose);
             verbosityOption.AddValidator(res =>
             {
                 if (res.GetValueOrDefault<bool>())
