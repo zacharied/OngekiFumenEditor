@@ -4633,4 +4633,3 @@ namespace OngekiFumenEditor.Properties {
         }
     }
 }
-
