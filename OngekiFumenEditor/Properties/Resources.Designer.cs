@@ -60,7 +60,7 @@ namespace OngekiFumenEditor.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Audio File Generator.
+        ///   Looks up a localized string similar to Audio file generator.
         /// </summary>
         public static string AcbGenerator {
             get {
@@ -78,7 +78,7 @@ namespace OngekiFumenEditor.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Add connectable next object.
+        ///   Looks up a localized string similar to Add next object.
         /// </summary>
         public static string AddConnectableNextObject {
             get {
@@ -114,7 +114,7 @@ namespace OngekiFumenEditor.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Automatically dock objects when pasted.
+        ///   Looks up a localized string similar to Automatically snap objects when pasted.
         /// </summary>
         public static string AdjustPastedObjects {
             get {
@@ -123,7 +123,7 @@ namespace OngekiFumenEditor.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Suggest.
+        ///   Looks up a localized string similar to Advice.
         /// </summary>
         public static string Advice {
             get {
@@ -132,7 +132,7 @@ namespace OngekiFumenEditor.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Recalculate all objects with audio delay applied.
+        ///   Looks up a localized string similar to Recalculate all object positions with audio delay applied.
         /// </summary>
         public static string AllObjectApplyNewDelayAfterCalculated {
             get {
@@ -141,7 +141,7 @@ namespace OngekiFumenEditor.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to All Supported Filetypes.
+        ///   Looks up a localized string similar to All supported filetypes.
         /// </summary>
         public static string AllSupportFileFormat {
             get {
@@ -168,7 +168,7 @@ namespace OngekiFumenEditor.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Processing failed:.
+        ///   Looks up a localized string similar to Audio adjustment failed: .
         /// </summary>
         public static string ApplyAudioAdjustFail {
             get {
@@ -177,7 +177,7 @@ namespace OngekiFumenEditor.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Processed successfully.
+        ///   Looks up a localized string similar to Audio adjusted succesfully.
         /// </summary>
         public static string ApplyAudioAdjustSuccess {
             get {
@@ -186,7 +186,7 @@ namespace OngekiFumenEditor.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Processing successfully. But we recommend saving and reopening the current project to review the latest audio changes or objects position adjustments..
+        ///   Looks up a localized string similar to Audio adjusted successfully. It is strongly recommend to save and reopen the current project..
         /// </summary>
         public static string ApplyAudioAdjustSuccessButSuggest {
             get {
@@ -218,15 +218,6 @@ namespace OngekiFumenEditor.Properties {
         public static string Artist {
             get {
                 return ResourceManager.GetString("Artist", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to and serve as source object in brush mode..
-        /// </summary>
-        public static string AsBrushSourceObject {
-            get {
-                return ResourceManager.GetString("AsBrushSourceObject", resourceCulture);
             }
         }
         
@@ -375,7 +366,7 @@ namespace OngekiFumenEditor.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to In preview mode, if the total number of Bells/Bullets exceeds.
+        ///   Looks up a localized string similar to In preview mode, if the total number of Bells/Bullets exceeds .
         /// </summary>
         public static string BellBulletCountOverLimit_Part1 {
             get {
@@ -438,7 +429,7 @@ namespace OngekiFumenEditor.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Brush on lane with copied object.
+        ///   Looks up a localized string similar to Brush along lane with copied object.
         /// </summary>
         public static string BrushCopied {
             get {
@@ -447,7 +438,7 @@ namespace OngekiFumenEditor.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Batch on the lane based on the multiplied meter with copied object; illegal segments cannot be used..
+        ///   Looks up a localized string similar to Brush along the lane, creating an instance of the brush object at each TGrid subdivision positioned upon the lane.
         /// </summary>
         public static string BrushCopiedTipText {
             get {
@@ -474,7 +465,7 @@ namespace OngekiFumenEditor.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Brush mode is enabled. Avoid most object dragging operations..
+        ///   Looks up a localized string similar to Brush mode is enabled. Most dragging operations are disabled..
         /// </summary>
         public static string BrushModeSwitchTipText {
             get {
@@ -483,7 +474,34 @@ namespace OngekiFumenEditor.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Bullet Size.
+        ///   Looks up a localized string similar to Bell.
+        /// </summary>
+        public static string BulletPaletteCreateBell {
+            get {
+                return ResourceManager.GetString("BulletPaletteCreateBell", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bullet.
+        /// </summary>
+        public static string BulletPaletteCreateBullet {
+            get {
+                return ResourceManager.GetString("BulletPaletteCreateBullet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ID.
+        /// </summary>
+        public static string BulletPaletteId {
+            get {
+                return ResourceManager.GetString("BulletPaletteId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Size.
         /// </summary>
         public static string BulletSize {
             get {
@@ -492,7 +510,7 @@ namespace OngekiFumenEditor.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Bullet Speed.
+        ///   Looks up a localized string similar to Speed.
         /// </summary>
         public static string BulletSpeed {
             get {
@@ -501,7 +519,7 @@ namespace OngekiFumenEditor.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Bullet Shape.
+        ///   Looks up a localized string similar to Shape.
         /// </summary>
         public static string BulletType {
             get {
@@ -555,7 +573,7 @@ namespace OngekiFumenEditor.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Unable to create a new project:.
+        ///   Looks up a localized string similar to Unable to create a new project: .
         /// </summary>
         public static string CantCreateProject {
             get {
@@ -564,7 +582,7 @@ namespace OngekiFumenEditor.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Unable to fast open the fumen:.
+        ///   Looks up a localized string similar to Unable to fast open the fumen: .
         /// </summary>
         public static string CantFastOpenFumen {
             get {
@@ -573,7 +591,7 @@ namespace OngekiFumenEditor.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Unable to load the fumen:.
+        ///   Looks up a localized string similar to Unable to load the fumen: .
         /// </summary>
         public static string CantLoadFumen {
             get {
@@ -582,7 +600,7 @@ namespace OngekiFumenEditor.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Unable to load the project:.
+        ///   Looks up a localized string similar to Unable to load the project: .
         /// </summary>
         public static string CantLoadProject {
             get {
@@ -672,7 +690,7 @@ namespace OngekiFumenEditor.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to projecti file is in use or lacks permissions.
+        ///   Looks up a localized string similar to project file is in use or lacks write permissions.
         /// </summary>
         public static string CantWriteProjectFileByIoError {
             get {
@@ -717,7 +735,7 @@ namespace OngekiFumenEditor.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Clear recent open file history.
+        ///   Looks up a localized string similar to Clear recent file history.
         /// </summary>
         public static string CleanRecentFilesRecords {
             get {
@@ -735,7 +753,7 @@ namespace OngekiFumenEditor.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Clear the history records.
+        ///   Looks up a localized string similar to Clear history.
         /// </summary>
         public static string ClearHistory {
             get {
@@ -753,6 +771,15 @@ namespace OngekiFumenEditor.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Click to clone this palette.
+        /// </summary>
+        public static string ClickToClonePalette {
+            get {
+                return ResourceManager.GetString("ClickToClonePalette", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Command line error.
         /// </summary>
         public static string CliInputErrorHeader {
@@ -762,7 +789,7 @@ namespace OngekiFumenEditor.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to clone.
+        ///   Looks up a localized string similar to Clone.
         /// </summary>
         public static string ClonePallete {
             get {
@@ -771,7 +798,7 @@ namespace OngekiFumenEditor.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Project setup wizard failed to complete. Closing this editor..
+        ///   Looks up a localized string similar to Project setup wizard did not complete. Closing this editor..
         /// </summary>
         public static string CloseEditorByProjectSetupFail {
             get {
@@ -825,7 +852,7 @@ namespace OngekiFumenEditor.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Script complied successful. Execute now?.
+        ///   Looks up a localized string similar to Script complied successfully. Execute now?.
         /// </summary>
         public static string ComfirmExecuteScript {
             get {
@@ -834,7 +861,7 @@ namespace OngekiFumenEditor.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Do you want to interpolate all lanes containing curves?\nThis may delete and regenerate already interpolated lanes without curves.\nSome partially overlapping Tap/Hold objects may change their reference lanes  as a result..
+        ///   Looks up a localized string similar to Do you want to interpolate all lanes containing curves?\nThis may delete and regenerate already interpolated lanes without curves.\nSome partially overlapping Tap/Hold objects may change their reference lanes as a result..
         /// </summary>
         public static string ComfirmInterpolateMessage {
             get {
@@ -861,7 +888,7 @@ namespace OngekiFumenEditor.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Audio Delay Adjustment.
+        ///   Looks up a localized string similar to Adjust audio delay.
         /// </summary>
         public static string CommandAudioAdjustWindow {
             get {
@@ -870,7 +897,7 @@ namespace OngekiFumenEditor.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Garbage collection.
+        ///   Looks up a localized string similar to Run garbage collector.
         /// </summary>
         public static string CommandCallFullGC {
             get {
@@ -888,7 +915,7 @@ namespace OngekiFumenEditor.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Interpolate all curved lanes within XGrid Limit.
+        ///   Looks up a localized string similar to Interpolate all curved lanes with XGrid limit.
         /// </summary>
         public static string CommandInterpolateAllWithXGridLimit {
             get {
@@ -933,7 +960,7 @@ namespace OngekiFumenEditor.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Always displaying curve control objects.
+        ///   Looks up a localized string similar to Displaying all curve control points.
         /// </summary>
         public static string CommandShowCurveControlAlways {
             get {
@@ -942,7 +969,7 @@ namespace OngekiFumenEditor.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to If enabled, all curve control objects will be displayed continuously.
+        ///   Looks up a localized string similar to If enabled, all curve control objects will be displayed at all times.
         /// </summary>
         public static string CommandShowCurveControlAlwaysTipText {
             get {
@@ -951,7 +978,7 @@ namespace OngekiFumenEditor.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Compilation failed:.
+        ///   Looks up a localized string similar to Compilation failed: .
         /// </summary>
         public static string CompileError {
             get {
@@ -969,7 +996,7 @@ namespace OngekiFumenEditor.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Comfirm.
+        ///   Looks up a localized string similar to Confirm.
         /// </summary>
         public static string Confirm {
             get {
@@ -987,7 +1014,7 @@ namespace OngekiFumenEditor.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The audio file that needs to be converted does not exist.
+        ///   Looks up a localized string similar to The audio file to be converted does not exist.
         /// </summary>
         public static string ConvertAudioFileNotFound {
             get {
@@ -1023,6 +1050,15 @@ namespace OngekiFumenEditor.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Copied {0} objects (brushable).
+        /// </summary>
+        public static string CopiedObjectsBrushAllowed {
+            get {
+                return ResourceManager.GetString("CopiedObjectsBrushAllowed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Copy.
         /// </summary>
         public static string Copy {
@@ -1041,7 +1077,7 @@ namespace OngekiFumenEditor.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Copy (copiable objects)..
+        ///   Looks up a localized string similar to Copy (copiable objects).
         /// </summary>
         public static string CopyCopiable {
             get {
@@ -1050,7 +1086,7 @@ namespace OngekiFumenEditor.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Need to copy a copiable object only before using the brush..
+        ///   Looks up a localized string similar to A singular object is required in the clipboard to use a brush.
         /// </summary>
         public static string CopyOneObjectOnceBeforeUsingBrush {
             get {
@@ -1068,7 +1104,7 @@ namespace OngekiFumenEditor.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Cost To Unlock:.
+        ///   Looks up a localized string similar to Cost to Unlock:.
         /// </summary>
         public static string CostToUnlock {
             get {
@@ -1140,7 +1176,7 @@ namespace OngekiFumenEditor.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to XGrid.Unit Limit (For Ongeki).
+        ///   Looks up a localized string similar to XGrid.Unit Limit (for Ongeki).
         /// </summary>
         public static string CurveInterpolaterFactoryXGridLimited {
             get {
@@ -1185,7 +1221,7 @@ namespace OngekiFumenEditor.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Parsing fumen file failed:.
+        ///   Looks up a localized string similar to Parsing fumen file failed: .
         /// </summary>
         public static string DeserializeFumenFileFail {
             get {
@@ -1194,7 +1230,7 @@ namespace OngekiFumenEditor.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Unsupported parsing of this fumen file:.
+        ///   Looks up a localized string similar to unsupported fumen format for import: .
         /// </summary>
         public static string DeserializeFumenFileNotSupport {
             get {
@@ -1230,7 +1266,7 @@ namespace OngekiFumenEditor.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Unable to add objects beyond the audio/editor range..
+        ///   Looks up a localized string similar to Unable to add objects beyond the audio/editor range.
         /// </summary>
         public static string DisableAddObjectBeyondAudioDuration {
             get {
@@ -1239,7 +1275,7 @@ namespace OngekiFumenEditor.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to No child, unable to interpolate..
+        ///   Looks up a localized string similar to Unable to interpolate because there are no children.
         /// </summary>
         public static string DisableInterpolateByNoConnectableChildren {
             get {
@@ -1248,7 +1284,7 @@ namespace OngekiFumenEditor.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Unable to interpolate part path because illegal..
+        ///   Looks up a localized string similar to Unable to interpolate because there is an illegal path.
         /// </summary>
         public static string DisableInterpolatePartByInvaild {
             get {
@@ -1257,7 +1293,7 @@ namespace OngekiFumenEditor.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to SplashScreen does not display after program startup.
+        ///   Looks up a localized string similar to Disable splash screen on program startup.
         /// </summary>
         public static string DisableShowSplashScreenAfterBoot {
             get {
@@ -1266,7 +1302,7 @@ namespace OngekiFumenEditor.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Disable snapping for the TGrid.
+        ///   Looks up a localized string similar to Disable vertical alignment.
         /// </summary>
         public static string DisableTGridMagneticDock {
             get {
@@ -1284,7 +1320,7 @@ namespace OngekiFumenEditor.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Disable snapping for the XGrid.
+        ///   Looks up a localized string similar to Disable horizontal alignment.
         /// </summary>
         public static string DisableXGridMagneticDock {
             get {
@@ -1293,7 +1329,7 @@ namespace OngekiFumenEditor.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Display time format.
+        ///   Looks up a localized string similar to Time format.
         /// </summary>
         public static string DisplayTimeFormat {
             get {
@@ -1320,7 +1356,7 @@ namespace OngekiFumenEditor.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to new Bell.
+        ///   Looks up a localized string similar to Drag to add a new Bell object from this palette.
         /// </summary>
         public static string DragToCreateBell {
             get {
@@ -1329,7 +1365,7 @@ namespace OngekiFumenEditor.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to new Bullet.
+        ///   Looks up a localized string similar to Drag to add a new Bullet object from this palette.
         /// </summary>
         public static string DragToCreateBullet {
             get {
@@ -1338,7 +1374,7 @@ namespace OngekiFumenEditor.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Drag to add a new CurveControlPoint object.
+        ///   Looks up a localized string similar to Create curve point.
         /// </summary>
         public static string DragToCreateCurveControlPoint {
             get {
@@ -1347,7 +1383,7 @@ namespace OngekiFumenEditor.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Drag to add a new CurveControlPoint object.
+        ///   Looks up a localized string similar to Drag to add a new curve control point object.
         /// </summary>
         public static string DragToCreateCurveControlPointTipText {
             get {
@@ -1356,7 +1392,7 @@ namespace OngekiFumenEditor.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Drag to add a new HoldEnd object.
+        ///   Looks up a localized string similar to Create hold end.
         /// </summary>
         public static string DragToCreateHoldEnd {
             get {
@@ -1365,11 +1401,29 @@ namespace OngekiFumenEditor.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Drag to add a new next object.
+        ///   Looks up a localized string similar to Drag to create a new hold end object.
+        /// </summary>
+        public static string DragToCreateHoldEndTipText {
+            get {
+                return ResourceManager.GetString("DragToCreateHoldEndTipText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Create next node.
         /// </summary>
         public static string DragToCreateNext {
             get {
                 return ResourceManager.GetString("DragToCreateNext", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Drag to create a new node connected to the end of this lane.
+        /// </summary>
+        public static string DragToCreateNextToolTip {
+            get {
+                return ResourceManager.GetString("DragToCreateNextToolTip", resourceCulture);
             }
         }
         
@@ -1392,7 +1446,7 @@ namespace OngekiFumenEditor.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Drag to split lane.
+        ///   Looks up a localized string similar to Split lane.
         /// </summary>
         public static string DragToSplit {
             get {
@@ -1401,7 +1455,7 @@ namespace OngekiFumenEditor.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Split out two lanes, old and new, at a specific time..
+        ///   Looks up a localized string similar to Drag to split this lane at the designated time.
         /// </summary>
         public static string DragToSplitTipText {
             get {
@@ -1428,7 +1482,7 @@ namespace OngekiFumenEditor.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Editor jumps to the specified TGrid..
+        ///   Looks up a localized string similar to Jump to specified TGrid.
         /// </summary>
         public static string EditorJumpToSpecifyTGrid {
             get {
@@ -1518,7 +1572,7 @@ namespace OngekiFumenEditor.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to enable autosave?.
+        ///   Looks up a localized string similar to Enable autosave.
         /// </summary>
         public static string EnableAutoSave {
             get {
@@ -1527,7 +1581,7 @@ namespace OngekiFumenEditor.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to enable dump full memory?.
+        ///   Looks up a localized string similar to Enable full memory dumps on crash.
         /// </summary>
         public static string EnableDumpFullMemory {
             get {
@@ -1536,7 +1590,7 @@ namespace OngekiFumenEditor.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Enable horizon scroll.
+        ///   Looks up a localized string similar to Enable horizontal scroll.
         /// </summary>
         public static string EnableHorizonScroll {
             get {
@@ -1545,7 +1599,7 @@ namespace OngekiFumenEditor.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Enable display horizon scroll bar.
+        ///   Looks up a localized string similar to Display horizontal scroll bar.
         /// </summary>
         public static string EnableHorizonScrollBarDisplay {
             get {
@@ -1581,7 +1635,7 @@ namespace OngekiFumenEditor.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Allow user places objects beyond audio duration(red line at end of editor).
+        ///   Looks up a localized string similar to Allow placement of objects beyond the range of the audio.
         /// </summary>
         public static string EnablePlaceObjectBeyondAudioDuration {
             get {
@@ -1590,7 +1644,7 @@ namespace OngekiFumenEditor.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Enable draw play field (Experimental).
+        ///   Looks up a localized string similar to Draw the playfield (experimental).
         /// </summary>
         public static string EnablePlayFieldDrawing {
             get {
@@ -1599,7 +1653,7 @@ namespace OngekiFumenEditor.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Display the player&apos;s current position (if there is no AutoPlayFaderLane, it defaults to the center).
+        ///   Looks up a localized string similar to Display the player&apos;s current position (defaults to the center if there is no AutoPlayFaderLane).
         /// </summary>
         public static string EnableShowPlayerLocation {
             get {
@@ -1662,7 +1716,7 @@ namespace OngekiFumenEditor.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Cannot open this file because an error is thrown:.
+        ///   Looks up a localized string similar to Cannot open this file because an error occurred during reading: .
         /// </summary>
         public static string ErrorOpenRecentFile {
             get {
@@ -1743,7 +1797,7 @@ namespace OngekiFumenEditor.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Failed,reason:.
+        ///   Looks up a localized string similar to Failed, reason: .
         /// </summary>
         public static string FailedAndReason {
             get {
@@ -1878,7 +1932,7 @@ namespace OngekiFumenEditor.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Finish Bouns:.
+        ///   Looks up a localized string similar to Finish Bonus:.
         /// </summary>
         public static string FinishBouns {
             get {
@@ -1887,7 +1941,7 @@ namespace OngekiFumenEditor.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to First Bpm:.
+        ///   Looks up a localized string similar to First BPM:.
         /// </summary>
         public static string FirstBpm {
             get {
@@ -1896,7 +1950,7 @@ namespace OngekiFumenEditor.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Force magnetic dock.
+        ///   Looks up a localized string similar to Snap objects to grid.
         /// </summary>
         public static string ForceMagneticDock {
             get {
@@ -1914,7 +1968,7 @@ namespace OngekiFumenEditor.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Force XGrid to snap automatically.
+        ///   Looks up a localized string similar to Snap to nearest XGrid unit.
         /// </summary>
         public static string ForceXGridMagneticDock {
             get {
@@ -1941,7 +1995,7 @@ namespace OngekiFumenEditor.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Fumen contains format or content errors that cannot be ignored, preventing further generation. Please use the fumen checking viewer/tool to check and correct the fumen..
+        ///   Looks up a localized string similar to Fumen contains format or content errors that cannot be ignored, preventing further generation. Please use the Fumen Checker panel to check and correct the fumen..
         /// </summary>
         public static string FumenContainUngenerateError {
             get {
@@ -1950,7 +2004,7 @@ namespace OngekiFumenEditor.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Fumen File Format Converter.
+        ///   Looks up a localized string similar to Fumen file format converter.
         /// </summary>
         public static string FumenConverter {
             get {
@@ -2364,7 +2418,7 @@ namespace OngekiFumenEditor.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Interpolate curve lane into straight lines, then delete the current track and generate a new one (or more).
+        ///   Looks up a localized string similar to Click to interpolate the curves of this lane into straight line segments.
         /// </summary>
         public static string InterpolateLaneTipText {
             get {
@@ -2373,7 +2427,7 @@ namespace OngekiFumenEditor.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Interpolate the part of lane.
+        ///   Looks up a localized string similar to Interpolate selected region of lane.
         /// </summary>
         public static string InterpolatePart {
             get {
@@ -2382,7 +2436,7 @@ namespace OngekiFumenEditor.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Interpolate the part of lane.
+        ///   Looks up a localized string similar to Interpolate selected region of lane.
         /// </summary>
         public static string InterpolatePartCurve {
             get {
@@ -2391,7 +2445,7 @@ namespace OngekiFumenEditor.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Interpolate this segment of the lane; illegal segments cannot be used.
+        ///   Looks up a localized string similar to Click to interpolate the curves of selected part of the lane into straight line segments.
         /// </summary>
         public static string InterpolatePartTipText {
             get {
@@ -2427,7 +2481,7 @@ namespace OngekiFumenEditor.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Fumen Jacket Generator.
+        ///   Looks up a localized string similar to Fumen jacket generator.
         /// </summary>
         public static string JacketGenerator {
             get {
@@ -2436,7 +2490,7 @@ namespace OngekiFumenEditor.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Align the scroll judgment line with the meter line by scrolling the wheel..
+        ///   Looks up a localized string similar to Align judgement line with meter when scrolling.
         /// </summary>
         public static string JudgeLineAlignBeat {
             get {
@@ -2634,7 +2688,7 @@ namespace OngekiFumenEditor.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Option Generate Tool.
+        ///   Looks up a localized string similar to Option generation....
         /// </summary>
         public static string MenuOptionGenerateTool {
             get {
@@ -2805,7 +2859,7 @@ namespace OngekiFumenEditor.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &lt;Need Not Editor&gt;.
+        ///   Looks up a localized string similar to &lt;No editor&gt;.
         /// </summary>
         public static string NoEditorTarget {
             get {
@@ -2832,7 +2886,7 @@ namespace OngekiFumenEditor.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to (No Limit).
+        ///   Looks up a localized string similar to x.
         /// </summary>
         public static string NoLimit {
             get {
@@ -2891,6 +2945,15 @@ namespace OngekiFumenEditor.Properties {
         public static string ObjectBatchBrush {
             get {
                 return ResourceManager.GetString("ObjectBatchBrush", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ID.
+        /// </summary>
+        public static string ObjectId {
+            get {
+                return ResourceManager.GetString("ObjectId", resourceCulture);
             }
         }
         
@@ -3183,7 +3246,7 @@ namespace OngekiFumenEditor.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Paste horizontally mirrored across field center.
+        ///   Looks up a localized string similar to Paste horizontally mirrored over field center.
         /// </summary>
         public static string PasteForZeroXGridMirror {
             get {
@@ -3543,7 +3606,7 @@ namespace OngekiFumenEditor.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Random Offset Range.
+        ///   Looks up a localized string similar to Random Range.
         /// </summary>
         public static string RandomOffsetRange {
             get {
@@ -3678,7 +3741,7 @@ namespace OngekiFumenEditor.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Record the operation position. In design mode, when undoing, if not within the position, jump to this location.
+        ///   Looks up a localized string similar to Jump to last operation location when undoing.
         /// </summary>
         public static string RememberUndoPlace {
             get {
@@ -3741,7 +3804,7 @@ namespace OngekiFumenEditor.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Do you want to reset all settings for application?.
+        ///   Looks up a localized string similar to Do you want to reset all settings for the application?.
         /// </summary>
         public static string ResetAllSettingComfirm {
             get {
@@ -3804,7 +3867,7 @@ namespace OngekiFumenEditor.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to SampleRates.
+        ///   Looks up a localized string similar to Sample rate (Hz).
         /// </summary>
         public static string SampleRates {
             get {
@@ -3822,7 +3885,7 @@ namespace OngekiFumenEditor.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Maximum save of .
+        ///   Looks up a localized string similar to Record up to .
         /// </summary>
         public static string SaveMaxCount_Part1 {
             get {
@@ -3930,6 +3993,15 @@ namespace OngekiFumenEditor.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Select file.
+        /// </summary>
+        public static string SelectFile {
+            get {
+                return ResourceManager.GetString("SelectFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select game root folder.
         /// </summary>
         public static string SelectGameRootFolder {
@@ -4011,7 +4083,7 @@ namespace OngekiFumenEditor.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Shoot Offset.
+        ///   Looks up a localized string similar to Offset.
         /// </summary>
         public static string ShootOffset {
             get {
@@ -4020,7 +4092,7 @@ namespace OngekiFumenEditor.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Shoot Source.
+        ///   Looks up a localized string similar to Source.
         /// </summary>
         public static string ShootSource {
             get {
@@ -4029,7 +4101,7 @@ namespace OngekiFumenEditor.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Shoot Target.
+        ///   Looks up a localized string similar to Target.
         /// </summary>
         public static string ShootTarget {
             get {
@@ -4218,7 +4290,7 @@ namespace OngekiFumenEditor.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Invalid/Unsupport SVG content.
+        ///   Looks up a localized string similar to Invalid/unsupported SVG content.
         /// </summary>
         public static string SvgContentNotSupport {
             get {
@@ -4326,7 +4398,7 @@ namespace OngekiFumenEditor.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Time Calculator.
+        ///   Looks up a localized string similar to Time calculator.
         /// </summary>
         public static string TGridCalculatorToolViewer {
             get {
@@ -4335,7 +4407,7 @@ namespace OngekiFumenEditor.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Throw an exception during converting:.
+        ///   Looks up a localized string similar to An error occurred during conversion: .
         /// </summary>
         public static string ThrowExceptionWhenConvert {
             get {
@@ -4479,7 +4551,7 @@ namespace OngekiFumenEditor.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Update the assets.bytes file (if it exists):.
+        ///   Looks up a localized string similar to Update the assets.bytes file (if it exists).
         /// </summary>
         public static string UpdateAssetBytesFile {
             get {
@@ -4515,7 +4587,7 @@ namespace OngekiFumenEditor.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Unable to provide script template file, reason:.
+        ///   Looks up a localized string similar to Unable to load script template file: .
         /// </summary>
         public static string UseTemplateScriptFileFail {
             get {
@@ -4533,11 +4605,20 @@ namespace OngekiFumenEditor.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Vertical scale:.
+        ///   Looks up a localized string similar to Vertical scale.
         /// </summary>
         public static string VerticalDisplayScale {
             get {
                 return ResourceManager.GetString("VerticalDisplayScale", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Lane colors.
+        /// </summary>
+        public static string VisualEditorLaneColorSettings {
+            get {
+                return ResourceManager.GetString("VisualEditorLaneColorSettings", resourceCulture);
             }
         }
         
@@ -4632,7 +4713,7 @@ namespace OngekiFumenEditor.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Some sound file failed to load. Please check the logs for details.
+        ///   Looks up a localized string similar to Some sound files failed to load. Please check the logs for details..
         /// </summary>
         public static string WarnSomeSoundsNotLoad {
             get {
@@ -4677,7 +4758,7 @@ namespace OngekiFumenEditor.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Maximum display XGrid range:.
+        ///   Looks up a localized string similar to Maximum display XGrid range.
         /// </summary>
         public static string XGridDisplayMaxUnit {
             get {
@@ -4695,7 +4776,7 @@ namespace OngekiFumenEditor.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Horizontal scroll offset:.
+        ///   Looks up a localized string similar to Horizontal scroll offset.
         /// </summary>
         public static string XOffset {
             get {

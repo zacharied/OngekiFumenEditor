@@ -171,9 +171,6 @@
   <data name="Artist" xml:space="preserve">
     <value>艺术家:</value>
   </data>
-  <data name="AsBrushSourceObject" xml:space="preserve">
-    <value>并作为刷子模式的批量生成源</value>
-  </data>
   <data name="AudioDuration" xml:space="preserve">
     <value>音频时长:</value>
   </data>
@@ -1664,5 +1661,17 @@
   </data>
   <data name="Save" xml:space="preserve">
     <value>保存</value>
+  </data>
+  <data name="DragToCreateHoldEndTipText" xml:space="preserve">
+    <value>拖动生成HoldEnd物件</value>
+  </data>
+  <data name="ObjectId" xml:space="preserve">
+    <value>Id</value>
+  </data>
+  <data name="BulletPaletteId" xml:space="preserve">
+    <value>StrID</value>
+  </data>
+  <data name="SelectFile" xml:space="preserve">
+    <value>选择文件</value>
   </data>
 </root>

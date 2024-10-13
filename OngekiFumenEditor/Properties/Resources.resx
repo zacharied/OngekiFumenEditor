@@ -118,13 +118,13 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AcbGenerator" xml:space="preserve">
-    <value>Audio File Generator</value>
+    <value>Audio file generator</value>
   </data>
   <data name="Action" xml:space="preserve">
     <value>Actions</value>
   </data>
   <data name="AddConnectableNextObject" xml:space="preserve">
-    <value>Add connectable next object</value>
+    <value>Add next object</value>
   </data>
   <data name="AddCurveControlPoint" xml:space="preserve">
     <value>Add curve control point</value>
@@ -136,16 +136,16 @@
     <value>Add objects by brush</value>
   </data>
   <data name="AdjustPastedObjects" xml:space="preserve">
-    <value>Automatically dock objects when pasted</value>
+    <value>Automatically snap objects when pasted</value>
   </data>
   <data name="Advice" xml:space="preserve">
-    <value>Suggestion</value>
+    <value>Advice</value>
   </data>
   <data name="AllObjectApplyNewDelayAfterCalculated" xml:space="preserve">
-    <value>Recalculate all objects with audio delay applied</value>
+    <value>Recalculate all object positions with audio delay applied</value>
   </data>
   <data name="AllSupportFileFormat" xml:space="preserve">
-    <value>All Supported Filetypes</value>
+    <value>All supported filetypes</value>
   </data>
   <data name="ApplicationVersion" xml:space="preserve">
     <value>Application version</value>
@@ -154,13 +154,13 @@
     <value>Apply audio adjust</value>
   </data>
   <data name="ApplyAudioAdjustFail" xml:space="preserve">
-    <value>Processing failed:</value>
+    <value>Audio adjustment failed: </value>
   </data>
   <data name="ApplyAudioAdjustSuccess" xml:space="preserve">
-    <value>Processed successfully</value>
+    <value>Audio adjusted succesfully</value>
   </data>
   <data name="ApplyAudioAdjustSuccessButSuggest" xml:space="preserve">
-    <value>Processing successfully. But we recommend saving and reopening the current project to review the latest audio changes or objects position adjustments.</value>
+    <value>Audio adjusted successfully. It is strongly recommend to save and reopen the current project.</value>
   </data>
   <data name="ApplyOffsetBySecond" xml:space="preserve">
     <value>Apply delay by seconds</value>
@@ -170,9 +170,6 @@
   </data>
   <data name="Artist" xml:space="preserve">
     <value>Artist:</value>
-  </data>
-  <data name="AsBrushSourceObject" xml:space="preserve">
-    <value>and serve as source object in brush mode.</value>
   </data>
   <data name="AudioDuration" xml:space="preserve">
     <value>Audio duration:</value>
@@ -223,7 +220,7 @@
     <value>Subdivision multiplier for the meter:</value>
   </data>
   <data name="BellBulletCountOverLimit_Part1" xml:space="preserve">
-    <value>In preview mode, if the total number of Bells/Bullets exceeds</value>
+    <value>In preview mode, if the total number of Bells/Bullets exceeds </value>
   </data>
   <data name="BellBulletCountOverLimit_Part2" xml:space="preserve">
     <value>, process with multiple threads</value>
@@ -244,10 +241,10 @@
     <value>Browser</value>
   </data>
   <data name="BrushCopied" xml:space="preserve">
-    <value>Brush on lane with copied object</value>
+    <value>Brush along lane with copied object</value>
   </data>
   <data name="BrushCopiedTipText" xml:space="preserve">
-    <value>Batch on the lane based on the multiplied meter with copied object; illegal segments cannot be used.</value>
+    <value>Brush along the lane, creating an instance of the brush object at each TGrid subdivision positioned upon the lane</value>
   </data>
   <data name="BrushMode" xml:space="preserve">
     <value>Brush Mode:</value>
@@ -256,7 +253,7 @@
     <value>Toggle brush mode</value>
   </data>
   <data name="BrushModeSwitchTipText" xml:space="preserve">
-    <value>Brush mode is enabled. Avoid most object dragging operations.</value>
+    <value>Brush mode is enabled. Most dragging operations are disabled.</value>
   </data>
   <data name="BulletSize" xml:space="preserve">
     <value>Size</value>
@@ -283,16 +280,16 @@
     <value>Deselect all</value>
   </data>
   <data name="CantCreateProject" xml:space="preserve">
-    <value>Unable to create a new project:</value>
+    <value>Unable to create a new project: </value>
   </data>
   <data name="CantFastOpenFumen" xml:space="preserve">
-    <value>Unable to fast open the fumen:</value>
+    <value>Unable to fast open the fumen: </value>
   </data>
   <data name="CantLoadFumen" xml:space="preserve">
-    <value>Unable to load the fumen:</value>
+    <value>Unable to load the fumen: </value>
   </data>
   <data name="CantLoadProject" xml:space="preserve">
-    <value>Unable to load the project:</value>
+    <value>Unable to load the project: </value>
   </data>
   <data name="CantOpenByAudioFileNotFound" xml:space="preserve">
     <value>Unable to open {0} (audio file not found)</value>
@@ -337,19 +334,19 @@
     <value>Check script</value>
   </data>
   <data name="CleanRecentFilesRecords" xml:space="preserve">
-    <value>Clear recent open file history</value>
+    <value>Clear recent file history</value>
   </data>
   <data name="ClearCopyList" xml:space="preserve">
     <value>Clear the copy list</value>
   </data>
   <data name="ClearHistory" xml:space="preserve">
-    <value>Clear the history records</value>
+    <value>Clear history</value>
   </data>
   <data name="ClonePallete" xml:space="preserve">
     <value>Clone</value>
   </data>
   <data name="CloseEditorByProjectSetupFail" xml:space="preserve">
-    <value>Project setup wizard failed to complete. Closing this editor.</value>
+    <value>Project setup wizard did not complete. Closing this editor.</value>
   </data>
   <data name="CloseProgram" xml:space="preserve">
     <value>Close Program</value>
@@ -367,7 +364,7 @@
     <value>Confirm close</value>
   </data>
   <data name="ComfirmExecuteScript" xml:space="preserve">
-    <value>Script complied successful. Execute now?</value>
+    <value>Script complied successfully. Execute now?</value>
   </data>
   <data name="ComfirmInterpolateMessage" xml:space="preserve">
     <value>Do you want to interpolate all lanes containing curves?\nThis may delete and regenerate already interpolated lanes without curves.\nSome partially overlapping Tap/Hold objects may change their reference lanes as a result.</value>
@@ -379,7 +376,7 @@
     <value>Automatically adjust the XGrid for all dockable objects</value>
   </data>
   <data name="CommandAudioAdjustWindow" xml:space="preserve">
-    <value>Audio Delay Adjustment</value>
+    <value>Adjust audio delay</value>
   </data>
   <data name="CommandCallFullGC" xml:space="preserve">
     <value>Run garbage collector</value>
@@ -388,7 +385,7 @@
     <value>Interpolate all curved lanes</value>
   </data>
   <data name="CommandInterpolateAllWithXGridLimit" xml:space="preserve">
-    <value>Interpolate all curved lanes within XGrid limit</value>
+    <value>Interpolate all curved lanes with XGrid limit</value>
   </data>
   <data name="CommandOpenProjectUrl" xml:space="preserve">
     <value>Project URL</value>
@@ -406,10 +403,10 @@
     <value>Displaying all curve control points</value>
   </data>
   <data name="CommandShowCurveControlAlwaysTipText" xml:space="preserve">
-    <value>If enabled, all curve control objects will be displayed continuously</value>
+    <value>If enabled, all curve control objects will be displayed at all times</value>
   </data>
   <data name="CompileError" xml:space="preserve">
-    <value>Compilation failed:</value>
+    <value>Compilation failed: </value>
   </data>
   <data name="CompileSuccess" xml:space="preserve">
     <value>Compilation successful</value>
@@ -502,7 +499,7 @@
     <value>Disable</value>
   </data>
   <data name="DisableAddObjectBeyondAudioDuration" xml:space="preserve">
-    <value>Unable to add objects beyond the audio/editor range.</value>
+    <value>Unable to add objects beyond the audio/editor range</value>
   </data>
   <data name="DisableInterpolateByNoConnectableChildren" xml:space="preserve">
     <value>Unable to interpolate because there are no children</value>
@@ -511,13 +508,13 @@
     <value>Unable to interpolate because there is an illegal path</value>
   </data>
   <data name="DisableTGridMagneticDock" xml:space="preserve">
-    <value>Disable TGrid snapping</value>
+    <value>Disable vertical alignment</value>
   </data>
   <data name="DisableUseBrushByMoreObjects" xml:space="preserve">
     <value>Unable to use the brush tool because more than one object has been copied</value>
   </data>
   <data name="DisableXGridMagneticDock" xml:space="preserve">
-    <value>Disable snapping for the XGrid</value>
+    <value>Disable horizontal alignment</value>
   </data>
   <data name="DisplayTimeFormat" xml:space="preserve">
     <value>Time format</value>
@@ -529,22 +526,22 @@
     <value>Drag to add a new Beam object</value>
   </data>
   <data name="DragToCreateBell" xml:space="preserve">
-    <value>Bell</value>
+    <value>Drag to add a new Bell object from this palette</value>
   </data>
   <data name="DragToCreateBullet" xml:space="preserve">
-    <value>Bullet</value>
+    <value>Drag to add a new Bullet object from this palette</value>
   </data>
   <data name="DragToCreateCurveControlPoint" xml:space="preserve">
-    <value>new CurveControlPoint</value>
+    <value>Create curve point</value>
   </data>
   <data name="DragToCreateCurveControlPointTipText" xml:space="preserve">
-    <value>Drag to add a new CurveControlPoint object</value>
+    <value>Drag to add a new curve control point object</value>
   </data>
   <data name="DragToCreateHoldEnd" xml:space="preserve">
-    <value>add hold end</value>
+    <value>Create hold end</value>
   </data>
   <data name="DragToCreateNext" xml:space="preserve">
-    <value>add next node</value>
+    <value>Create next node</value>
   </data>
   <data name="DragToCreateWallEnd" xml:space="preserve">
     <value>Drag to add a new WallEnd object</value>
@@ -553,10 +550,10 @@
     <value>Drag to add a new WallNext object</value>
   </data>
   <data name="DragToSplit" xml:space="preserve">
-    <value>Drag to split lane</value>
+    <value>Split lane</value>
   </data>
   <data name="DragToSplitTipText" xml:space="preserve">
-    <value>Split out two lanes, old and new, at a specific time.</value>
+    <value>Drag to split this lane at the designated time</value>
   </data>
   <data name="DumpFileSaveTo" xml:space="preserve">
     <value>Current .dmp file is stored at</value>
@@ -565,7 +562,7 @@
     <value>Earlier</value>
   </data>
   <data name="EditorJumpToSpecifyTGrid" xml:space="preserve">
-    <value>Editor jumps to the specified TGrid.</value>
+    <value>Jump to specified TGrid</value>
   </data>
   <data name="EditorLock" xml:space="preserve">
     <value>Editor locked</value>
@@ -601,10 +598,10 @@
     <value>Enable full memory dumps on crash</value>
   </data>
   <data name="EnableHorizonScroll" xml:space="preserve">
-    <value>Enable horizon scroll</value>
+    <value>Enable horizontal scroll</value>
   </data>
   <data name="EnableHorizonScrollBarDisplay" xml:space="preserve">
-    <value>Enable display horizon scroll bar</value>
+    <value>Display horizontal scroll bar</value>
   </data>
   <data name="EnableLoopPlayTiming" xml:space="preserve">
     <value>Enable the metronome (only in Design Mode)</value>
@@ -616,10 +613,10 @@
     <value>Enable display dialog for notifications</value>
   </data>
   <data name="EnablePlaceObjectBeyondAudioDuration" xml:space="preserve">
-    <value>Allow user places objects beyond audio duration(red line at end of editor)</value>
+    <value>Allow placement of objects beyond the range of the audio</value>
   </data>
   <data name="EnablePlayFieldDrawing" xml:space="preserve">
-    <value>Enable draw play field (Experimental)</value>
+    <value>Draw the playfield (experimental)</value>
   </data>
   <data name="EnableVisualizerDisplay" xml:space="preserve">
     <value>Enable display visualizer</value>
@@ -640,7 +637,7 @@
     <value>The selected folder is empty. Please choose again</value>
   </data>
   <data name="ErrorOpenRecentFile" xml:space="preserve">
-    <value>Cannot open this file because an error is thrown:</value>
+    <value>Cannot open this file because an error occurred during reading: </value>
   </data>
   <data name="ErrorProcessAudioNotFound" xml:space="preserve">
     <value>Please select the audio file to be processed first</value>
@@ -667,7 +664,7 @@
     <value>Fail</value>
   </data>
   <data name="FailedAndReason" xml:space="preserve">
-    <value>Failed,reason:</value>
+    <value>Failed, reason: </value>
   </data>
   <data name="FastAddObjectsToLanes" xml:space="preserve">
     <value>Quickly (in bulk) add lane children.</value>
@@ -712,19 +709,19 @@
     <value>Filter</value>
   </data>
   <data name="FinishBouns" xml:space="preserve">
-    <value>Finish Bouns:</value>
+    <value>Finish Bonus:</value>
   </data>
   <data name="FirstBpm" xml:space="preserve">
-    <value>First Bpm:</value>
+    <value>First BPM:</value>
   </data>
   <data name="ForceMagneticDock" xml:space="preserve">
-    <value>Force magnetic dock</value>
+    <value>Snap objects to grid</value>
   </data>
   <data name="ForceTapHoldMagneticDockToLane" xml:space="preserve">
     <value>Force Tap/Hold objects to snap onto the lane</value>
   </data>
   <data name="ForceXGridMagneticDock" xml:space="preserve">
-    <value>Force XGrid to snap automatically</value>
+    <value>Snap to nearest XGrid unit</value>
   </data>
   <data name="FumenBulletPalleteListViewer" xml:space="preserve">
     <value>Bullet Pallete</value>
@@ -733,10 +730,10 @@
     <value>Checker List</value>
   </data>
   <data name="FumenContainUngenerateError" xml:space="preserve">
-    <value>Fumen contains format or content errors that cannot be ignored, preventing further generation. Please use the fumen checking viewer/tool to check and correct the fumen.</value>
+    <value>Fumen contains format or content errors that cannot be ignored, preventing further generation. Please use the Fumen Checker panel to check and correct the fumen.</value>
   </data>
   <data name="FumenConverter" xml:space="preserve">
-    <value>Fumen File Format Converter</value>
+    <value>Fumen file format converter</value>
   </data>
   <data name="FumenEditorRenderControlViewer" xml:space="preserve">
     <value>Render Control</value>
@@ -874,16 +871,16 @@
     <value>Interpolate the entire lane</value>
   </data>
   <data name="InterpolateLaneTipText" xml:space="preserve">
-    <value>Interpolate curve lane into straight lines, then delete the current track and generate a new one (or more)</value>
+    <value>Click to interpolate the curves of this lane into straight line segments</value>
   </data>
   <data name="InterpolatePart" xml:space="preserve">
-    <value>Interpolate the part of lane</value>
+    <value>Interpolate selected region of lane</value>
   </data>
   <data name="InterpolatePartCurve" xml:space="preserve">
-    <value>Interpolate the part of lane</value>
+    <value>Interpolate selected region of lane</value>
   </data>
   <data name="InterpolatePartTipText" xml:space="preserve">
-    <value>Interpolate this segment of the lane; illegal segments cannot be used</value>
+    <value>Click to interpolate the curves of selected part of the lane into straight line segments</value>
   </data>
   <data name="InterpolateToCreateKeyframeSoflans" xml:space="preserve">
     <value>Interpolate new KeyframeSoflan objects</value>
@@ -895,10 +892,10 @@
     <value>Segment of lane is illegal</value>
   </data>
   <data name="JacketGenerator" xml:space="preserve">
-    <value>Fumen Jacket Generator</value>
+    <value>Fumen jacket generator</value>
   </data>
   <data name="JudgeLineAlignBeat" xml:space="preserve">
-    <value>Align the scroll judgment line with the meter line by scrolling the wheel.</value>
+    <value>Align judgement line with meter when scrolling</value>
   </data>
   <data name="JudgeLineOffsetY" xml:space="preserve">
     <value>Judgment line offset:</value>
@@ -952,7 +949,7 @@
     <value>Ongeki (_O)</value>
   </data>
   <data name="MenuOptionGenerateTool" xml:space="preserve">
-    <value>Option Generate Tool</value>
+    <value>Option generation...</value>
   </data>
   <data name="MenuSelecting" xml:space="preserve">
     <value>Select...</value>
@@ -1132,7 +1129,7 @@
     <value>Paste vertically mirrored across the entire scope</value>
   </data>
   <data name="PasteForZeroXGridMirror" xml:space="preserve">
-    <value>Paste horizontally mirrored across field center</value>
+    <value>Paste horizontally mirrored over field center</value>
   </data>
   <data name="PasteToMouse" xml:space="preserve">
     <value>Paste objects to mouse location</value>
@@ -1171,7 +1168,7 @@
     <value>Property batch assignment:</value>
   </data>
   <data name="RandomOffsetRange" xml:space="preserve">
-    <value>Random Offset Range</value>
+    <value>Random Range</value>
   </data>
   <data name="RecaculatedSuccess" xml:space="preserve">
     <value>Recaculate successfully</value>
@@ -1216,7 +1213,7 @@
     <value>Memorize/Restore editor time.</value>
   </data>
   <data name="RememberUndoPlace" xml:space="preserve">
-    <value>Record the operation position. In design mode, when undoing, if not within the position, jump to this location</value>
+    <value>Jump to last operation location when undoing</value>
   </data>
   <data name="Render" xml:space="preserve">
     <value>Render</value>
@@ -1249,10 +1246,10 @@
     <value>Run script</value>
   </data>
   <data name="SampleRates" xml:space="preserve">
-    <value>SampleRates</value>
+    <value>Sample rate (Hz)</value>
   </data>
   <data name="SaveMaxCount_Part1" xml:space="preserve">
-    <value>Maximum save of </value>
+    <value>Record up to </value>
   </data>
   <data name="SaveMaxCount_Part2" xml:space="preserve">
     <value> undo operations</value>
@@ -1315,13 +1312,13 @@
     <value>Severity</value>
   </data>
   <data name="ShootOffset" xml:space="preserve">
-    <value>Shoot Offset</value>
+    <value>Offset</value>
   </data>
   <data name="ShootSource" xml:space="preserve">
-    <value>Shoot Source</value>
+    <value>Source</value>
   </data>
   <data name="ShootTarget" xml:space="preserve">
-    <value>Shoot Target</value>
+    <value>Target</value>
   </data>
   <data name="ShowCurveControlAlways" xml:space="preserve">
     <value>Always display curve control points：</value>
@@ -1381,7 +1378,7 @@
     <value>Suggest</value>
   </data>
   <data name="SvgContentNotSupport" xml:space="preserve">
-    <value>Invalid/Unsupport SVG content</value>
+    <value>Invalid/unsupported SVG content</value>
   </data>
   <data name="SvgGenerateLane" xml:space="preserve">
     <value>Generate lanes from SVG</value>
@@ -1417,10 +1414,10 @@
     <value>Throw an error and see</value>
   </data>
   <data name="TGridCalculatorToolViewer" xml:space="preserve">
-    <value>Time Calculator</value>
+    <value>Time calculator</value>
   </data>
   <data name="ThrowExceptionWhenConvert" xml:space="preserve">
-    <value>Throw an exception during converting:</value>
+    <value>An error occurred during conversion: </value>
   </data>
   <data name="TimeSignature" xml:space="preserve">
     <value>Time Signature</value>
@@ -1480,7 +1477,7 @@
     <value>User Interaction</value>
   </data>
   <data name="UseTemplateScriptFileFail" xml:space="preserve">
-    <value>Unable to provide script template file, reason:</value>
+    <value>Unable to load script template file: </value>
   </data>
   <data name="UsingExtendScriptEditor" xml:space="preserve">
     <value>Currently using external editor...</value>
@@ -1540,7 +1537,7 @@
     <value>Horizontal scroll offset</value>
   </data>
   <data name="EnableShowPlayerLocation" xml:space="preserve">
-    <value>Display the player's current position (if there is no AutoPlayFaderLane, it defaults to the center)</value>
+    <value>Display the player's current position (defaults to the center if there is no AutoPlayFaderLane)</value>
   </data>
   <data name="DisableShowSplashScreenAfterBoot" xml:space="preserve">
     <value>Disable splash screen on program startup</value>
@@ -1561,7 +1558,7 @@
     <value>Warning</value>
   </data>
   <data name="ResetAllSettingComfirm" xml:space="preserve">
-    <value>Do you want to reset all settings for application?</value>
+    <value>Do you want to reset all settings for the application?</value>
   </data>
   <data name="MirrorSelectionXGrid" xml:space="preserve">
     <value>Mirror horizontally over selection center</value>
@@ -1664,5 +1661,35 @@
   </data>
   <data name="Save" xml:space="preserve">
     <value>Save</value>
+  </data>
+  <data name="BulletPaletteCreateBullet" xml:space="preserve">
+    <value>Bullet</value>
+  </data>
+  <data name="ClickToClonePalette" xml:space="preserve">
+    <value>Click to clone this palette</value>
+  </data>
+  <data name="BulletPaletteCreateBell" xml:space="preserve">
+    <value>Bell</value>
+  </data>
+  <data name="CopiedObjectsBrushAllowed" xml:space="preserve">
+    <value>Copied {0} objects (brushable)</value>
+  </data>
+  <data name="DragToCreateHoldEndTipText" xml:space="preserve">
+    <value>Drag to create a new hold end object</value>
+  </data>
+  <data name="DragToCreateNextToolTip" xml:space="preserve">
+    <value>Drag to create a new node connected to the end of this lane</value>
+  </data>
+  <data name="ObjectId" xml:space="preserve">
+    <value>ID</value>
+  </data>
+  <data name="BulletPaletteId" xml:space="preserve">
+    <value>ID</value>
+  </data>
+  <data name="SelectFile" xml:space="preserve">
+    <value>Select file</value>
+  </data>
+  <data name="VisualEditorLaneColorSettings" xml:space="preserve">
+    <value>Lane colors</value>
   </data>
 </root>

@@ -26,7 +26,7 @@ namespace OngekiFumenEditor.Kernel.SettingPages.FumenVisualEditor.ViewModels
 
         public string SettingsPagePath => Resources.TabDocument + "\\" + Resources.TabEditor;
 
-        public string SettingsPageName => "渲染色彩管理";
+        public string SettingsPageName => Resources.VisualEditorLaneColorSettings;
 
         public ColorPropertyWrapper[] ColorsProperties { get; private set; }
 

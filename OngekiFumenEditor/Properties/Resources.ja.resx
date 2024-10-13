@@ -171,9 +171,6 @@
   <data name="Artist" xml:space="preserve">
     <value>アーティスト：</value>
   </data>
-  <data name="AsBrushSourceObject" xml:space="preserve">
-    <value>ブラシモードの生成元として使用</value>
-  </data>
   <data name="AudioDuration" xml:space="preserve">
     <value>音源再生時間：</value>
   </data>
@@ -1578,5 +1575,14 @@
   </data>
   <data name="Save" xml:space="preserve">
     <value>保存</value>
+  </data>
+  <data name="ObjectId" xml:space="preserve">
+    <value>Id</value>
+  </data>
+  <data name="BulletPaletteId" xml:space="preserve">
+    <value>StrID</value>
+  </data>
+  <data name="SelectFile" xml:space="preserve">
+    <value>ファイルを選択</value>
   </data>
 </root>

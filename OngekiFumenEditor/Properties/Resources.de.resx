@@ -11,19 +11,7 @@
     <resheader name="writer">
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
-    <data name="AsBrushSourceObject" xml:space="preserve">
-        <value>*</value>
-    </data>
-    <data name="PasteForHorizonMirror" xml:space="preserve">
-        <value>*</value>
-    </data>
-    <data name="DragToCreateBell" xml:space="preserve">
-        <value>* add tooltip</value>
-    </data>
     <data name="DragToCreateHoldEnd" xml:space="preserve">
         <value>* add tooltip</value>
-    </data>
-    <data name="EditorJumpToSpecifyTGrid" xml:space="preserve">
-        <value>*??</value>
     </data>
 </root>
