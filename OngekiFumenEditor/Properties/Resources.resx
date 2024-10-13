@@ -1704,4 +1704,13 @@
   <data name="ApplySuggestedEditorLayout" xml:space="preserve">
     <value>Restore suggested editor layout</value>
   </data>
+  <data name="RecordId" xml:space="preserve">
+    <value>Record ID</value>
+  </data>
+  <data name="CurveInterpolatorFactoryLabel" xml:space="preserve">
+    <value>Curve Interpolator</value>
+  </data>
+  <data name="CurvePrecisionLabel" xml:space="preserve">
+    <value>Curve Precision</value>
+  </data>
 </root>

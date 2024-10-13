@@ -1686,4 +1686,13 @@
   <data name="ApplySuggestedEditorLayout" xml:space="preserve">
     <value>使用推荐的布局</value>
   </data>
+  <data name="RecordId" xml:space="preserve">
+    <value>RecordId</value>
+  </data>
+  <data name="CurveInterpolatorFactoryLabel" xml:space="preserve">
+    <value>CurveInterpolatorFactory</value>
+  </data>
+  <data name="CurvePrecisionLabel" xml:space="preserve">
+    <value>CurvePrecision</value>
+  </data>
 </root>

@@ -1212,6 +1212,24 @@ namespace OngekiFumenEditor.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Curve Interpolator.
+        /// </summary>
+        public static string CurveInterpolatorFactoryLabel {
+            get {
+                return ResourceManager.GetString("CurveInterpolatorFactoryLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Curve Precision.
+        /// </summary>
+        public static string CurvePrecisionLabel {
+            get {
+                return ResourceManager.GetString("CurvePrecisionLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Delete.
         /// </summary>
         public static string Delete {
@@ -3674,6 +3692,15 @@ namespace OngekiFumenEditor.Properties {
         public static string RecentFiles {
             get {
                 return ResourceManager.GetString("RecentFiles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Record ID.
+        /// </summary>
+        public static string RecordId {
+            get {
+                return ResourceManager.GetString("RecordId", resourceCulture);
             }
         }
         

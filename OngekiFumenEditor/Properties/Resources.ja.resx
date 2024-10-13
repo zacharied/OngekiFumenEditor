@@ -1588,4 +1588,13 @@
   <data name="BellBulletCountOverLimit_Sep" xml:space="preserve">
     <value>，</value>
   </data>
+  <data name="RecordId" xml:space="preserve">
+    <value>RecordId</value>
+  </data>
+  <data name="CurveInterpolatorFactoryLabel" xml:space="preserve">
+    <value>CurveInterpolatorFactory</value>
+  </data>
+  <data name="CurvePrecisionLabel" xml:space="preserve">
+    <value>CurvePrecision</value>
+  </data>
 </root>
