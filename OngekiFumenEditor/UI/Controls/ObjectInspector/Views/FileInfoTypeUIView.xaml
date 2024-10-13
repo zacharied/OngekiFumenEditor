@@ -32,8 +32,8 @@
                 Grid.Column="1"
                 Padding="10,2,10,2"
                 cal:Message.Attach="OnSelectDialogOpen()"
-                Foreground="{DynamicResource EnvironmentToolWindowText}">
-                <TextBlock Text="{markup:Translate [SelectFile]}" />
+                Foreground="{DynamicResource EnvironmentToolWindowText}"
+                Content="{markup:Translate [SelectFile]}">
             </Button>
             <TextBlock
                 Grid.Row="1"

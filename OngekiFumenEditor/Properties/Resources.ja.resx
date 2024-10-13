@@ -223,7 +223,7 @@
     <value>プレビューモードでは，ベル・弾の数がこの数を超過すると</value>
   </data>
   <data name="BellBulletCountOverLimit_Part2" xml:space="preserve">
-    <value>，マルチスレッドを使用します。</value>
+    <value>マルチスレッドを使用します。</value>
   </data>
   <data name="BigJacketSize" xml:space="preserve">
     <value>大画像サイズ（デフォルト：520×520）</value>
@@ -1584,5 +1584,8 @@
   </data>
   <data name="SelectFile" xml:space="preserve">
     <value>ファイルを選択</value>
+  </data>
+  <data name="BellBulletCountOverLimit_Sep" xml:space="preserve">
+    <value>，</value>
   </data>
 </root>

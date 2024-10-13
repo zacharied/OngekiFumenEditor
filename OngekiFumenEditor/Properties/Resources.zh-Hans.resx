@@ -223,7 +223,7 @@
     <value>当预览时，Bell/Bullet总数超过</value>
   </data>
   <data name="BellBulletCountOverLimit_Part2" xml:space="preserve">
-    <value>时，会使用多线程进行并行计算</value>
+    <value>会使用多线程进行并行计算</value>
   </data>
   <data name="BigJacketSize" xml:space="preserve">
     <value>大图尺寸(通常520x520):</value>
@@ -1673,5 +1673,17 @@
   </data>
   <data name="SelectFile" xml:space="preserve">
     <value>选择文件</value>
+  </data>
+  <data name="BellBulletCountOverLimit_Sep" xml:space="preserve">
+    <value>时，</value>
+  </data>
+  <data name="ChangeColor" xml:space="preserve">
+    <value>选择</value>
+  </data>
+  <data name="NamedColorChangeTitle" xml:space="preserve">
+    <value>设置新的 {0} 颜色</value>
+  </data>
+  <data name="ApplySuggestedEditorLayout" xml:space="preserve">
+    <value>使用推荐的布局</value>
   </data>
 </root>

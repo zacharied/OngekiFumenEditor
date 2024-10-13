@@ -46,7 +46,7 @@ namespace OngekiFumenEditor.Kernel.SettingPages.FumenVisualEditor.ViewModels
             }, color =>
             {
                 colorProperty.Color = color.ToDrawingColor();
-            }, $"设置新的 {colorProperty.Name} 颜色");
+            }, Resources.NamedColorChangeTitle.Format(colorProperty.Name));
             dialog.Show();
         }
     }

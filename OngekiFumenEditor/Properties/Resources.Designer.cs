@@ -213,6 +213,15 @@ namespace OngekiFumenEditor.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Restore suggested editor layout.
+        /// </summary>
+        public static string ApplySuggestedEditorLayout {
+            get {
+                return ResourceManager.GetString("ApplySuggestedEditorLayout", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Artist:.
         /// </summary>
         public static string Artist {
@@ -375,11 +384,20 @@ namespace OngekiFumenEditor.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to , process with multiple threads.
+        ///   Looks up a localized string similar to process with multiple threads.
         /// </summary>
         public static string BellBulletCountOverLimit_Part2 {
             get {
                 return ResourceManager.GetString("BellBulletCountOverLimit_Part2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to , .
+        /// </summary>
+        public static string BellBulletCountOverLimit_Sep {
+            get {
+                return ResourceManager.GetString("BellBulletCountOverLimit_Sep", resourceCulture);
             }
         }
         
@@ -713,6 +731,15 @@ namespace OngekiFumenEditor.Properties {
         public static string ChangeAxuiliaryLineColor {
             get {
                 return ResourceManager.GetString("ChangeAxuiliaryLineColor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Change....
+        /// </summary>
+        public static string ChangeColor {
+            get {
+                return ResourceManager.GetString("ChangeColor", resourceCulture);
             }
         }
         
@@ -2828,6 +2855,15 @@ namespace OngekiFumenEditor.Properties {
         public static string Name {
             get {
                 return ResourceManager.GetString("Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Changing {0}.
+        /// </summary>
+        public static string NamedColorChangeTitle {
+            get {
+                return ResourceManager.GetString("NamedColorChangeTitle", resourceCulture);
             }
         }
         

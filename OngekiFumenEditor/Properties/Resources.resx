@@ -223,7 +223,7 @@
     <value>In preview mode, if the total number of Bells/Bullets exceeds </value>
   </data>
   <data name="BellBulletCountOverLimit_Part2" xml:space="preserve">
-    <value>, process with multiple threads</value>
+    <value>process with multiple threads</value>
   </data>
   <data name="BigJacketSize" xml:space="preserve">
     <value>Large image dimensions (default 520x520):</value>
@@ -1691,5 +1691,17 @@
   </data>
   <data name="VisualEditorLaneColorSettings" xml:space="preserve">
     <value>Lane colors</value>
+  </data>
+  <data name="BellBulletCountOverLimit_Sep" xml:space="preserve">
+    <value>, </value>
+  </data>
+  <data name="ChangeColor" xml:space="preserve">
+    <value>Change...</value>
+  </data>
+  <data name="NamedColorChangeTitle" xml:space="preserve">
+    <value>Changing {0}</value>
+  </data>
+  <data name="ApplySuggestedEditorLayout" xml:space="preserve">
+    <value>Restore suggested editor layout</value>
   </data>
 </root>
