@@ -17,4 +17,13 @@
     <data name="PasteForHorizonMirror" xml:space="preserve">
         <value>*</value>
     </data>
+    <data name="DragToCreateBell" xml:space="preserve">
+        <value>* add tooltip</value>
+    </data>
+    <data name="DragToCreateHoldEnd" xml:space="preserve">
+        <value>* add tooltip</value>
+    </data>
+    <data name="EditorJumpToSpecifyTGrid" xml:space="preserve">
+        <value>*??</value>
+    </data>
 </root>
