@@ -1713,4 +1713,10 @@
   <data name="CurvePrecisionLabel" xml:space="preserve">
     <value>Curve Precision</value>
   </data>
+  <data name="ProgramOptionStandardizeFumen" xml:space="preserve">
+    <value>standardize the fumen output (only for .ogkr)</value>
+  </data>
+  <data name="OutputFumenStandardizeFormatNotSupported" xml:space="preserve">
+    <value>Cannot standardize for the selected output format</value>
+  </data>
 </root>

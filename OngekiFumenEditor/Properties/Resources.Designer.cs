@@ -3256,6 +3256,15 @@ namespace OngekiFumenEditor.Properties {
         }
         
         /// <summary>
+        ///   查找类似 Cannot standardize for the selected output format 的本地化字符串。
+        /// </summary>
+        public static string OutputFumenStandardizeFormatNotSupported {
+            get {
+                return ResourceManager.GetString("OutputFumenStandardizeFormatNotSupported", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 Output OpenGL logs (may affect performance, and errors will be thrown as exceptions) 的本地化字符串。
         /// </summary>
         public static string OutputGraphicsLog {
@@ -3567,6 +3576,15 @@ namespace OngekiFumenEditor.Properties {
         public static string ProgramOptionPreviewEnd {
             get {
                 return ResourceManager.GetString("ProgramOptionPreviewEnd", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 standardize the fumen output (only for .ogkr) 的本地化字符串。
+        /// </summary>
+        public static string ProgramOptionStandardizeFumen {
+            get {
+                return ResourceManager.GetString("ProgramOptionStandardizeFumen", resourceCulture);
             }
         }
         
