@@ -2,7 +2,6 @@ using Caliburn.Micro;
 using OngekiFumenEditor.Base.Attributes;
 using OngekiFumenEditor.Utils;
 using System.Runtime.CompilerServices;
-using Xceed.Wpf.AvalonDock.Properties;
 using Resources = OngekiFumenEditor.Properties.Resources;
 
 namespace OngekiFumenEditor.Base
