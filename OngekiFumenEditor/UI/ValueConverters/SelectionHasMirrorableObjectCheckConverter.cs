@@ -17,7 +17,7 @@ namespace OngekiFumenEditor.UI.ValueConverters
             var selection = value as IEnumerable<ISelectableObject>;
             return selection?.Any(s
                 => (s is LaneStartBase laneStart && laneStart.Children.All(c => c.IsSelected))
-                   || (s is Bullet bullet && bullet.ReferenceBulletPallete == BulletPallete.DummyCustomPallete)
+                   || (s is IBulletPalleteReferencable bullet && bullet.ReferenceBulletPallete == BulletPallete.DummyCustomPallete)
                    || s is LaneBlockArea || s is Flick);
         }
 
