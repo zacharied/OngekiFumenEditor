@@ -386,6 +386,10 @@ namespace OngekiFumenEditor.Modules.FumenVisualEditor.ViewModels
                 case Bullet bullet when bullet.ReferenceBulletPallete == BulletPallete.DummyCustomPallete:
                     bullet.PlaceOffset *= -1;
                     break;
+
+                case Bell bell when bell.ReferenceBulletPallete == BulletPallete.DummyCustomPallete:
+                    bell.PlaceOffset *= -1;
+                    break;
             }
         }
 
