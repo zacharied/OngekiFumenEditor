@@ -1412,6 +1412,7 @@ namespace OngekiFumenEditor.Modules.FumenVisualEditor.ViewModels
             SelectionArea.EndPoint = cursor;
         }
 
+
         public void OnMouseMove(ActionExecutionContext e)
         {
             if (e.EventArgs is not MouseEventArgs args || args.Handled)
