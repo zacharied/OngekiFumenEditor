@@ -194,6 +194,7 @@ namespace OngekiFumenEditor.Modules.FumenVisualEditor.ViewModels
         public void MenuItemAction_SelectEntireLane(ActionExecutionContext e)
         {
             foreach (var connectable in SelectObjects.OfType<ConnectableObjectBase>().Select(c => c.ReferenceStartObject).Distinct()) {
+                connectable.IsSelected = true;
                 foreach (var child in connectable.Children) {
                     child.IsSelected = true;
                 }
