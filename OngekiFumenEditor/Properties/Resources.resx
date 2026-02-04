@@ -961,7 +961,7 @@
     <value>Mirror horizontally over _field center</value>
   </data>
   <data name="MenuMirrorSelectionLaneColors" xml:space="preserve">
-    <value>Mirror lane _colors</value>
+    <value>Mirror object _colors/directions</value>
   </data>
   <data name="MissingBossEnemySet" xml:space="preserve">
     <value>Missing EnemySet(Boss) object. It is recommended to place one to designate the timing of the boss's appearance</value>

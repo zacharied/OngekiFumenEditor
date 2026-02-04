@@ -39,7 +39,6 @@
         </ResourceDictionary>
     </UserControl.Resources>
 
-
     <i:Interaction.Triggers>
         <!--#region Key Bindings-->
         <kb:ActionMessageKeyBinding Definition="{x:Static kbDefs:KeyBindingDefinitions.KBD_FastSetObjectIsCritical}" Message="KeyboardAction_FastSetObjectIsCritical($executionContext)" />
@@ -108,9 +107,9 @@
                         Header="{markup:Translate [MenuMirrorSelectionXGrid]}"
                         IsEnabled="{Binding SelectObjects, Converter={StaticResource SelectionMovableItemsCheckConverter}}" />
                     <MenuItem
-                        cal:Message.Attach="MenuItemAction_MirrorLaneColors($executionContext)"
+                        cal:Message.Attach="MenuItemAction_MirrorSelectionDirection($executionContext)"
                         Header="{markup:Translate [MenuMirrorSelectionLaneColors]}"
-                        IsEnabled="{Binding SelectObjects, Converter={StaticResource SelectionFullLaneCheckConverter}}" />
+                        IsEnabled="{Binding SelectObjects, Converter={StaticResource SelectionHasMirrorableObjectCheckConverter}}"/>
                 </MenuItem>
                 <MenuItem Header="{markup:Translate [ToCopiedObjects]}">
                     <MenuItem Header="{markup:Translate [ToPaste]}">
