@@ -3651,7 +3651,7 @@ namespace OngekiFumenEditor.Properties {
         }
         
         /// <summary>
-        ///   查找类似 Mirror object _colors/directions 的本地化字符串。
+        ///   查找类似 Mirror object colors/directions 的本地化字符串。
         /// </summary>
         public static string MenuMirrorSelectionLaneColors {
             get {
@@ -3660,7 +3660,7 @@ namespace OngekiFumenEditor.Properties {
         }
         
         /// <summary>
-        ///   查找类似 Mirror _horizontally over selection center 的本地化字符串。
+        ///   查找类似 Mirror horizontally over selection center 的本地化字符串。
         /// </summary>
         public static string MenuMirrorSelectionXGrid {
             get {
@@ -3669,7 +3669,7 @@ namespace OngekiFumenEditor.Properties {
         }
         
         /// <summary>
-        ///   查找类似 Mirror horizontally over _field center 的本地化字符串。
+        ///   查找类似 Mirror horizontally over field center 的本地化字符串。
         /// </summary>
         public static string MenuMirrorSelectionXGridZero {
             get {
@@ -3696,7 +3696,7 @@ namespace OngekiFumenEditor.Properties {
         }
         
         /// <summary>
-        ///   查找类似 Select... 的本地化字符串。
+        ///   查找类似 _Select... 的本地化字符串。
         /// </summary>
         public static string MenuSelecting {
             get {
@@ -6252,7 +6252,7 @@ namespace OngekiFumenEditor.Properties {
         }
         
         /// <summary>
-        ///   查找类似 For copied objects... 的本地化字符串。
+        ///   查找类似 For _copied objects... 的本地化字符串。
         /// </summary>
         public static string ToCopiedObjects {
             get {
@@ -6279,7 +6279,7 @@ namespace OngekiFumenEditor.Properties {
         }
         
         /// <summary>
-        ///   查找类似 For _selected objects... 的本地化字符串。
+        ///   查找类似 For s_elected objects... 的本地化字符串。
         /// </summary>
         public static string ToSelectedObjects {
             get {
