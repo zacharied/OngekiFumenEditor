@@ -364,6 +364,8 @@ namespace OngekiFumenEditor.Modules.FumenVisualEditor.ViewModels
                         MirrorObjectDirection(oObj);
                     }
                 }
+
+                IoC.Get<IFumenObjectPropertyBrowser>().RefreshSelected(this);
             };
 
             UndoRedoManager.ExecuteAction(new LambdaUndoAction(Resources.MirrorSelectionColorsDirections, execute, execute));
@@ -555,15 +557,11 @@ namespace OngekiFumenEditor.Modules.FumenVisualEditor.ViewModels
                 .Where(x => x.ReferenceLaneStart == startObject)
                 .ToArray();
 
-            RemoveObject(startObject);
+            Fumen.RemoveObject(startObject);
             Fumen.AddObject(newLaneStart);
 
             foreach (var dockable in affectedDockableObjects) {
                 dockable.ReferenceLaneStart = newLaneStart;
-            }
-
-            if (newLaneStart.IsSelected || newLaneStart.Children.Any(c => c.IsSelected)) {
-                IoC.Get<IFumenObjectPropertyBrowser>().RefreshSelected(this);
             }
         }
 
