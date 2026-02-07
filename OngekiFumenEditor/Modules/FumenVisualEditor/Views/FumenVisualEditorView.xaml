@@ -56,7 +56,6 @@
         <kb:ActionMessageKeyBinding Definition="{x:Static kbDefs:KeyBindingDefinitions.KBD_HideOrShow}" Message="KeyboardAction_HideOrShow($executionContext)" />
         <kb:ActionMessageKeyBinding Definition="{x:Static kbDefs:KeyBindingDefinitions.KBD_ToggleBatchMode}" Message="KeyboardAction_ToggleBatchMode($executionContext)" />
         <kb:ActionMessageKeyBinding Definition="{x:Static kbDefs:KeyBindingDefinitions.KBD_FastAddConnectableChild}" Message="KeyboardAction_FastAddConnectableChild($executionContext)" />
-        <kb:ActionMessageKeyBinding Definition="{x:Static kbDefs:KeyBindingDefinitions.KBD_FastSwitchFlickDirection}" Message="KeyboardAction_FastSwitchFlickDirection($executionContext)" />
         <kb:ActionMessageKeyBinding Definition="{x:Static kbDefs:KeyBindingDefinitions.KBD_SelectEntireLane}" Message="MenuItemAction_SelectEntireLane($executionContext)" />
         <kb:ActionMessageKeyBinding Definition="{x:Static kbDefs:KeyBindingDefinitions.KBD_SelectAttachedCurves}" Message="MenuItemAction_SelectAttachedCurves($executionContext)" />
         <kb:ActionMessageKeyBinding Definition="{x:Static kbDefs:KeyBindingDefinitions.KBD_CopySelectedObjects}" Message="MenuItemAction_CopySelectedObjects($executionContext)" />
@@ -64,6 +63,9 @@
         <kb:ActionMessageKeyBinding Definition="{x:Static kbDefs:KeyBindingDefinitions.KBD_ScrollPageDown}" Message="ScrollPage(-1)" />
         <kb:ActionMessageKeyBinding Definition="{x:Static kbDefs:KeyBindingDefinitions.KBD_ScrollPageUp}" Message="ScrollPage(1)" />
         <kb:ActionMessageKeyBinding Definition="{x:Static kbDefs:KeyBindingDefinitions.KBD_ChangeDockableLaneType}" Message="KeyboardAction_ChangeDockableLaneType($executionContext)" />
+        <kb:ActionMessageKeyBinding Definition="{x:Static kbDefs:KeyBindingDefinitions.KBD_MirrorObjectDirection}" Message="EditorAction_MirrorSelectionDirection($executionContext)" />
+        <kb:ActionMessageKeyBinding Definition="{x:Static kbDefs:KeyBindingDefinitions.KBD_MirrorObjectsXGridZero}" Message="EditorAction_MirrorSelectionXGridZero($executionContext)" />
+        <kb:ActionMessageKeyBinding Definition="{x:Static kbDefs:KeyBindingDefinitions.KBD_MirrorObjectsXGridSelectionCenter}" Message="EditorAction_MirrorSelectionXGrid($executionContext)" />
         <!--#endregion-->
     </i:Interaction.Triggers>
 
@@ -104,16 +106,19 @@
                     <Separator />
 
                     <MenuItem
-                        cal:Message.Attach="MenuItemAction_MirrorSelectionXGridZero($executionContext)"
+                        cal:Message.Attach="EditorAction_MirrorSelectionXGridZero($executionContext)"
                         Header="{markup:Translate [MenuMirrorSelectionXGridZero]}"
+                        InputGestureText="{Binding Source={x:Static kbDefs:KeyBindingDefinitions.KBD_MirrorObjectsXGridZero}, Converter={StaticResource KeyBindingToTextConverter}}"
                         IsEnabled="{Binding SelectObjects, Converter={StaticResource SelectionMovableItemsCheckConverter}}" />
                     <MenuItem
-                        cal:Message.Attach="MenuItemAction_MirrorSelectionXGrid($executionContext)"
+                        cal:Message.Attach="EditorAction_MirrorSelectionXGrid($executionContext)"
                         Header="{markup:Translate [MenuMirrorSelectionXGrid]}"
+                        InputGestureText="{Binding Source={x:Static kbDefs:KeyBindingDefinitions.KBD_MirrorObjectsXGridSelectionCenter}, Converter={StaticResource KeyBindingToTextConverter}}"
                         IsEnabled="{Binding SelectObjects, Converter={StaticResource SelectionMovableItemsCheckConverter}}" />
                     <MenuItem
-                        cal:Message.Attach="MenuItemAction_MirrorSelectionDirection($executionContext)"
+                        cal:Message.Attach="EditorAction_MirrorSelectionDirection($executionContext)"
                         Header="{markup:Translate [MenuMirrorSelectionLaneColors]}"
+                        InputGestureText="{Binding Source={x:Static kbDefs:KeyBindingDefinitions.KBD_MirrorObjectDirection}, Converter={StaticResource KeyBindingToTextConverter}}"
                         IsEnabled="{Binding SelectObjects, Converter={StaticResource SelectionHasMirrorableObjectCheckConverter}}"/>
                 </MenuItem>
                 <MenuItem Header="{markup:Translate [ToCopiedObjects]}">

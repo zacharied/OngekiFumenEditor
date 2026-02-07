@@ -1566,8 +1566,8 @@
   <data name="MirrorSelectionXGridZero" xml:space="preserve">
     <value>Mirror horizontally over field center</value>
   </data>
-  <data name="MirrorSelectionLaneColors" xml:space="preserve">
-    <value>Mirror lane colors</value>
+  <data name="MirrorSelectionColorsDirections" xml:space="preserve">
+    <value>Mirror selection color/direction</value>
   </data>
   <data name="NoLimit" xml:space="preserve">
     <value>(No Limit)</value>
@@ -1775,6 +1775,21 @@
   </data>
   <data name="kbd_editor_FastSwitchFlickDirection" xml:space="preserve">
     <value>Switch directions of selected flicks</value>
+  </data>
+  <data name="kbd_editor_MirrorObjectsXGridZero" xml:space="preserve">
+    <value>Mirror selected objects across field center</value>
+  </data>
+  <data name="kbd_editor_MirrorObjectsXGridSelectionCenter" xml:space="preserve">
+    <value>Mirror selected objects across selection center</value>
+  </data>
+  <data name="kbd_editor_MirrorObjectDirection" xml:space="preserve">
+    <value>Mirror color/direction of selected objects</value>
+  </data>
+  <data name="kbd_editor_SelectEntireLane" xml:space="preserve">
+    <value>Select entire lane</value>
+  </data>
+    <data name="kbd_editor_SelectAttachedCurves" xml:space="preserve">
+    <value>Select attached curve control points</value>
   </data>
   <data name="kbd_editor_CopySelectedObjects" xml:space="preserve">
     <value>Copy selection to clipboard</value>
