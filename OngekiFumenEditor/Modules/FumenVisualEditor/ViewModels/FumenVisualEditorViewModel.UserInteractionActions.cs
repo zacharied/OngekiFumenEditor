@@ -264,7 +264,7 @@ namespace OngekiFumenEditor.Modules.FumenVisualEditor.ViewModels
             await IoC.Get<IFumenEditorClipboard>().PasteObjects(this, mirrorOption, placePoint);
         }
 
-        public void MenuItemAction_MirrorSelectionXGridZero(ActionExecutionContext ctx)
+        public void EditorAction_MirrorSelectionXGridZero(ActionExecutionContext ctx)
         {
             var selection = SelectObjects.OfType<OngekiMovableObjectBase>().ToList();
             if (selection.Count == 0)
@@ -276,7 +276,7 @@ namespace OngekiFumenEditor.Modules.FumenVisualEditor.ViewModels
             UndoRedoManager.ExecuteAction(new LambdaUndoAction(Resources.MirrorSelectionXGridZero, func, func));
         }
 
-        public void MenuItemAction_MirrorSelectionXGrid(ActionExecutionContext ctx)
+        public void EditorAction_MirrorSelectionXGrid(ActionExecutionContext ctx)
         {
             var selection = SelectObjects.OfType<OngekiMovableObjectBase>().ToList();
             if (selection.Count == 0)
@@ -324,7 +324,7 @@ namespace OngekiFumenEditor.Modules.FumenVisualEditor.ViewModels
             }
         }
 
-        public void MenuItemAction_MirrorSelectionDirection(ActionExecutionContext ctx)
+        public void EditorAction_MirrorSelectionDirection(ActionExecutionContext ctx)
         {
             var selectedObjects = SelectObjects.ToList();
 
@@ -366,7 +366,7 @@ namespace OngekiFumenEditor.Modules.FumenVisualEditor.ViewModels
                 }
             };
 
-            UndoRedoManager.ExecuteAction(new LambdaUndoAction(Resources.MirrorSelectionLaneColors, execute, execute));
+            UndoRedoManager.ExecuteAction(new LambdaUndoAction(Resources.MirrorSelectionColorsDirections, execute, execute));
         }
 
         private void MirrorObjectDirection(OngekiObjectBase obj)

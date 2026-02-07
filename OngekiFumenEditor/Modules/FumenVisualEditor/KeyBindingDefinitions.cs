@@ -103,9 +103,20 @@ namespace OngekiFumenEditor.Modules.FumenVisualEditor
 
         [Export]
         //        [Key F] = [Action KeyboardAction_FastSwitchFlickDirection($executionContext)]; 
-        public static KeyBindingDefinition KBD_FastSwitchFlickDirection = new KeyBindingDefinition(
-            "kbd_editor_FastSwitchFlickDirection",
+        public static KeyBindingDefinition KBD_MirrorObjectDirection = new KeyBindingDefinition(
+            "kbd_editor_MirrorObjectDirection",
              Key.F);
+
+        [Export]
+        public static KeyBindingDefinition KBD_MirrorObjectsXGridZero = new KeyBindingDefinition(
+            "kbd_editor_MirrorObjectsXGridZero",
+            ModifierKeys.Control,
+            Key.F);
+
+        [Export]
+        public static KeyBindingDefinition KBD_MirrorObjectsXGridSelectionCenter = new KeyBindingDefinition(
+            "kbd_editor_MirrorObjectsXGridSelectionCenter",
+            Key.None);
 
         [Export]
         //        [Gesture Shift+E] = [Action MenuItemAction_SelectEntireLane];

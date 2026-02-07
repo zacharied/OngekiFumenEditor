@@ -26,6 +26,6 @@ namespace OngekiFumenEditor.Modules.FumenVisualEditor.Commands.OgkrImpl.FastOpen
 		}
 
 		[Export]
-		public static CommandKeyboardShortcut KeyGesture = new CommandKeyboardShortcut<FastOpenFumenCommandDefinition>(new(Key.F, ModifierKeys.Control));
+		public static CommandKeyboardShortcut KeyGesture = new CommandKeyboardShortcut<FastOpenFumenCommandDefinition>(new(Key.O, ModifierKeys.Control | ModifierKeys.Shift));
 	}
 }
