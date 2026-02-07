@@ -952,16 +952,16 @@
     <value>Option generation...</value>
   </data>
   <data name="MenuSelecting" xml:space="preserve">
-    <value>Select...</value>
+    <value>_Select...</value>
   </data>
   <data name="MenuMirrorSelectionXGrid" xml:space="preserve">
-    <value>Mirror _horizontally over selection center</value>
+    <value>Mirror horizontally over selection center</value>
   </data>
   <data name="MenuMirrorSelectionXGridZero" xml:space="preserve">
-    <value>Mirror horizontally over _field center</value>
+    <value>Mirror horizontally over field center</value>
   </data>
   <data name="MenuMirrorSelectionLaneColors" xml:space="preserve">
-    <value>Mirror object _colors/directions</value>
+    <value>Mirror object colors/directions</value>
   </data>
   <data name="MissingBossEnemySet" xml:space="preserve">
     <value>Missing EnemySet(Boss) object. It is recommended to place one to designate the timing of the boss's appearance</value>
@@ -1429,7 +1429,7 @@
     <value>Title:</value>
   </data>
   <data name="ToCopiedObjects" xml:space="preserve">
-    <value>For copied objects...</value>
+    <value>For _copied objects...</value>
   </data>
   <data name="Today" xml:space="preserve">
     <value>Today</value>
@@ -1438,7 +1438,7 @@
     <value>To paste...</value>
   </data>
   <data name="ToSelectedObjects" xml:space="preserve">
-    <value>For _selected objects...</value>
+    <value>For s_elected objects...</value>
   </data>
   <data name="Tutorial" xml:space="preserve">
     <value>Getting Started Tutorial</value>
