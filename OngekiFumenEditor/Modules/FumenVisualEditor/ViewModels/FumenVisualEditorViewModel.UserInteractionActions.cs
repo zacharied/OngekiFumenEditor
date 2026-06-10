@@ -1,4 +1,4 @@
-﻿using Caliburn.Micro;
+using Caliburn.Micro;
 using Gemini.Framework;
 using Gemini.Framework.Services;
 using Gemini.Modules.Toolbox;
@@ -38,6 +38,7 @@ using OngekiFumenEditor.Modules.FumenVisualEditor.Commands.BatchModeToggle;
 using System.Windows.Controls;
 using Gemini.Framework.Threading;
 using Microsoft.CodeAnalysis.Differencing;
+using OngekiFumenEditor.Base.OngekiObjects.Projectiles;
 using OngekiFumenEditor.Modules.FumenSoflanGroupListViewer;
 
 namespace OngekiFumenEditor.Modules.FumenVisualEditor.ViewModels
@@ -266,7 +267,7 @@ namespace OngekiFumenEditor.Modules.FumenVisualEditor.ViewModels
             await IoC.Get<IFumenEditorClipboard>().PasteObjects(this, mirrorOption, placePoint);
         }
 
-        public void MenuItemAction_MirrorSelectionXGridZero(ActionExecutionContext ctx)
+        public void EditorAction_MirrorSelectionXGridZero(ActionExecutionContext ctx)
         {
             var selection = SelectObjects.OfType<OngekiMovableObjectBase>().ToList();
             if (selection.Count == 0)
@@ -278,7 +279,7 @@ namespace OngekiFumenEditor.Modules.FumenVisualEditor.ViewModels
             UndoRedoManager.ExecuteAction(new LambdaUndoAction(Resources.MirrorSelectionXGridZero, func, func));
         }
 
-        public void MenuItemAction_MirrorSelectionXGrid(ActionExecutionContext ctx)
+        public void EditorAction_MirrorSelectionXGrid(ActionExecutionContext ctx)
         {
             var selection = SelectObjects.OfType<OngekiMovableObjectBase>().ToList();
             if (selection.Count == 0)
@@ -326,97 +327,75 @@ namespace OngekiFumenEditor.Modules.FumenVisualEditor.ViewModels
             }
         }
 
-        public void MenuItemAction_MirrorLaneColors(ActionExecutionContext ctx)
+        public void EditorAction_MirrorSelectionDirection(ActionExecutionContext ctx)
         {
-            var laneObjects = SelectObjects.OfType<ConnectableStartObject>()
-                .Where(o => o.IsDockableLane)
-                .Where(o => o.Children.All(c => c.IsSelected))
+            var selectedObjects = SelectObjects.ToList();
+
+            if (selectedObjects.Count == 0)
+                return;
+
+            var affectedLaneRecordIds = selectedObjects.OfType<LaneStartBase>()
+                .Where(o => o.IsSelected && o.Children.All(c => c.IsSelected))
+                .Select(o => o.RecordId)
                 .ToList();
 
-            if (laneObjects.Count == 0)
+            var execute = () =>
             {
-                return;
-            }
+                // All selected objects, except without lane child nodes and only lane start nodes that have all children selected
+                var targetObjects = selectedObjects
+                    .Where(o => o is not LaneStartBase or LaneNextBase)
+                    .Concat(affectedLaneRecordIds.Select(id => Fumen.Lanes.Single(l => l.RecordId == id)))
+                    .ToList();
 
-            List<ConnectableStartObject> newLaneObjects = null;
-            var executeOrRedo = () =>
-            {
-                if (newLaneObjects is null)
-                {
-                    newLaneObjects = MirrorLaneColors(laneObjects).ToList();
+                foreach (var obj in targetObjects) {
+                    if (obj is LaneStartBase startObj) {
+                        var newLaneType = startObj.LaneType switch
+                        {
+                            LaneType.Left => LaneType.Right,
+                            LaneType.Right => LaneType.Left,
+                            LaneType.WallLeft => LaneType.WallRight,
+                            LaneType.WallRight => LaneType.WallLeft,
+                            _ => LaneType.Undefined
+                        };
+
+                        if (newLaneType == LaneType.Undefined)
+                            continue;
+
+                        ChangeLaneType(startObj, newLaneType, out _);
+                    }
+                    else if (obj is OngekiObjectBase oObj) {
+                        MirrorObjectDirection(oObj);
+                    }
                 }
-                else
-                {
-                    Fumen.RemoveObjects(laneObjects);
-                    Fumen.AddObjects(newLaneObjects);
-                }
-                newLaneObjects.ForEach(SelectLaneObjects);
+
+                IoC.Get<IFumenObjectPropertyBrowser>().RefreshSelected(this);
             };
 
-            var undo = () =>
-            {
-                Fumen.RemoveObjects(newLaneObjects!);
-                Fumen.AddObjects(laneObjects);
-                laneObjects.ForEach(SelectLaneObjects);
-            };
-
-            UndoRedoManager.ExecuteAction(new LambdaUndoAction(Resources.MirrorSelectionLaneColors, executeOrRedo, undo));
+            UndoRedoManager.ExecuteAction(new LambdaUndoAction(Resources.MirrorSelectionColorsDirections, execute, execute));
         }
 
-        private IEnumerable<ConnectableStartObject> MirrorLaneColors(List<ConnectableStartObject> laneObjects)
+        private void MirrorObjectDirection(OngekiObjectBase obj)
         {
-            foreach (var obj in laneObjects)
-            {
-                LaneStartBase startNode = obj.LaneType switch
-                {
-                    LaneType.Left => new LaneRightStart(),
-                    LaneType.Right => new LaneLeftStart(),
-                    LaneType.WallLeft => new WallRightStart(),
-                    LaneType.WallRight => new WallLeftStart(),
-                    _ => null
-                };
-                if (startNode is null)
-                    continue;
+            switch (obj) {
+                case ConnectableStartObject:
+                    Log.LogWarn($"Attempted to call {nameof(MirrorObjectDirection)} on a lane object");
+                    break;
 
-                startNode.XGrid = obj.XGrid;
-                startNode.TGrid = obj.TGrid;
-                startNode.Tag = obj.Tag;
+                case LaneBlockArea laneBlock:
+                    laneBlock.Direction = (LaneBlockArea.BlockDirection)((int)laneBlock.Direction * -1);
+                    break;
 
-                foreach (var child in obj.Children)
-                {
-                    var newChild = startNode.CreateChildObject();
-                    newChild.XGrid = child.XGrid;
-                    newChild.TGrid = child.TGrid;
-                    newChild.Tag = child.Tag;
-                    newChild.CurvePrecision = child.CurvePrecision;
+                case Flick flick:
+                    flick.Direction = (Flick.FlickDirection)((int)flick.Direction * -1);
+                    break;
 
-                    foreach (var curvePoint in child.PathControls)
-                    {
-                        newChild.AddControlObject(new LaneCurvePathControlObject()
-                        {
-                            RefCurveObject = newChild,
-                            XGrid = curvePoint.XGrid,
-                            TGrid = curvePoint.TGrid,
-                            Tag = curvePoint.Tag,
-                        });
-                    }
+                case Bullet bullet when bullet.ReferenceBulletPallete == BulletPallete.DummyCustomPallete:
+                    bullet.PlaceOffset *= -1;
+                    break;
 
-                    startNode.AddChildObject(newChild);
-                }
-
-                foreach (var tap in Fumen.Taps.Where(t => t.ReferenceLaneStart == obj))
-                {
-                    tap.ReferenceLaneStart = startNode;
-                }
-
-                foreach (var hold in Fumen.Holds.Where(h => h.ReferenceLaneStart == obj))
-                {
-                    hold.ReferenceLaneStart = startNode;
-                }
-
-                Fumen.RemoveObject(obj);
-                Fumen.AddObject(startNode);
-                yield return startNode;
+                case Bell bell when bell.ReferenceBulletPallete == BulletPallete.DummyCustomPallete:
+                    bell.PlaceOffset *= -1;
+                    break;
             }
         }
 
@@ -518,6 +497,77 @@ namespace OngekiFumenEditor.Modules.FumenVisualEditor.ViewModels
             UndoRedoManager.ExecuteAction(rememberAction);
         }
 
+        public void ChangeLaneType(LaneStartBase startObject, LaneType targetLane, out LaneStartBase newLaneStart)
+        {
+            newLaneStart = targetLane switch
+            {
+                LaneType.Left => new LaneLeftStart { Id = startObject.Id },
+                LaneType.Center => new LaneCenterStart { Id = startObject.Id },
+                LaneType.Right => new LaneRightStart { Id = startObject.Id },
+                LaneType.WallLeft => new WallLeftStart { Id = startObject.Id },
+                LaneType.WallRight => new WallRightStart { Id = startObject.Id },
+                _ => throw new($"cannot change lane to {targetLane}")
+            };
+
+            void CopyCommon(ConnectableObjectBase s, ConnectableObjectBase t)
+            {
+                t.TGrid = s.TGrid;
+                t.XGrid = s.XGrid;
+                t.IsSelected = s.IsSelected;
+            }
+
+            LaneNextBase GenerateChild(ConnectableChildObjectBase oldChild)
+            {
+                LaneNextBase newChild = targetLane switch
+                {
+                    LaneType.Left => new LaneLeftNext { Id = oldChild.Id },
+                    LaneType.Center => new LaneCenterNext { Id = oldChild.Id },
+                    LaneType.Right => new LaneRightNext { Id = oldChild.Id },
+                    LaneType.WallLeft => new WallLeftNext { Id = oldChild.Id },
+                    LaneType.WallRight => new WallRightNext { Id = oldChild.Id },
+                    _ => throw new()
+                };
+
+                CopyCommon(oldChild, newChild);
+                newChild.CurveInterpolaterFactory = oldChild.CurveInterpolaterFactory;
+                newChild.CurvePrecision = oldChild.CurvePrecision;
+
+                foreach (var ctrl in oldChild.PathControls) {
+                    var cp = new LaneCurvePathControlObject()
+                    {
+                        Id = ctrl.Id,
+                        Index = ctrl.Index,
+                        TGrid = ctrl.TGrid,
+                        XGrid = ctrl.XGrid
+                    };
+                    newChild.AddControlObject(cp);
+                }
+
+                return newChild;
+            }
+
+            //generate and setup new lane.
+            CopyCommon(startObject, newLaneStart);
+            newLaneStart.RecordId = startObject.RecordId;
+
+            foreach (var child in startObject.Children) {
+                var cpChild = GenerateChild(child);
+                newLaneStart.AddChildObject(cpChild);
+            }
+
+            var affectedDockableObjects = Fumen.GetAllDisplayableObjects()
+                .OfType<ILaneDockable>()
+                .Where(x => x.ReferenceLaneStart == startObject)
+                .ToArray();
+
+            Fumen.RemoveObject(startObject);
+            Fumen.AddObject(newLaneStart);
+
+            foreach (var dockable in affectedDockableObjects) {
+                dockable.ReferenceLaneStart = newLaneStart;
+            }
+        }
+
         #region Keyboard Actions
 
         public void KeyboardAction_FastPlaceDockableObjectToCenter(ActionExecutionContext e)
@@ -550,10 +600,10 @@ namespace OngekiFumenEditor.Modules.FumenVisualEditor.ViewModels
         public void KeyboardAction_ChangeDockableLaneType(ActionExecutionContext e)
         {
             if (!(
-                SelectObjects.IsOnlyOne(out var r) &&
-                r is ConnectableObjectBase connectable &&
-                connectable.ReferenceStartObject is LaneStartBase start &&
-                start.IsDockableLane))
+                    SelectObjects.IsOnlyOne(out var r) &&
+                    r is ConnectableObjectBase connectable &&
+                    connectable.ReferenceStartObject is LaneStartBase start &&
+                    start.IsDockableLane))
             {
                 ToastNotify(Resources.SelectOneDockableLaneOnly);
                 return;
@@ -1354,6 +1404,7 @@ namespace OngekiFumenEditor.Modules.FumenVisualEditor.ViewModels
             SelectionArea.StartPoint = cursor;
             SelectionArea.EndPoint = cursor;
         }
+
 
         public void OnMouseMove(ActionExecutionContext e)
         {

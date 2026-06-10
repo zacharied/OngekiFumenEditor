@@ -617,7 +617,7 @@ namespace OngekiFumenEditor.Properties {
                 return ResourceManager.GetString("BpmChange", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   查找类似 Branch 的本地化字符串。
         /// </summary>
@@ -1616,7 +1616,7 @@ namespace OngekiFumenEditor.Properties {
                 return ResourceManager.GetString("DeselectItemsOfSelectedType", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   查找类似 Parsing fumen file failed:  的本地化字符串。
         /// </summary>
@@ -3733,6 +3733,33 @@ namespace OngekiFumenEditor.Properties {
         }
         
         /// <summary>
+        ///   查找类似 Mirror color/direction of selected objects 的本地化字符串。
+        /// </summary>
+        public static string kbd_editor_MirrorObjectDirection {
+            get {
+                return ResourceManager.GetString("kbd_editor_MirrorObjectDirection", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   查找类似 Mirror selected objects across selection center 的本地化字符串。
+        /// </summary>
+        public static string kbd_editor_MirrorObjectsXGridSelectionCenter {
+            get {
+                return ResourceManager.GetString("kbd_editor_MirrorObjectsXGridSelectionCenter", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   查找类似 Mirror selected objects across field center 的本地化字符串。
+        /// </summary>
+        public static string kbd_editor_MirrorObjectsXGridZero {
+            get {
+                return ResourceManager.GetString("kbd_editor_MirrorObjectsXGridZero", resourceCulture);
+            }
+        }
+
+        /// <summary>
         ///   查找类似 Paste clipboard contents at cursor 的本地化字符串。
         /// </summary>
         public static string kbd_editor_PasteCopiesObjects {
@@ -3768,6 +3795,24 @@ namespace OngekiFumenEditor.Properties {
             }
         }
         
+        /// <summary>
+        ///   查找类似 Select attached curve control points 的本地化字符串。
+        /// </summary>
+        public static string kbd_editor_SelectAttachedCurves {
+            get {
+                return ResourceManager.GetString("kbd_editor_SelectAttachedCurves", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   查找类似 Select entire lane 的本地化字符串。
+        /// </summary>
+        public static string kbd_editor_SelectEntireLane {
+            get {
+                return ResourceManager.GetString("kbd_editor_SelectEntireLane", resourceCulture);
+            }
+        }
+
         /// <summary>
         ///   查找类似 Batch 的本地化字符串。
         /// </summary>
@@ -4363,7 +4408,7 @@ namespace OngekiFumenEditor.Properties {
         }
         
         /// <summary>
-        ///   查找类似 Mirror lane _colors 的本地化字符串。
+        ///   查找类似 Mirror object colors/directions 的本地化字符串。
         /// </summary>
         public static string MenuMirrorSelectionLaneColors {
             get {
@@ -4372,7 +4417,7 @@ namespace OngekiFumenEditor.Properties {
         }
         
         /// <summary>
-        ///   查找类似 Mirror _horizontally over selection center 的本地化字符串。
+        ///   查找类似 Mirror horizontally over selection center 的本地化字符串。
         /// </summary>
         public static string MenuMirrorSelectionXGrid {
             get {
@@ -4381,7 +4426,7 @@ namespace OngekiFumenEditor.Properties {
         }
         
         /// <summary>
-        ///   查找类似 Mirror horizontally over _field center 的本地化字符串。
+        ///   查找类似 Mirror horizontally over field center 的本地化字符串。
         /// </summary>
         public static string MenuMirrorSelectionXGridZero {
             get {
@@ -4408,7 +4453,7 @@ namespace OngekiFumenEditor.Properties {
         }
         
         /// <summary>
-        ///   查找类似 Select... 的本地化字符串。
+        ///   查找类似 _Select... 的本地化字符串。
         /// </summary>
         public static string MenuSelecting {
             get {
@@ -4435,11 +4480,11 @@ namespace OngekiFumenEditor.Properties {
         }
         
         /// <summary>
-        ///   查找类似 Mirror lane colors 的本地化字符串。
+        ///   查找类似 Mirror selection color/direction 的本地化字符串。
         /// </summary>
-        public static string MirrorSelectionLaneColors {
+        public static string MirrorSelectionColorsDirections {
             get {
-                return ResourceManager.GetString("MirrorSelectionLaneColors", resourceCulture);
+                return ResourceManager.GetString("MirrorSelectionColorsDirections", resourceCulture);
             }
         }
         
@@ -6458,7 +6503,7 @@ namespace OngekiFumenEditor.Properties {
                 return ResourceManager.GetString("SelectOnlyItemsOfSelectedType", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   查找类似 Select output folder 的本地化字符串。
         /// </summary>
@@ -7000,7 +7045,7 @@ namespace OngekiFumenEditor.Properties {
         }
         
         /// <summary>
-        ///   查找类似 For copied objects... 的本地化字符串。
+        ///   查找类似 For _copied objects... 的本地化字符串。
         /// </summary>
         public static string ToCopiedObjects {
             get {
@@ -7027,7 +7072,7 @@ namespace OngekiFumenEditor.Properties {
         }
         
         /// <summary>
-        ///   查找类似 For _selected objects... 的本地化字符串。
+        ///   查找类似 For s_elected objects... 的本地化字符串。
         /// </summary>
         public static string ToSelectedObjects {
             get {

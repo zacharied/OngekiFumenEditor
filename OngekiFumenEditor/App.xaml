@@ -35,7 +35,7 @@
             <valueconverters:ParamValueToBoolConverter x:Key="ParamValueToBoolConverter" />
             <valueconverters:ParenthesizeTextConverter x:Key="ParenthesizeTextConverter" />
             <valueconverters:SelectionMovableItemsCheckConverter x:Key="SelectionMovableItemsCheckConverter" />
-            <valueconverters:SelectionFullLaneCheckConverter x:Key="SelectionFullLaneCheckConverter" />
+            <valueconverters:SelectionHasMirrorableObjectCheckConverter x:Key="SelectionHasMirrorableObjectCheckConverter" />
             <valueconverters:SelectionLaneObjectsCheckConverter x:Key="SelectionLaneObjectsCheckConverter" />
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary>

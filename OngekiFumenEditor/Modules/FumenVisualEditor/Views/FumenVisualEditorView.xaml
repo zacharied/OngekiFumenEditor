@@ -35,9 +35,9 @@
             <valueconverters:ReverseBoolConverter x:Key="ReverseBoolConverter" />
             <converters:BoolToScrollBarVisibleConverter x:Key="BoolToScrollBarVisibleConverter" />
             <converters:IsStringEmptyConverter x:Key="IsStringEmptyConverter" />
+            <converters:KeyBindingToTextConverter x:Key="KeyBindingToTextConverter" />
         </ResourceDictionary>
     </UserControl.Resources>
-
 
     <i:Interaction.Triggers>
         <!--#region Key Bindings-->
@@ -55,12 +55,14 @@
         <kb:ActionMessageKeyBinding Definition="{x:Static kbDefs:KeyBindingDefinitions.KBD_HideOrShow}" Message="KeyboardAction_HideOrShow($executionContext)" />
         <kb:ActionMessageKeyBinding Definition="{x:Static kbDefs:KeyBindingDefinitions.KBD_ToggleBatchMode}" Message="KeyboardAction_ToggleBatchMode($executionContext)" />
         <kb:ActionMessageKeyBinding Definition="{x:Static kbDefs:KeyBindingDefinitions.KBD_FastAddConnectableChild}" Message="KeyboardAction_FastAddConnectableChild($executionContext)" />
-        <kb:ActionMessageKeyBinding Definition="{x:Static kbDefs:KeyBindingDefinitions.KBD_FastSwitchFlickDirection}" Message="KeyboardAction_FastSwitchFlickDirection($executionContext)" />
         <kb:ActionMessageKeyBinding Definition="{x:Static kbDefs:KeyBindingDefinitions.KBD_CopySelectedObjects}" Message="MenuItemAction_CopySelectedObjects($executionContext)" />
         <kb:ActionMessageKeyBinding Definition="{x:Static kbDefs:KeyBindingDefinitions.KBD_PasteCopiesObjects}" Message="KeyboardAction_PasteCopiesObjects($executionContext)" />
         <kb:ActionMessageKeyBinding Definition="{x:Static kbDefs:KeyBindingDefinitions.KBD_ScrollPageDown}" Message="ScrollPage(-1)" />
         <kb:ActionMessageKeyBinding Definition="{x:Static kbDefs:KeyBindingDefinitions.KBD_ScrollPageUp}" Message="ScrollPage(1)" />
         <kb:ActionMessageKeyBinding Definition="{x:Static kbDefs:KeyBindingDefinitions.KBD_ChangeDockableLaneType}" Message="KeyboardAction_ChangeDockableLaneType($executionContext)" />
+        <kb:ActionMessageKeyBinding Definition="{x:Static kbDefs:KeyBindingDefinitions.KBD_MirrorObjectDirection}" Message="EditorAction_MirrorSelectionDirection($executionContext)" />
+        <kb:ActionMessageKeyBinding Definition="{x:Static kbDefs:KeyBindingDefinitions.KBD_MirrorObjectsXGridZero}" Message="EditorAction_MirrorSelectionXGridZero($executionContext)" />
+        <kb:ActionMessageKeyBinding Definition="{x:Static kbDefs:KeyBindingDefinitions.KBD_MirrorObjectsXGridSelectionCenter}" Message="EditorAction_MirrorSelectionXGrid($executionContext)" />
         <!--#endregion-->
     </i:Interaction.Triggers>
 
@@ -82,8 +84,8 @@
                               cal:Message.Attach="MenuItemAction_SelectEntireLane($executionContext)"
                               IsEnabled="{Binding SelectObjects, Converter={StaticResource SelectionLaneObjectsCheckConverter}}" />
                     <MenuItem Header="Attached curve points"
-                        cal:Message.Attach="MenuItemAction_SelectAttachedCurves($executionContext)"
-                        IsEnabled="{Binding SelectObjects, Converter={StaticResource SelectionLaneObjectsCheckConverter}}" />
+                              cal:Message.Attach="MenuItemAction_SelectAttachedCurves($executionContext)"
+                              IsEnabled="{Binding SelectObjects, Converter={StaticResource SelectionLaneObjectsCheckConverter}}" />
                     <Separator />
                     <MenuItem cal:Message.Attach="MenuItemAction_SelectAll($executionContext)" Header="{markup:Translate [SelectAllObjects]}" />
                     <MenuItem cal:Message.Attach="MenuItemAction_ReverseSelect($executionContext)" Header="{markup:Translate [ReverseSelectAllObjects]}" />
@@ -99,17 +101,20 @@
                     <Separator />
 
                     <MenuItem
-                        cal:Message.Attach="MenuItemAction_MirrorSelectionXGridZero($executionContext)"
+                        cal:Message.Attach="EditorAction_MirrorSelectionXGridZero($executionContext)"
                         Header="{markup:Translate [MenuMirrorSelectionXGridZero]}"
+                        InputGestureText="{Binding Source={x:Static kbDefs:KeyBindingDefinitions.KBD_MirrorObjectsXGridZero}, Converter={StaticResource KeyBindingToTextConverter}}"
                         IsEnabled="{Binding SelectObjects, Converter={StaticResource SelectionMovableItemsCheckConverter}}" />
                     <MenuItem
-                        cal:Message.Attach="MenuItemAction_MirrorSelectionXGrid($executionContext)"
+                        cal:Message.Attach="EditorAction_MirrorSelectionXGrid($executionContext)"
                         Header="{markup:Translate [MenuMirrorSelectionXGrid]}"
+                        InputGestureText="{Binding Source={x:Static kbDefs:KeyBindingDefinitions.KBD_MirrorObjectsXGridSelectionCenter}, Converter={StaticResource KeyBindingToTextConverter}}"
                         IsEnabled="{Binding SelectObjects, Converter={StaticResource SelectionMovableItemsCheckConverter}}" />
                     <MenuItem
-                        cal:Message.Attach="MenuItemAction_MirrorLaneColors($executionContext)"
+                        cal:Message.Attach="EditorAction_MirrorSelectionDirection($executionContext)"
                         Header="{markup:Translate [MenuMirrorSelectionLaneColors]}"
-                        IsEnabled="{Binding SelectObjects, Converter={StaticResource SelectionFullLaneCheckConverter}}" />
+                        InputGestureText="{Binding Source={x:Static kbDefs:KeyBindingDefinitions.KBD_MirrorObjectDirection}, Converter={StaticResource KeyBindingToTextConverter}}"
+                        IsEnabled="{Binding SelectObjects, Converter={StaticResource SelectionHasMirrorableObjectCheckConverter}}"/>
                 </MenuItem>
                 <MenuItem Header="{markup:Translate [ToCopiedObjects]}">
                     <MenuItem Header="{markup:Translate [ToPaste]}">
