@@ -1,4 +1,4 @@
-using Caliburn.Micro;
+﻿using Caliburn.Micro;
 using Gemini.Framework;
 using Gemini.Framework.Services;
 using Gemini.Modules.Toolbox;
@@ -271,9 +271,7 @@ namespace OngekiFumenEditor.Modules.FumenVisualEditor.ViewModels
         {
             var selection = SelectObjects.OfType<OngekiMovableObjectBase>().ToList();
             if (selection.Count == 0)
-            {
                 return;
-            }
 
             var func = () => MirrorObjectsXGrid(selection, true);
             UndoRedoManager.ExecuteAction(new LambdaUndoAction(Resources.MirrorSelectionXGridZero, func, func));
@@ -283,9 +281,7 @@ namespace OngekiFumenEditor.Modules.FumenVisualEditor.ViewModels
         {
             var selection = SelectObjects.OfType<OngekiMovableObjectBase>().ToList();
             if (selection.Count == 0)
-            {
                 return;
-            }
 
             var func = () => MirrorObjectsXGrid(selection, false);
             UndoRedoManager.ExecuteAction(new LambdaUndoAction(Resources.MirrorSelectionXGrid, func, func));
