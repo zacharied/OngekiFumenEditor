@@ -1,15 +1,14 @@
 ﻿using OngekiFumenEditor.Base.Attributes;
 using OngekiFumenEditor.Base.OngekiObjects;
+using OngekiFumenEditor.Base.ValueTypes;
 using OngekiFumenEditor.Kernel.CurveInterpolater;
-using OngekiFumenEditor.Kernel.CurveInterpolater.DefaultImpl.Factory;
 using OngekiFumenEditor.Kernel.CurveInterpolater.OgkrImpl.Factory;
 using OngekiFumenEditor.Utils;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Numerics;
 using System.Runtime.CompilerServices;
-using System.Windows;
-using System.Windows.Media;
 
 namespace OngekiFumenEditor.Base.EditorObjects.Svg
 {
@@ -100,20 +99,14 @@ namespace OngekiFumenEditor.Base.EditorObjects.Svg
 		public bool EnableColorfulLaneSimilar
 		{
 			get => enableColorfulLaneSimilar;
-			set
-			{
-				Set(ref enableColorfulLaneSimilar, value);
-			}
+			set => Set(ref enableColorfulLaneSimilar, value);
 		}
 
 		private bool showOriginColor = false;
 		public bool ShowOriginColor
 		{
 			get => showOriginColor;
-			set
-			{
-				Set(ref showOriginColor, value);
-			}
+			set => Set(ref showOriginColor, value);
 		}
 
 		private float scale = 1;
@@ -147,13 +140,13 @@ namespace OngekiFumenEditor.Base.EditorObjects.Svg
 			}
 		}
 
-		private DrawingGroup drawingGroup;
+		private VectorScene vectorScene;
 
-		private DrawingGroup processingDrawingGroup;
-		public DrawingGroup ProcessingDrawingGroup
+		private VectorScene processingVectorScene;
+		public VectorScene ProcessingVectorScene
 		{
-			get => processingDrawingGroup;
-			set => Set(ref processingDrawingGroup, value);
+			get => processingVectorScene;
+			set => Set(ref processingVectorScene, value);
 		}
 
 		public SvgPrefabBase()
@@ -211,89 +204,73 @@ namespace OngekiFumenEditor.Base.EditorObjects.Svg
 			}
 		}
 
-		protected void ApplySvgContent(DrawingGroup svgContent)
+		public void ApplySvgContent(VectorScene svgContent)
 		{
 			CleanGeometry();
-			drawingGroup = svgContent;
+			vectorScene = svgContent;
 			RebuildGeometry();
 		}
 
 		public void CleanGeometry()
 		{
-			drawingGroup = null;
-			ProcessingDrawingGroup = default;
+			vectorScene = null;
+			ProcessingVectorScene = default;
 		}
 
 		public void RebuildGeometry()
 		{
-			ProcessingDrawingGroup = default;
-			var inter = drawingGroup?.Children?.FirstOrDefault();
-			if (inter is null)
+			ProcessingVectorScene = default;
+			if (vectorScene is null || vectorScene.Paths.Count == 0)
 				return;
 
-			var procDrawingGroup = new DrawingGroup();
-			var bound = drawingGroup.Bounds;
+			var sourceBounds = vectorScene.Bounds;
+			var centerX = OffsetX.CurrentValue * sourceBounds.Width;
+			var centerY = OffsetY.CurrentValue * sourceBounds.Height;
+			var radians = Math.PI * Rotation.CurrentValue / 180.0;
+			var cos = Math.Cos(radians);
+			var sin = Math.Sin(radians);
 
-			var transform = new TransformGroup();
-			transform.Children.Add(new TranslateTransform()
+			VectorPoint TransformPoint(VectorPoint point)
 			{
-				X = -OffsetX.CurrentValue * bound.Width,
-				Y = -OffsetY.CurrentValue * bound.Height
-			});
-			transform.Children.Add(new ScaleTransform()
-			{
-				ScaleX = Scale,
-				ScaleY = Scale,
-			});
-			transform.Children.Add(new RotateTransform()
-			{
-				Angle = Rotation.CurrentValue
-			});
+				var x = point.X - centerX;
+				var y = point.Y - centerY;
 
-			Geometry GenFlattedGeometry(Geometry geometry)
-			{
-				var flattedGeometry = geometry.GetFlattenedPathGeometry(Tolerance.CurrentValue, ToleranceType.Absolute);
-				flattedGeometry.Transform = transform;
-				flattedGeometry.Freeze();
-				return flattedGeometry;
+				x *= Scale;
+				y *= Scale;
+
+				var rx = x * cos - y * sin;
+				var ry = x * sin + y * cos;
+
+				return new VectorPoint(rx, ry);
 			}
 
-			void VisitGeometryDrawing(GeometryDrawing geometryDrawing, DrawingGroup parentGroup = default)
+			Color ResolveColor(Color sourceColor)
 			{
-				if (GenFlattedGeometry(geometryDrawing.Geometry) is not Geometry geometry)
-					return;
+				if (ShowOriginColor)
+					return Color.FromArgb((byte)(Opacity.CurrentValue * sourceColor.A), sourceColor.R, sourceColor.G, sourceColor.B);
 
-				var newDrawing = new GeometryDrawing();
-				newDrawing.Geometry = geometry;
-				newDrawing.Pen = CalculateRelativePen(geometryDrawing.Pen) ?? CalculateRelativePen(newDrawing.Brush);
-				newDrawing.Brush = default;
-				newDrawing.Freeze();
+				var pickedColor = IsForceColorful
+					? ColorfulLaneColor.Color
+					: PickSimilarLaneColor(sourceColor)?.Color ?? Colors.Green;
 
-				//append to list
-				procDrawingGroup.Children.Add(newDrawing);
+				return Color.FromArgb((byte)(Opacity.CurrentValue * pickedColor.A), pickedColor.R, pickedColor.G, pickedColor.B);
 			}
 
-			void VisitGroup(DrawingGroup group, DrawingGroup parentGroup = default)
+			var output = new VectorScene
 			{
-				foreach (var child in group.Children.OfType<DrawingGroup>())
-					VisitGroup(child, group);
-				foreach (var child in group.Children.OfType<GeometryDrawing>())
-					VisitGeometryDrawing(child, group);
-			}
+				Bounds = vectorScene.Bounds,
+				Paths = vectorScene.Paths
+					.Where(x => x.Points.Count > 0)
+					.Select(path => new VectorPath
+					{
+						IsClosed = path.IsClosed,
+						Color = ResolveColor(path.Color),
+						Points = path.Points.Select(TransformPoint).ToList()
+					})
+					.ToList()
+			};
 
-			VisitGroup(drawingGroup);
-
-			procDrawingGroup.Freeze();
-			ProcessingDrawingGroup = procDrawingGroup;
-
-			Log.LogDebug($"Generate {ProcessingDrawingGroup.Children.Count} geometries. hashCode:{ProcessingDrawingGroup?.GetHashCode()}");
-		}
-
-		private Pen CalculateRelativePen(Brush brush)
-		{
-			var pen = new Pen(brush, 2);
-			pen.Freeze();
-			return CalculateRelativePen(pen);
+			ProcessingVectorScene = output;
 		}
 
 		public LaneColor? PickSimilarLaneColor(Color color)
@@ -308,35 +285,15 @@ namespace OngekiFumenEditor.Base.EditorObjects.Svg
 				arr = arr.Where(x => x.LaneType != LaneType.Colorful);
 
 			var r = arr
-				.Select(x => (x, x.Color.ColorDistance(color)))
+				.Select(x => (x, CalculateColorDistance(x.Color, color)))
 				.OrderBy(x => x.Item2);
 
 			return r.Where(x => x.Item2 < ColorSimilar.CurrentValue).Select(x => x.x).FirstOrDefault();
 		}
 
-		private Pen CalculateRelativePen(Pen pen)
-		{
-			Color PickColor(Color color)
-			{
-				return PickSimilarLaneColor(color)?.Color ?? Colors.Transparent;
-			}
-
-			if (ShowOriginColor)
-				return pen;
-
-			var color = IsForceColorful ? ColorfulLaneColor.Color : (pen?.Brush is SolidColorBrush b ? PickColor(b.Color) : Colors.Green);
-			var brush = new SolidColorBrush(Color.FromArgb((byte)(Opacity.CurrentValue * color.A), color.R, color.G, color.B));
-			brush.Freeze();
-
-			var p = new Pen(brush, 2);
-			p.Freeze();
-
-			return p;
-		}
-
 		public class LineSegment
 		{
-			public List<Vector2> RelativePoints { get; set; } = new List<Vector2>();
+			public List<Vector2> RelativePoints { get; set; } = new();
 			public Color Color { get; set; }
 		}
 
@@ -344,78 +301,57 @@ namespace OngekiFumenEditor.Base.EditorObjects.Svg
 		{
 			var outputSegments = new List<LineSegment>();
 
-			if (ProcessingDrawingGroup is not DrawingGroup drawingGroup)
+			if (ProcessingVectorScene is not VectorScene vectorScene)
 				return outputSegments;
 
-			var bound = drawingGroup.Bounds.Size;
-			var offset = drawingGroup.Bounds.Location;
+			var bound = vectorScene.Bounds;
 
-			foreach (var childGeometry in drawingGroup.Children.OfType<GeometryDrawing>())
+			Vector2 CalculateRelativePoint(VectorPoint relativePoint)
 			{
-				var lines = childGeometry.Geometry.GetFlattenedPathGeometry();
-				var brush = (childGeometry.Brush ?? childGeometry.Pen?.Brush) as SolidColorBrush;
-				var color = brush?.Color ?? Colors.White;
+				var rx = -(bound.Width - relativePoint.X) - bound.X + bound.Width * (1 - OffsetX.ValuePercent);
+				var ry = -relativePoint.Y + bound.Y + bound.Height * OffsetY.ValuePercent;
+				return new((float)rx, (float)ry);
+			}
 
-				if (!ShowOriginColor)
+			foreach (var path in vectorScene.Paths.Where(x => x.Points.Count > 0))
+			{
+				var segment = new LineSegment
 				{
-					if (PickSimilarLaneColor(brush.Color) is LaneColor laneColor)
-						color = laneColor.Color;
-					else
-						continue;
-				}
+					Color = path.Color
+				};
 
-				Vector2 CalculateRelativePoint(Point relativePoint)
-				{
-					var rx = -(bound.Width - relativePoint.X) - offset.X + bound.Width * (1 - OffsetX.ValuePercent);
-					var ry = -relativePoint.Y + offset.Y + bound.Height * OffsetY.ValuePercent;
+				foreach (var point in path.Points)
+					segment.RelativePoints.Add(CalculateRelativePoint(point));
 
-					//Log.LogDebug($"{relativePoint}  ->  {new Vector2((float)rx, (float)ry)}");
-					return new((float)rx, (float)ry);
-				}
-
-				foreach (var path in lines.Figures.OfType<PathFigure>())
-				{
-					var segment = new LineSegment();
-					segment.Color = color;
-
-					var points = path.Segments.SelectMany(x => x switch
-					{
-						System.Windows.Media.LineSegment ls => Enumerable.Repeat(ls.Point, 0),
-						PolyLineSegment pls => pls.Points,
-						_ => Enumerable.Empty<Point>()
-					}).Prepend(path.StartPoint).ToList();
-
-					var firstP = points[0];
-					segment.RelativePoints.Add(CalculateRelativePoint(firstP));
-
-					foreach (var childP in points.Skip(1).SkipLast(1))
-					{
-						segment.RelativePoints.Add(CalculateRelativePoint(childP));
-					}
-
-					var lastP = points.LastOrDefault();
-					segment.RelativePoints.Add(CalculateRelativePoint(lastP));
-
-					outputSegments.Add(segment);
-				}
+				outputSegments.Add(segment);
 			}
 
 			return outputSegments;
 		}
 
-		public override string ToString() => $"{base.ToString()} R[∠{Rotation}°] O[{Opacity.ValuePercent * 100:F2}%] S[{Rotation:F2}x]";
+		public override string ToString() => $"{base.ToString()} R[{Rotation:F2}] O[{Opacity.ValuePercent * 100:F2}%] S[{Scale:F2}x]";
 
-        public override void Dispose()
-        {
-            base.Dispose();
+		private static double CalculateColorDistance(Color a, Color b)
+		{
+			var dr = a.R - b.R;
+			var dg = a.G - b.G;
+			var db = a.B - b.B;
+			var da = a.A - b.A;
+			return Math.Sqrt(dr * dr + dg * dg + db * db + da * da);
+		}
+
+		public override void Dispose()
+		{
+			base.Dispose();
 
 			ColorfulLaneBrightness = default;
 			Rotation = default;
-			OffsetX = default; 
+			OffsetX = default;
 			OffsetY = default;
 			Opacity = default;
 			Tolerance = default;
 			ColorSimilar = default;
-        }
+		}
 	}
 }
+

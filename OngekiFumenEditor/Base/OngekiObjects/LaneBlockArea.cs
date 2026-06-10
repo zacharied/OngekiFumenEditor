@@ -19,7 +19,7 @@ namespace OngekiFumenEditor.Base.OngekiObjects
 
 			public LaneBlockArea RefLaneBlockArea { get; internal protected set; }
 
-			public override IEnumerable<IDisplayableObject> GetDisplayableObjects() => IDisplayableObject.Empty;
+			public override IEnumerable<IDisplayableObject> GetDisplayableObjects() => System.Array.Empty<IDisplayableObject>();
 
 			private bool tGridHasSet;
 
@@ -36,7 +36,7 @@ namespace OngekiFumenEditor.Base.OngekiObjects
 				}
 				set
 				{
-					base.TGrid = value is not null ? MathUtils.Max(value, RefLaneBlockArea.TGrid.CopyNew()) : value;
+					base.TGrid = value is null ? value : (value > RefLaneBlockArea.TGrid.CopyNew() ? value : RefLaneBlockArea.TGrid.CopyNew());
 					tGridHasSet = true;
 				}
 			}
@@ -60,7 +60,7 @@ namespace OngekiFumenEditor.Base.OngekiObjects
 			{
 				base.TGrid = value;
 				if (value is not null)
-					EndIndicator.TGrid = MathUtils.Max(value.CopyNew(), EndIndicator.TGrid);
+					EndIndicator.TGrid = value.CopyNew() > EndIndicator.TGrid ? value.CopyNew() : EndIndicator.TGrid;
 			}
 		}
 
@@ -129,3 +129,4 @@ namespace OngekiFumenEditor.Base.OngekiObjects
 		}
 	}
 }
+

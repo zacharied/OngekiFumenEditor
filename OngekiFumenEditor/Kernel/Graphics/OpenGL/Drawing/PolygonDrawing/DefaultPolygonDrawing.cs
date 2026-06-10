@@ -6,9 +6,9 @@ using System.ComponentModel.Composition;
 
 namespace OngekiFumenEditor.Kernel.Graphics.OpenGL.Drawing.PolygonDrawing
 {
-    internal class DefaultPolygonDrawing : CommonOpenGLDrawingBase, IPolygonDrawing, IDisposable
+    internal sealed class DefaultPolygonDrawing : CommonOpenGLDrawingBase, IPolygonDrawing, IDisposable
     {
-        private readonly DefaultOpenGLShader shader;
+        private readonly CommonLineShader shader;
         private readonly int vbo;
         private readonly int vao;
 
@@ -61,12 +61,11 @@ namespace OngekiFumenEditor.Kernel.Graphics.OpenGL.Drawing.PolygonDrawing
 
         public void Begin(IDrawingContext target, Primitive primitive = Primitive.TriangleStrip)
         {
-            target.PerfomenceMonitor.OnBeginDrawing(this);
             this.target = target;
             this.primitive = primitive;
             shader.Begin();
-            shader.PassUniform("Model", GetOverrideModelMatrix());
-            shader.PassUniform("ViewProjection", GetOverrideViewProjectMatrixOrDefault(target.CurrentDrawingTargetContext));
+            shader.PassUniform(shader.ModelLocation, GetOverrideModelMatrix());
+            shader.PassUniform(shader.ViewProjectionLocation, GetOverrideViewProjectMatrixOrDefault(target.CurrentDrawingTargetContext));
             GL.BindVertexArray(vao);
         }
 
@@ -91,7 +90,6 @@ namespace OngekiFumenEditor.Kernel.Graphics.OpenGL.Drawing.PolygonDrawing
 
             GL.BindVertexArray(0);
             shader.End();
-            target.PerfomenceMonitor.OnAfterDrawing(this);
 
             target = default;
         }
@@ -106,7 +104,7 @@ namespace OngekiFumenEditor.Kernel.Graphics.OpenGL.Drawing.PolygonDrawing
             };
             GL.NamedBufferSubData(vbo, IntPtr.Zero, postVertexCount * VertexByteSize, postData);
             GL.DrawArrays(glPrimitive, 0, postVertexCount);
-            target.PerfomenceMonitor.CountDrawCall(this);
+            target.RenderContext.PerfomenceMonitor.CountDrawCall();
             postVertexCount = 0;
         }
     }

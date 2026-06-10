@@ -17,12 +17,12 @@ namespace OngekiFumenEditor.Base.OngekiObjects
 
 			public Soflan RefSoflan { get; internal protected set; }
 
-			public override IEnumerable<IDisplayableObject> GetDisplayableObjects() => IDisplayableObject.Empty;
+			public override IEnumerable<IDisplayableObject> GetDisplayableObjects() => System.Array.Empty<IDisplayableObject>();
 
 			public override TGrid TGrid
 			{
 				get => base.TGrid is null ? RefSoflan.TGrid.CopyNew() : base.TGrid;
-				set => base.TGrid = value is not null ? MathUtils.Max(value, RefSoflan.TGrid.CopyNew()) : value;
+				set => base.TGrid = value is not null && value < RefSoflan.TGrid ? RefSoflan.TGrid.CopyNew() : value;
 			}
 
 			public override string ToString() => $"{base.ToString()}";
@@ -44,7 +44,7 @@ namespace OngekiFumenEditor.Base.OngekiObjects
 			{
 				base.TGrid = value;
 				if (value is not null)
-					EndIndicator.TGrid = MathUtils.Max(value.CopyNew(), EndIndicator.TGrid);
+					EndIndicator.TGrid = value > EndIndicator.TGrid ? value.CopyNew() : EndIndicator.TGrid;
 			}
 		}
 
@@ -153,3 +153,4 @@ namespace OngekiFumenEditor.Base.OngekiObjects
 		}
 	}
 }
+

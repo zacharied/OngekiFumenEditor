@@ -36,3 +36,4 @@ namespace OngekiFumenEditor.Parser.DefaultImpl.Nyageki.CommandImpl.Objects
         }
     }
 }
+

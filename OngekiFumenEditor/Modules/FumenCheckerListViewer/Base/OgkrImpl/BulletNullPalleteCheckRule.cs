@@ -1,14 +1,9 @@
 ﻿using OngekiFumenEditor.Base;
-using OngekiFumenEditor.Base.OngekiObjects;
-using OngekiFumenEditor.Base.OngekiObjects.ConnectableObject;
-using OngekiFumenEditor.Base.OngekiObjects.Lane;
 using OngekiFumenEditor.Base.OngekiObjects.Projectiles;
+using OngekiFumenEditor.Properties;
 using OngekiFumenEditor.Modules.FumenCheckerListViewer.Base.DefaultNavigateBehaviorImpl;
 using OngekiFumenEditor.Modules.FumenCheckerListViewer.Base.DefaultRulesImpl;
-using OngekiFumenEditor.Modules.FumenVisualEditor.ViewModels;
-using OngekiFumenEditor.Properties;
 using OngekiFumenEditor.Utils;
-using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Linq;
@@ -19,27 +14,21 @@ namespace OngekiFumenEditor.Modules.FumenCheckerListViewer.Base.OgkrImpl
     [Export(typeof(IOngekiFumenCheckRule))]
     internal class BulletNullPalleteCheckRule : IOngekiFumenCheckRule
     {
-        public IEnumerable<ICheckResult> CheckRule(OngekiFumen fumen, FumenVisualEditorViewModel fumenHostViewModel)
+        public IEnumerable<ICheckResult> CheckRule(OngekiFumen fumen, IFumenCheckContext fumenHostViewModel)
         {
-            IEnumerable<ICheckResult> CheckList(IEnumerable<Bullet> objs)
+            const string ruleName = "[Ongeki] BulletNullPallete";
+
+            foreach (var bullet in fumen.GetAllDisplayableObjects().OfType<Bullet>().Where(x => x.ReferenceBulletPallete is null))
             {
-                const string RuleName = "[Ongeki] BulletNullPallete";
-
-                foreach (var bullet in objs.Where(x => x.ReferenceBulletPallete is null))
+                yield return new CommonCheckResult
                 {
-                    yield return new CommonCheckResult()
-                    {
-                        Severity = RuleSeverity.Error,
-                        Description = Resources.BulletNullPalleteDescription.Format(bullet.Id),
-                        LocationDescription = $"{bullet.XGrid} {bullet.TGrid}",
-                        NavigateBehavior = new NavigateToObjectBehavior(bullet),
-                        RuleName = RuleName,
-                    };
-                }
+                    Severity = RuleSeverity.Error,
+                    Description = Resources.BulletNullPalleteDescription.Format(bullet.Id),
+                    LocationDescription = $"{bullet.XGrid} {bullet.TGrid}",
+                    NavigateBehavior = new NavigateToObjectBehavior(bullet),
+                    RuleName = ruleName,
+                };
             }
-
-            foreach (var result in CheckList(fumen.GetAllDisplayableObjects().OfType<Bullet>()))
-                yield return result;
         }
     }
 }

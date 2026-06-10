@@ -37,7 +37,7 @@ namespace OngekiFumenEditor.Kernel.ProgramUpdater
     [PartCreationPolicy(CreationPolicy.Shared)]
     internal class DefaultProgramUpdater : PropertyChangedBase, IProgramUpdater, ISchedulable
     {
-        private const string ApiEndPoint = "https://fumen.naominet.live";
+        private const string ApiEndPoint = "https://fumen.nageki-net.com";
 
         public bool HasNewVersion
         {
@@ -212,7 +212,7 @@ namespace OngekiFumenEditor.Kernel.ProgramUpdater
             if (!File.Exists(updaterFilePath))
                 throw new Exception($"Downloaded wrong file, updater file is not found: {updaterFilePath}");
 
-            var targetFolder = Path.GetDirectoryName(typeof(DefaultProgramUpdater).Assembly.Location);
+            var targetFolder = AppDirectoryHelper.ExecutableDirectory;
             var args = new string[] { "updater", "-v", "--targetFolder", targetFolder, "--sourceFolder", sourceFolder, "--sourceVersion", ThisAssembly.AssemblyFileVersion };
 
             Log.LogInfo($"updaterFilePath: {updaterFilePath}");

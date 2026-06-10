@@ -1,4 +1,4 @@
-﻿using OngekiFumenEditor.Base;
+using OngekiFumenEditor.Base;
 using System.ComponentModel.Composition;
 
 namespace OngekiFumenEditor.Parser.Ogkr.CommandParserImpl.MetaInfo

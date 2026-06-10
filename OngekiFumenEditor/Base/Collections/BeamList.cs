@@ -1,4 +1,4 @@
-﻿using OngekiFumenEditor.Base.OngekiObjects.Beam;
+using OngekiFumenEditor.Base.OngekiObjects.Beam;
 using OngekiFumenEditor.Base.OngekiObjects.ConnectableObject;
 
 namespace OngekiFumenEditor.Base.Collections

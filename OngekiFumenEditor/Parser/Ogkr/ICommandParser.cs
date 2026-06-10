@@ -1,4 +1,4 @@
-﻿using OngekiFumenEditor.Base;
+using OngekiFumenEditor.Base;
 
 namespace OngekiFumenEditor.Parser.Ogkr
 {

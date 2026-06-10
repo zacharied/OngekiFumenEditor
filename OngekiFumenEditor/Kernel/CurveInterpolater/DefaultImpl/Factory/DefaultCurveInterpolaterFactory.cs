@@ -1,6 +1,5 @@
-﻿using OngekiFumenEditor.Base.OngekiObjects.ConnectableObject;
+using OngekiFumenEditor.Base.OngekiObjects.ConnectableObject;
 using OngekiFumenEditor.Kernel.CurveInterpolater.DefaultImpl.Enumerator;
-using OngekiFumenEditor.Properties;
 using System.ComponentModel.Composition;
 
 namespace OngekiFumenEditor.Kernel.CurveInterpolater.DefaultImpl.Factory
@@ -10,7 +9,7 @@ namespace OngekiFumenEditor.Kernel.CurveInterpolater.DefaultImpl.Factory
 	{
 		public static ICurveInterpolaterFactory Default { get; } = new DefaultCurveInterpolaterFactory();
 
-		public string Name => Resources.CurveInterpolaterFactoryDefaultImpl;
+		public string Name => "Default";
 
 		public ICurveInterpolateEnumerator CreateInterpolaterForAll(ConnectableStartObject start)
 		{

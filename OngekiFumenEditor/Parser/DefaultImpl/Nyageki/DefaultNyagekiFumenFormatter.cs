@@ -1,6 +1,4 @@
-﻿using Caliburn.Micro;
-using DereTore.Common;
-using OngekiFumenEditor.Base;
+﻿using OngekiFumenEditor.Base;
 using OngekiFumenEditor.Base.EditorObjects;
 using OngekiFumenEditor.Base.EditorObjects.Svg;
 using OngekiFumenEditor.Base.OngekiObjects;
@@ -14,8 +12,6 @@ using System.ComponentModel.Composition;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Text.Json;
-using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace OngekiFumenEditor.Parser.DefaultImpl.Nyageki
@@ -232,7 +228,8 @@ namespace OngekiFumenEditor.Parser.DefaultImpl.Nyageki
                     {
                         KeyframeSoflan => "KeyframeSoflan",
                         InterpolatableSoflan => "InterpolatableSoflan",
-                        Soflan => "Soflan"
+                        Soflan => "Soflan",
+                        _ => nameof(ISoflan)
                     };
                     sb.Write($"{name}\t:\t{soflan.Speed}\t:\t(T[{soflan.TGrid.Unit},{soflan.TGrid.Grid}])\t->\t(T[{soflan.EndTGrid.Unit},{soflan.EndTGrid.Grid}])");
                     if (soflan is InterpolatableSoflan isf)
@@ -387,3 +384,4 @@ namespace OngekiFumenEditor.Parser.DefaultImpl.Nyageki
         }
     }
 }
+

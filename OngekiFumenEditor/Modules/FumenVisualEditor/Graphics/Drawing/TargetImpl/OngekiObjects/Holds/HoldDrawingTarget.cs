@@ -1,10 +1,10 @@
-﻿using AngleSharp.Dom;
+using AngleSharp.Dom;
 using Caliburn.Micro;
 using OngekiFumenEditor.Base;
 using OngekiFumenEditor.Base.OngekiObjects;
 using OngekiFumenEditor.Kernel.Graphics;
+using OngekiFumenEditor.Kernel.Graphics.DrawCommands;
 using OngekiFumenEditor.Utils;
-using OngekiFumenEditor.Utils.ObjectPool;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
@@ -16,13 +16,11 @@ using static OngekiFumenEditor.Kernel.Graphics.ILineDrawing;
 namespace OngekiFumenEditor.Modules.FumenVisualEditor.Graphics.Drawing.TargetImpl.OngekiObjects.Holds
 {
     [Export(typeof(IFumenEditorDrawingTarget))]
-    public class HoldDrawingTarget : CommonDrawTargetBase<Hold>
+    public sealed class HoldDrawingTarget : CommonDrawTargetBase<Hold>
     {
         public override IEnumerable<string> DrawTargetID { get; } = new string[] { "HLD", "CHD", "XHD" };
 
         public override int DefaultRenderOrder => 500;
-
-        private ILineDrawing lineDrawing;
 
         private Vector4 colorHoldLeft;
         private Vector4 colorHoldCenter;
@@ -32,8 +30,6 @@ namespace OngekiFumenEditor.Modules.FumenVisualEditor.Graphics.Drawing.TargetImp
 
         public override void Initialize(IRenderManagerImpl impl)
         {
-            lineDrawing = impl.LineDrawing;
-
             Properties.EditorGlobalSetting.Default.PropertyChanged += EditorGlobalSettingPropertyChanged;
             RebuildColors();
         }
@@ -64,10 +60,13 @@ namespace OngekiFumenEditor.Modules.FumenVisualEditor.Graphics.Drawing.TargetImp
             //Log.LogInfo($"hold color has been rebuild.");
         }
 
-        public override void Draw(IFumenEditorDrawingContext target, Hold hold)
+        public override void Draw(IFumenEditorDrawingContext target, IDrawCommandListBuilder builder, Hold hold)
         {
-            var start = hold.ReferenceLaneStart;
             var holdEnd = hold.HoldEnd;
+            if (holdEnd is null)
+                return;
+
+            var start = hold.ReferenceLaneStart;
             var laneType = start?.LaneType;
             var soflanList = target.Editor._cacheSoflanGroupRecorder.GetCache(hold);
 
@@ -112,41 +111,50 @@ namespace OngekiFumenEditor.Modules.FumenVisualEditor.Graphics.Drawing.TargetImp
                     return false;
                 }
 
-                using var d = ObjectPool<List<LineVertex>>.GetWithUsingDisposable(out var list, out _);
-                list.Clear();
+                using var list = ObjectPool.GetPooledList<LineVertex>();
                 VisibleLineVerticesQuery.QueryVisibleLineVertices(target, start, soflanList, VertexDash.Solider, color, list);
                 if (list.Count > 0)
                 {
-                    while (list.Count > 0 && holdPoint.Y > list[0].Point.Y)
-                        list.RemoveAt(0);
-                    if (list.Count >= 2)
+                    var startIdx = 0;
+                    while (startIdx < list.Count && holdPoint.Y > list[startIdx].Point.Y)
+                        startIdx++;
+
+                    if (list.Count - startIdx >= 2)
                     {
-                        var outSide = list[0];
-                        var inSide = list[1];
+                        var outSide = list[startIdx];
+                        var inSide = list[startIdx + 1];
 
                         if (checkDiscardByHorizon(inSide.Point, holdPoint, outSide.Point))
-                            list.RemoveAt(0);
+                            startIdx++;
                     }
-                    list.Insert(0, new LineVertex(holdPoint, color, VertexDash.Solider));
-                    while (list.Count > 0 && holdEndPoint.Y < list[list.Count - 1].Point.Y)
-                        list.RemoveAt(list.Count - 1);
-                    if (list.Count >= 2)
-                    {
-                        var outSide = list[list.Count - 1];
-                        var inSide = list[list.Count - 2];
 
-                        if (checkDiscardByHorizon(inSide.Point, holdEndPoint, outSide.Point))
-                            list.RemoveAt(list.Count - 1);
+                    var endIdx = list.Count - 1;
+                    while (endIdx >= startIdx && holdEndPoint.Y < list[endIdx].Point.Y)
+                        endIdx--;
+
+                    if (endIdx >= startIdx)
+                    {
+                        var outSide = list[endIdx];
+                        var inSidePoint = endIdx > startIdx ? list[endIdx - 1].Point : holdPoint;
+
+                        if (checkDiscardByHorizon(inSidePoint, holdEndPoint, outSide.Point))
+                            endIdx--;
                     }
-                    list.Add(new LineVertex(holdEndPoint, color, VertexDash.Solider));
+
+                    using var clippedList = ObjectPool.GetPooledList<LineVertex>();
+                    clippedList.Add(new LineVertex(holdPoint, color, VertexDash.Solider));
+                    for (var i = startIdx; i <= endIdx; i++)
+                        clippedList.Add(list[i]);
+                    clippedList.Add(new LineVertex(holdEndPoint, color, VertexDash.Solider));
+
+                    builder.DrawLines(clippedList, 13);
                 }
                 else
                 {
                     list.Add(new LineVertex(holdPoint, color, VertexDash.Solider));
                     list.Add(new LineVertex(holdEndPoint, color, VertexDash.Solider));
+                    builder.DrawLines(list, 13);
                 }
-
-                lineDrawing.Draw(target, list, 13);
             }
         }
     }

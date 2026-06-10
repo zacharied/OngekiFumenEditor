@@ -13,3 +13,4 @@ namespace OngekiFumenEditor.Utils
         public static string Encode(byte[] rawContent) => Convert.ToBase64String(rawContent);
     }
 }
+

@@ -481,3 +481,4 @@ namespace OngekiFumenEditor.Parser.Ogkr
         }
     }
 }
+

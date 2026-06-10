@@ -186,6 +186,12 @@
   <data name="AudioOption" xml:space="preserve">
     <value>Audio Option</value>
   </data>
+  <data name="AudioSampleRateAutoDetectConfirm" xml:space="preserve">
+    <value>Detected default audio device sample rate: {0} Hz.&#xA;Use this sample rate?</value>
+  </data>
+  <data name="AudioSampleRateAutoDetectFailedUseDefault" xml:space="preserve">
+    <value>Failed to get the default audio device sample rate.&#xA;Using the default sample rate: {0} Hz.</value>
+  </data>
   <data name="AudioPlayerToolViewer" xml:space="preserve">
     <value>Audio Player</value>
   </data>
@@ -384,6 +390,9 @@
   <data name="CommandInterpolateAllWithXGridLimit" xml:space="preserve">
     <value>Interpolate all curved lanes with XGrid limit</value>
   </data>
+  <data name="CommandCustomFumenList" xml:space="preserve">
+    <value>Custom Fumen List</value>
+  </data>
   <data name="CommandOpenProjectUrl" xml:space="preserve">
     <value>Project URL</value>
   </data>
@@ -575,6 +584,9 @@
   </data>
   <data name="EditorMouseWheelSpeed_Unit" xml:space="preserve">
     <value>(The larger the value, the greater the scrolling span)</value>
+  </data>
+  <data name="EditorOffsetMs" xml:space="preserve">
+    <value>Editor time offset</value>
   </data>
   <data name="EditorMustBeDesignMode" xml:space="preserve">
     <value>Please switch the editor to Design Mode first.</value>
@@ -809,6 +821,9 @@
   </data>
   <data name="GenerateScriptProjectFileFail" xml:space="preserve">
     <value>Generate script project file failed</value>
+  </data>
+  <data name="PleaseSaveScriptBeforeVSEdit" xml:space="preserve">
+    <value>The script must be saved to a file before editing in Visual Studio. Save now?</value>
   </data>
   <data name="GenerateSvg" xml:space="preserve">
     <value>Generate Preview SVG</value>
@@ -1323,8 +1338,8 @@
   <data name="ShowCurveControlAlways" xml:space="preserve">
     <value>Always display curve control points：</value>
   </data>
-  <data name="ShowFPS" xml:space="preserve">
-    <value>Show FPS</value>
+  <data name="ShowDebugInfo" xml:space="preserve">
+    <value>Show debug info</value>
   </data>
   <data name="ShowObjectPlaceLine" xml:space="preserve">
     <value>Display the placement place of objects</value>
@@ -1343,6 +1358,9 @@
   </data>
   <data name="Sound" xml:space="preserve">
     <value>Sound</value>
+  </data>
+  <data name="SoundOffsetMs" xml:space="preserve">
+    <value>Sound effect time offset</value>
   </data>
   <data name="SoundFolderPath" xml:space="preserve">
     <value>Sound folder path:</value>
@@ -2061,6 +2079,27 @@
   <data name="SkiaRenderBackend" xml:space="preserve">
     <value>Skia render backend: </value>
   </data>
+  <data name="D3DRenderQueueFrameCount" xml:space="preserve">
+    <value>D3D render queue frames: </value>
+  </data>
+  <data name="D3DRenderQueueFrameCountHint" xml:space="preserve">
+    <value>2 = double buffering, 3 = triple buffering</value>
+  </data>
+  <data name="OpenRenderPerfomenceMeasurePanel" xml:space="preserve">
+    <value>Open performance measurement panel</value>
+  </data>
+  <data name="RenderPerfomenceMeasurePanelTitle" xml:space="preserve">
+    <value>Render Performance Measurement</value>
+  </data>
+  <data name="RenderPerfomenceMeasurePanelNoContext" xml:space="preserve">
+    <value>No render context found. Reopen this panel after opening an editor or waveform view.</value>
+  </data>
+  <data name="RenderPerfomenceMeasurePanelNoData" xml:space="preserve">
+    <value>No performance measurement data</value>
+  </data>
+  <data name="RenderPerfomenceMeasurePanelMonitor" xml:space="preserve">
+    <value>Performance monitor:</value>
+  </data>
   <data name="ReturnStartTimeAfterPause" xml:space="preserve">
     <value>Restore the current time to before playback time when editor paused</value>
   </data>
@@ -2312,5 +2351,254 @@
   </data>
   <data name="DeselectItemsOfSelectedType" xml:space="preserve">
     <value>Deselect objects of selected type(s)</value>
+  </data>
+  <data name="ShowConsoleWindowInGUIMode" xml:space="preserve">
+    <value>Show console window</value>
+  </data>
+  <data name="EnableMcpServerInGUIMode" xml:space="preserve">
+    <value>Enable MCP server</value>
+  </data>
+  <data name="McpServerListenPort" xml:space="preserve">
+    <value>MCP listen port</value>
+  </data>
+  <data name="AllowAnonymousMcpClientUsage" xml:space="preserve">
+    <value>Allow anonymous MCP client usage</value>
+  </data>
+  <data name="McpProgramSettingsNote" xml:space="preserve">
+    <value>MCP menu visibility and auto-start changes apply after restart. Port changes apply on the next server start. When anonymous MCP usage is disabled, clients must provide clientId or requestedBy.</value>
+  </data>
+  <data name="McpMenuTitle" xml:space="preserve">
+    <value>MCP</value>
+  </data>
+  <data name="McpServerUrlMenuText" xml:space="preserve">
+    <value>Server URL</value>
+  </data>
+  <data name="McpServerUrlMenuToolTip" xml:space="preserve">
+    <value>Show the current MCP server URL.</value>
+  </data>
+  <data name="McpStartServerMenuText" xml:space="preserve">
+    <value>Start MCP Server</value>
+  </data>
+  <data name="McpStartServerMenuToolTip" xml:space="preserve">
+    <value>Start the MCP server.</value>
+  </data>
+  <data name="McpStopServerMenuText" xml:space="preserve">
+    <value>Stop MCP Server</value>
+  </data>
+  <data name="McpStopServerMenuToolTip" xml:space="preserve">
+    <value>Stop the MCP server.</value>
+  </data>
+  <data name="McpConnectedClientsMenuText" xml:space="preserve">
+    <value>Connected Clients</value>
+  </data>
+  <data name="McpConnectedClientsMenuToolTip" xml:space="preserve">
+    <value>List MCP clients that have used MCP tools and revoke their authorization.</value>
+  </data>
+  <data name="McpServerUrlStatusFormat" xml:space="preserve">
+    <value>Server URL: {0}{1}</value>
+  </data>
+  <data name="McpServerStoppedSuffix" xml:space="preserve">
+    <value> (Stopped)</value>
+  </data>
+  <data name="McpCopyServerUrlToolTip" xml:space="preserve">
+    <value>Click to copy the current MCP server URL.</value>
+  </data>
+  <data name="McpCopyServerUrlFailed" xml:space="preserve">
+    <value>Failed to copy MCP server URL.{0}{0}{1}</value>
+  </data>
+  <data name="McpStartServerFailed" xml:space="preserve">
+    <value>Failed to start MCP server.{0}{0}{1}</value>
+  </data>
+  <data name="McpStopServerFailed" xml:space="preserve">
+    <value>Failed to stop MCP server.{0}{0}{1}</value>
+  </data>
+  <data name="McpConnectedClientsMenuTextFormat" xml:space="preserve">
+    <value>Connected Clients ({0})</value>
+  </data>
+  <data name="McpNone" xml:space="preserve">
+    <value>(none)</value>
+  </data>
+  <data name="McpClientAuthorizedStatus" xml:space="preserve">
+    <value>[Authorized]</value>
+  </data>
+  <data name="McpClientNotAuthorizedStatus" xml:space="preserve">
+    <value>[Not Authorized]</value>
+  </data>
+  <data name="McpClientNotAuthorizedToolTip" xml:space="preserve">
+    <value>This client is currently not authorized to call MCP tools.</value>
+  </data>
+  <data name="McpClientRevokeAuthorizationToolTipFormat" xml:space="preserve">
+    <value>Click to revoke MCP tool authorization for {0}.</value>
+  </data>
+  <data name="McpAnonymousClient" xml:space="preserve">
+    <value>Anonymous Client</value>
+  </data>
+  <data name="McpUnknownIdentityKey" xml:space="preserve">
+    <value>Unknown</value>
+  </data>
+  <data name="McpRevokeAuthorizationConfirmFormat" xml:space="preserve">
+    <value>Revoke MCP tool authorization for this client?{0}{0}Client: {1}{0}Identity Key: {2}</value>
+  </data>
+  <data name="McpConfirmToolRequestTitle" xml:space="preserve">
+    <value>Confirm MCP Tool Request</value>
+  </data>
+  <data name="McpConfirmToolRequestIntroFormat" xml:space="preserve">
+    <value>About to allow MCP tool call '{0}'.</value>
+  </data>
+  <data name="McpBackupFumenBeforeExecution" xml:space="preserve">
+    <value>Back up the fumen file before each code execution</value>
+  </data>
+  <data name="McpBackupFumenHintForNonScriptTool" xml:space="preserve">
+    <value>This option will apply to subsequent script.run_* code execution requests.</value>
+  </data>
+  <data name="McpAllow" xml:space="preserve">
+    <value>Allow</value>
+  </data>
+  <data name="McpConfirmationToolLabel" xml:space="preserve">
+    <value>Tool</value>
+  </data>
+  <data name="McpConfirmationClientLabel" xml:space="preserve">
+    <value>Client</value>
+  </data>
+  <data name="McpConfirmationRequestedByLabel" xml:space="preserve">
+    <value>Requested by</value>
+  </data>
+  <data name="McpConfirmationClientIdLabel" xml:space="preserve">
+    <value>Client ID</value>
+  </data>
+  <data name="McpConfirmationReviewHint" xml:space="preserve">
+    <value>Review the request details below before continuing.</value>
+  </data>
+  <data name="McpRememberApprovalWithIdentity" xml:space="preserve">
+    <value>Default-allow subsequent requests from this MCP client during this app session</value>
+  </data>
+  <data name="McpRememberApprovalAnonymous" xml:space="preserve">
+    <value>Default-allow subsequent anonymous MCP requests during this app session</value>
+  </data>
+  <data name="SplashWindowTitle" xml:space="preserve">
+    <value>Welcome</value>
+  </data>
+  <data name="ApplicationTitle" xml:space="preserve">
+    <value>Ongeki Fumen Editor</value>
+  </data>
+  <data name="ShowSplashScreenCommand" xml:space="preserve">
+    <value>Show Splash Screen</value>
+  </data>
+  <data name="GamePlayControllerWindowTitle" xml:space="preserve">
+    <value>Game Play Controller</value>
+  </data>
+  <data name="GamePlayControllerConnection" xml:space="preserve">
+    <value>Connection</value>
+  </data>
+  <data name="GamePlayControllerPort" xml:space="preserve">
+    <value>Port</value>
+  </data>
+  <data name="GamePlayControllerConnect" xml:space="preserve">
+    <value>Connect</value>
+  </data>
+  <data name="GamePlayControllerStatus" xml:space="preserve">
+    <value>Status:</value>
+  </data>
+  <data name="GamePlayControllerStatusNotConnected" xml:space="preserve">
+    <value>Not connected</value>
+  </data>
+  <data name="GamePlayControllerStatusConnected" xml:space="preserve">
+    <value>Connected</value>
+  </data>
+  <data name="GamePlayControllerStatusDisconnected" xml:space="preserve">
+    <value>Disconnected</value>
+  </data>
+  <data name="GamePlayControllerTutorial" xml:space="preserve">
+    <value>Tutorial</value>
+  </data>
+  <data name="GamePlayControllerControl" xml:space="preserve">
+    <value>Control</value>
+  </data>
+  <data name="GamePlayControllerPlayGuideSeAfterResume" xml:space="preserve">
+    <value>Play guide sound effect before resuming playback</value>
+  </data>
+  <data name="GamePlayControllerPlay" xml:space="preserve">
+    <value>Play</value>
+  </data>
+  <data name="GamePlayControllerPause" xml:space="preserve">
+    <value>Pause</value>
+  </data>
+  <data name="GamePlayControllerRestart" xml:space="preserve">
+    <value>Restart</value>
+  </data>
+  <data name="GamePlayControllerForceEnd" xml:space="preserve">
+    <value>Force End</value>
+  </data>
+  <data name="GamePlayControllerAutoPlay" xml:space="preserve">
+    <value>Auto play</value>
+  </data>
+  <data name="GamePlayControllerPauseOnDamageOrMissBell" xml:space="preserve">
+    <value>Pause automatically when damaged or missing a bell</value>
+  </data>
+  <data name="GamePlayControllerSeek" xml:space="preserve">
+    <value>Seek</value>
+  </data>
+  <data name="GamePlayControllerPlayAfterSeek" xml:space="preserve">
+    <value>Play automatically after seeking</value>
+  </data>
+  <data name="GamePlayControllerExecuteSeek" xml:space="preserve">
+    <value>Execute Seek</value>
+  </data>
+  <data name="GamePlayControllerOgkrSavePath" xml:space="preserve">
+    <value>.ogkr save path</value>
+  </data>
+  <data name="GamePlayControllerReloadFumenInGame" xml:space="preserve">
+    <value>Reload fumen in game</value>
+  </data>
+  <data name="GamePlayControllerGetFumenPath" xml:space="preserve">
+    <value>Get fumen path</value>
+  </data>
+  <data name="GamePlayControllerReloadAfterSeek" xml:space="preserve">
+    <value>Reload fumen when seeking as well</value>
+  </data>
+  <data name="GamePlayControllerPlayGuideSe" xml:space="preserve">
+    <value>Play guide sound effect</value>
+  </data>
+  <data name="GamePlayControllerDumpUnfinishedInfo" xml:space="preserve">
+    <value>Dump unfinished info</value>
+  </data>
+  <data name="GamePlayControllerPlayCustomCue" xml:space="preserve">
+    <value>Play sound effect for specified cueId</value>
+  </data>
+  <data name="GamePlayControllerAutoFaderDebugger" xml:space="preserve">
+    <value>AutoFaderTarget Debugger</value>
+  </data>
+  <data name="GamePlayControllerGetAutoFaderData" xml:space="preserve">
+    <value>Get current AutoFader data</value>
+  </data>
+  <data name="GamePlayControllerApplyAutoFaderData" xml:space="preserve">
+    <value>Apply current AutoFader data</value>
+  </data>
+  <data name="GamePlayControllerDumpAutoFaderData" xml:space="preserve">
+    <value>Dump all AutoFaderTarget data to file</value>
+  </data>
+  <data name="GamePlayControllerCurrentAutoFaderTarget" xml:space="preserve">
+    <value>Current AutoFaderTarget</value>
+  </data>
+  <data name="GamePlayControllerPreviousAutoFaderTarget" xml:space="preserve">
+    <value>Previous AutoFaderTarget</value>
+  </data>
+  <data name="GamePlayControllerCurrentFrame" xml:space="preserve">
+    <value>Current Frame</value>
+  </data>
+  <data name="GamePlayControllerManualCalcAutoPlayFader" xml:space="preserve">
+    <value>Call calcAutoPlayFader() manually</value>
+  </data>
+  <data name="GamePlayControllerSelectOgkrSavePathPrompt" xml:space="preserve">
+    <value>Please specify a .ogkr save path for the game to read.</value>
+  </data>
+  <data name="GamePlayControllerOgkrFileType" xml:space="preserve">
+    <value>Standard Ongeki fumen file</value>
+  </data>
+  <data name="GamePlayControllerGetFumenPathSuccess" xml:space="preserve">
+    <value>Succeeded.</value>
+  </data>
+  <data name="GamePlayControllerGenerateOgkrFailedFormat" xml:space="preserve">
+    <value>Unable to generate the fumen and update it into the game: {0}</value>
   </data>
 </root>

@@ -1,4 +1,4 @@
-﻿using OngekiFumenEditor.Base;
+using OngekiFumenEditor.Base;
 using OngekiFumenEditor.Base.EditorObjects.Svg;
 using OngekiFumenEditor.Modules.EditorSvgObjectControlProvider.ViewModels.ObjectProperty.Operation;
 using OngekiFumenEditor.UI.Controls.ObjectInspector.UIGenerator;

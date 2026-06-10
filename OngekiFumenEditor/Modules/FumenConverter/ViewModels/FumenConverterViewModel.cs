@@ -1,4 +1,4 @@
-﻿using Caliburn.Micro;
+using Caliburn.Micro;
 using Gemini.Framework;
 using Microsoft.Win32;
 using OngekiFumenEditor.Modules.FumenVisualEditor.Kernel;

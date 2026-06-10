@@ -1,9 +1,4 @@
-﻿using System;
-using System.Globalization;
-using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Windows;
-using System.Windows.Media;
 
 namespace OngekiFumenEditor.Base.EditorObjects.Svg
 {
@@ -76,55 +71,6 @@ namespace OngekiFumenEditor.Base.EditorObjects.Svg
 		public void RebuildSvgContent()
 		{
 			CleanGeometry();
-
-			if (string.IsNullOrWhiteSpace(Content))
-				return;
-
-			var brush = new SolidColorBrush(ColorfulLaneColor.Color);
-			brush.Freeze();
-			var pen = new Pen(brush, 1);
-			pen.Freeze();
-			var dpiInfo = Application.Current.MainWindow is not null ? VisualTreeHelper.GetDpi(Application.Current.MainWindow) : new();
-
-			var direction = ContentFlowDirection switch
-			{
-				FlowDirection.RightToLeft => System.Windows.FlowDirection.RightToLeft,
-				_ => System.Windows.FlowDirection.LeftToRight
-			};
-
-			var content = Content;
-			switch (ContentFlowDirection)
-			{
-				case FlowDirection.RightToLeft:
-					content = new string(content.Reverse().ToArray());
-					break;
-				case FlowDirection.TopToBottom:
-					content = string.Join(Environment.NewLine, content.Select(x => x));
-					break;
-				case FlowDirection.BottomToTop:
-					content = string.Join(Environment.NewLine, content.Reverse());
-					break;
-				default:
-					break;
-			}
-
-			var text = new FormattedText(
-				content,
-				CultureInfo.CurrentCulture,
-				direction,
-				new Typeface(TypefaceName),
-				FontSize,
-				brush,
-				dpiInfo.PixelsPerDip
-			);
-			text.LineHeight = ContentLineHeight;
-
-			Geometry geometry = text.BuildGeometry(new Point(0, 0));
-
-			var group = new DrawingGroup();
-			group.Children.Add(new GeometryDrawing() { Geometry = geometry, Brush = brush, Pen = pen });
-
-			ApplySvgContent(group);
 		}
 
 		public override void Copy(OngekiObjectBase fromObj)

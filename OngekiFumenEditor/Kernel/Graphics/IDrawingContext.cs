@@ -8,8 +8,7 @@ namespace OngekiFumenEditor.Kernel.Graphics
     public interface IDrawingContext
     {
         DrawingTargetContext CurrentDrawingTargetContext { get; }
-        IPerfomenceMonitor PerfomenceMonitor { get; }
         IRenderContext RenderContext { get; }
-        void Render(TimeSpan ts);
+        void Render(IRenderContext context, TimeSpan ts);
     }
 }

@@ -1,13 +1,13 @@
 ﻿using OngekiFumenEditor.Kernel.Graphics.Skia.Base;
 using OngekiFumenEditor.Utils;
-using OpenTK.Mathematics;
 using SkiaSharp;
 using System;
+using System.Numerics;
 using System.Windows.Media.Imaging;
 
 namespace OngekiFumenEditor.Kernel.Graphics.Skia.Drawing.BeamDrawing
 {
-    internal class DefaultSkiaBeamDrawing : CommonSkiaDrawingBase, IBeamDrawing
+    internal sealed class DefaultSkiaBeamDrawing : CommonSkiaDrawingBase, IBeamDrawing
     {
         private SKCanvas canvas;
         private IDrawingContext target;
@@ -92,7 +92,7 @@ namespace OngekiFumenEditor.Kernel.Graphics.Skia.Drawing.BeamDrawing
             DrawTexturedRectWithRotation(canvas, new(0, 0),
                 rect, texture.Image, 360 - angle, new(rect.MidX, rect.MidY - judgeOffset / 2f), paint);
 
-            target.PerfomenceMonitor.CountDrawCall(this);
+            target.RenderContext.PerfomenceMonitor.CountDrawCall();
             canvas.Restore();
 
             End();

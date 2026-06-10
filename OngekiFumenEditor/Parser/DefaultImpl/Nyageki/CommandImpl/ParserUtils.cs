@@ -1,23 +1,33 @@
-﻿using OngekiFumenEditor.Base;
-using OngekiFumenEditor.Utils;
+using OngekiFumenEditor.Base;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text.RegularExpressions;
 
 namespace OngekiFumenEditor.Parser.DefaultImpl.Nyageki.CommandImpl
 {
-	internal static class ParserUtils
+	internal static partial class ParserUtils
 	{
-		public static IDisposable GetValuesMapWithDisposable(this string paramsDataStr, out Dictionary<string, string> map)
+		private sealed class EmptyDisposable : IDisposable
 		{
-			return ParseParams(paramsDataStr).ToDictionaryWithObjectPool(x => x.name, x => x.value, out map);
+			public static readonly EmptyDisposable Shared = new();
+			public void Dispose()
+			{
+			}
 		}
 
-		private static Regex s = new Regex(@"(\w+)\[(.*?)\]\s*(,|$)");
+		public static IDisposable GetValuesMapWithDisposable(this string paramsDataStr, out Dictionary<string, string> map)
+		{
+			map = ParseParams(paramsDataStr).ToDictionary(x => x.name, x => x.value);
+			return EmptyDisposable.Shared;
+		}
+
+		[GeneratedRegex(@"(\w+)\[(.*?)\]\s*(,|$)")]
+		private static partial Regex ParamRegex();
 
 		public static IEnumerable<(string name, string value)> ParseParams(string content)
 		{
-			foreach (Match m in s.Matches(content))
+			foreach (Match m in ParamRegex().Matches(content))
 				yield return (m.Groups[1].Value, m.Groups[2].Value);
 		}
 

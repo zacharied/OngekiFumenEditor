@@ -1,7 +1,9 @@
 ﻿namespace OngekiFumenEditor.Kernel.Graphics.OpenGL.Drawing.TextureDrawing
 {
-	internal class HighlightBatchShader : BatchShader
+	internal sealed class HighlightBatchShader : BatchShader
 	{
+		private int resolutionLocation = int.MinValue;
+
 		public HighlightBatchShader() : base()
 		{
 			FragmentProgram = @"
@@ -51,7 +53,9 @@ void main(){
 	                out_color=color;
                 }
                 ";
-            */
+			*/
 		}
+
+		public int ResolutionLocation => resolutionLocation == int.MinValue ? resolutionLocation = GetUniformLocation("iResolution") : resolutionLocation;
 	}
 }

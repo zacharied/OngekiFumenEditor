@@ -1,4 +1,4 @@
-﻿//copy&modify from repo : https://github.com/mbuchetics/RangeTree , LICENSE.txt : https://github.com/mbuchetics/RangeTree/blob/master/LICENSE.txt
+//copy&modify from repo : https://github.com/mbuchetics/RangeTree , LICENSE.txt : https://github.com/mbuchetics/RangeTree/blob/master/LICENSE.txt
 using System.Collections.Generic;
 
 namespace OngekiFumenEditor.Base.Collections.Base.RangeTree
@@ -28,6 +28,12 @@ namespace OngekiFumenEditor.Base.Collections.Base.RangeTree
 		IEnumerable<TValue> Query(TKey from, TKey to);
 
 		/// <summary>
+		/// Performs a range query. All items with overlapping ranges are added to <paramref name="output"/>.
+		/// Avoids enumerator allocations of the IEnumerable-based <see cref="Query(TKey, TKey)"/>.
+		/// </summary>
+		void QueryInto(TKey from, TKey to, ICollection<TValue> output);
+
+		/// <summary>
 		/// Adds the specified item.
 		/// </summary>
 		void Add(TKey from, TKey to, TValue value);
@@ -35,12 +41,7 @@ namespace OngekiFumenEditor.Base.Collections.Base.RangeTree
 		/// <summary>
 		/// Removes the specified item.
 		/// </summary>
-		void Remove(TValue item);
-
-		/// <summary>
-		/// Removes the specified items.
-		/// </summary>
-		void Remove(IEnumerable<TValue> items);
+		bool Remove(TValue item);
 
 		/// <summary>
 		/// Removes all elements from the range tree.

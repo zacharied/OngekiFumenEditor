@@ -1,4 +1,4 @@
-锘縰sing System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -13,8 +13,8 @@ namespace OngekiFumenEditor.Base
 		bool ApplySpeedInDesignMode { get; set; }
         int SoflanGroup { get; set; }
 
-        public float SpeedInEditor => ApplySpeedInDesignMode ? Speed : Math.Abs(Speed);
+        float SpeedInEditor { get; }
 
-		TGrid EndTGrid { get; set; } // 鑰冭檻鍒癝oflanList鐨勯棿闅旀爲浣跨敤
+		TGrid EndTGrid { get; set; } // 考虑到SoflanList的间隔树使用
     }
 }

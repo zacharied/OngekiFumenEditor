@@ -1,4 +1,4 @@
-﻿using Caliburn.Micro;
+using Caliburn.Micro;
 using Gemini.Framework;
 using Gemini.Framework.Services;
 using OngekiFumenEditor.Base;
@@ -8,7 +8,6 @@ using OngekiFumenEditor.Modules.FumenVisualEditor.Kernel;
 using OngekiFumenEditor.Modules.FumenVisualEditor.ViewModels;
 using OngekiFumenEditor.Properties;
 using OngekiFumenEditor.Utils;
-using OngekiFumenEditor.Utils.ObjectPool;
 using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -126,7 +125,7 @@ namespace OngekiFumenEditor.Modules.FumenTimeSignatureListViewer.ViewModels
 				return;
 			}
 
-			using var disp = DisplayTimeSignatures.ToListWithObjectPool(out var removeList);
+			using var removeList = DisplayTimeSignatures.ToListWithObjectPool();
 			CurrentSelectTimeSignature = default;
 
 			var list = Fumen.MeterChanges.GetCachedAllTimeSignatureUniformPositionList(Fumen.BpmList);

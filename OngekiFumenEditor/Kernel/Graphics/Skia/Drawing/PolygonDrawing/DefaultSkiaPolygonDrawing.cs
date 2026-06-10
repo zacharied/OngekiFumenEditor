@@ -6,7 +6,7 @@ using System.Numerics;
 
 namespace OngekiFumenEditor.Kernel.Graphics.Skia.Drawing.PolygonDrawing
 {
-    internal class DefaultSkiaPolygonDrawing : CommonSkiaDrawingBase, IPolygonDrawing
+    internal sealed class DefaultSkiaPolygonDrawing : CommonSkiaDrawingBase, IPolygonDrawing
     {
         private IDrawingContext target;
         private Primitive primitive;
@@ -46,7 +46,7 @@ namespace OngekiFumenEditor.Kernel.Graphics.Skia.Drawing.PolygonDrawing
                 Primitive.Triangles => SKVertexMode.Triangles,
                 Primitive.TriangleStrip => SKVertexMode.TriangleStrip,
             }, points.ToArray(), colors.ToArray(), paint);
-            target.PerfomenceMonitor.CountDrawCall(this);
+            target.RenderContext.PerfomenceMonitor.CountDrawCall();
 
             //clean
             OnEnd();

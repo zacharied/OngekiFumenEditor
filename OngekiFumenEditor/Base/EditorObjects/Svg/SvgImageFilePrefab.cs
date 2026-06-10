@@ -1,9 +1,6 @@
-﻿using OngekiFumenEditor.Base.Attributes;
-using SharpVectors.Renderers.Wpf;
-using SvgConverter;
+using OngekiFumenEditor.Base.Attributes;
 using System.IO;
 using System.Runtime.CompilerServices;
-using System.Windows.Media;
 
 namespace OngekiFumenEditor.Base.EditorObjects.Svg
 {
@@ -51,24 +48,7 @@ namespace OngekiFumenEditor.Base.EditorObjects.Svg
 
 		public void ReloadSvgFile()
 		{
-			if (SvgFile is null)
-			{
-				CleanGeometry();
-				return;
-			}
-
-			var svgContent = ConverterLogic.ConvertSvgToObject(SvgFile.FullName, ResultMode.DrawingGroup, new WpfDrawingSettings()
-			{
-				IncludeRuntime = false,
-				TextAsGeometry = true,
-				OptimizePath = true,
-				EnsureViewboxSize = true
-			}, out _, new()) as DrawingGroup;
-			svgContent.Freeze();
-
-			RebuildGeometry();
-
-			ApplySvgContent(svgContent);
+			CleanGeometry();
 		}
 
 		public override string ToString() => $"{base.ToString()} File[{Path.GetFileName(SvgFile?.Name)}]";

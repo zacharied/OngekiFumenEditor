@@ -28,3 +28,4 @@ namespace OngekiFumenEditor.Parser.Ogkr.CommandParserImpl
 		}
 	}
 }
+

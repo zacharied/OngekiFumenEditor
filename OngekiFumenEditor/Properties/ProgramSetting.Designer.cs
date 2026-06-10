@@ -194,6 +194,42 @@ namespace OngekiFumenEditor.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool EnableMcpServerInGUIMode {
+            get {
+                return ((bool)(this["EnableMcpServerInGUIMode"]));
+            }
+            set {
+                this["EnableMcpServerInGUIMode"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("39281")]
+        public int McpServerListenPort {
+            get {
+                return ((int)(this["McpServerListenPort"]));
+            }
+            set {
+                this["McpServerListenPort"] = value;
+            }
+        }
+
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool AllowAnonymousMcpClientUsage {
+            get {
+                return ((bool)(this["AllowAnonymousMcpClientUsage"]));
+            }
+            set {
+                this["AllowAnonymousMcpClientUsage"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
         public bool DisableStringRendererAntialiasing {
             get {
                 return ((bool)(this["DisableStringRendererAntialiasing"]));
@@ -224,6 +260,18 @@ namespace OngekiFumenEditor.Properties {
             }
             set {
                 this["SkiaRenderBackend"] = value;
+            }
+        }
+
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("3")]
+        public int D3DRenderQueueFrameCount {
+            get {
+                return ((int)(this["D3DRenderQueueFrameCount"]));
+            }
+            set {
+                this["D3DRenderQueueFrameCount"] = value;
             }
         }
         

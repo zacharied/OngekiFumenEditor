@@ -19,7 +19,7 @@ namespace OngekiFumenEditor.Parser.Ogkr.CommandParserImpl
 			var refLaneStart = fumen.Lanes.FirstOrDefault(x => x.RecordId == laneId);
 			if (refLaneStart is null)
 			{
-				Log.LogWarn($"Tap parse can't find lane/wallLane RecordId = {laneId}");
+				CoreLog.LogWarn($"Tap parse can't find lane/wallLane RecordId = {laneId}");
 			}
 			var hold = new Hold();
 
@@ -60,3 +60,4 @@ namespace OngekiFumenEditor.Parser.Ogkr.CommandParserImpl
 		public override string CommandLineHeader => "XHD";
 	}
 }
+

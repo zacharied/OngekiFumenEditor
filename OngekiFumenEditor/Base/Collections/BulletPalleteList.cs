@@ -1,5 +1,4 @@
-ï»¿using OngekiFumenEditor.Base.OngekiObjects;
-using OngekiFumenEditor.Utils;
+using OngekiFumenEditor.Base.OngekiObjects;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -64,7 +63,7 @@ namespace OngekiFumenEditor.Base.Collections
 
 			if (string.IsNullOrWhiteSpace(pallete.StrID))
 			{
-				//åˆ†é…ä¸€ä¸ªæ–°çš„StrId 
+				//·ÖÅäÒ»¸öĞÂµÄStrId 
 				pallete.StrID = ConvertIntToId(ConvertIdToInt(cacheCurrentMaxId) + 1);
 			}
 
@@ -72,11 +71,10 @@ namespace OngekiFumenEditor.Base.Collections
 			if (palleteMap.TryGetValue(ConvertIdToInt(pallete.StrID), out var old))
 			{
 				if (old == pallete)
-					addable = false; //é‡å¤æ·»åŠ ï¼Œé‚£å°±å¿½ç•¥äº†
+					addable = false; //ÖØ¸´Ìí¼Ó£¬ÄÇ¾ÍºöÂÔÁË
 				else
 				{
-					Log.LogWarn($"remove old ({old}) and add new ({pallete}).");
-					RemovePallete(old); //å­˜åœ¨æ—§çš„ï¼Œé‚£å°±å…ˆåˆ äº†æ—§çš„å†æ·»åŠ æ–°çš„
+					RemovePallete(old); //´æÔÚ¾ÉµÄ£¬ÄÇ¾ÍÏÈÉ¾ÁË¾ÉµÄÔÙÌí¼ÓĞÂµÄ
 				}
 			}
 

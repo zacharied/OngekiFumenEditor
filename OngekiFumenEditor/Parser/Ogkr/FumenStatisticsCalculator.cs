@@ -1,4 +1,4 @@
-ï»¿using OngekiFumenEditor.Base;
+using OngekiFumenEditor.Base;
 using OngekiFumenEditor.Base.OngekiObjects;
 using System.Linq;
 
@@ -62,7 +62,7 @@ namespace OngekiFumenEditor.Parser.Ogkr
 			{
 				var bpm = fumen.BpmList.GetBpm(time).BPM;
 				var progressJudgeBPM = fumen.MetaInfo.ProgJudgeBpm;
-				var standardBeatLen = timeResolution_ >> 2; //å–1/4åˆ‡ç‰‡é•¿åº¦
+				var standardBeatLen = timeResolution_ >> 2; //È¡1/4ÇÐÆ¬³¤¶È
 
 				if (bpm < progressJudgeBPM)
 				{

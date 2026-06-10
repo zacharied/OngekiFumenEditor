@@ -1,4 +1,4 @@
-﻿using OngekiFumenEditor.Base;
+using OngekiFumenEditor.Base;
 using System.Threading.Tasks;
 
 namespace OngekiFumenEditor.Parser

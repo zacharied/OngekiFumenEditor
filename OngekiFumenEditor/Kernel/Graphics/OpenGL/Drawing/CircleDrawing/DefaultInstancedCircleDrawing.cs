@@ -8,9 +8,9 @@ using System.Numerics;
 
 namespace OngekiFumenEditor.Kernel.Graphics.OpenGL.Drawing.CircleDrawing
 {
-    internal class DefaultInstancedCircleDrawing : CommonOpenGLDrawingBase, ICircleDrawing
+    internal sealed class DefaultInstancedCircleDrawing : CommonOpenGLDrawingBase, ICircleDrawing
     {
-        private DefaultOpenGLShader shader;
+        private BatchCircleShader shader;
         private float[] postData;
         private int currentPostBaseIndex = 0;
         private int currentPostCount = 0;
@@ -78,7 +78,6 @@ namespace OngekiFumenEditor.Kernel.Graphics.OpenGL.Drawing.CircleDrawing
 
         public void Begin(IDrawingContext target)
         {
-            target.PerfomenceMonitor.OnBeginDrawing(this);
             this.target = target;
 
             var viewWidth = target.CurrentDrawingTargetContext.Rect.Width;
@@ -87,9 +86,9 @@ namespace OngekiFumenEditor.Kernel.Graphics.OpenGL.Drawing.CircleDrawing
             shader.Begin();
             GL.BindVertexArray(vao);
 
-            shader.PassUniform("uResolution", new Vector2(viewWidth, viewHeight));
+            shader.PassUniform(shader.ResolutionLocation, new Vector2(viewWidth, viewHeight));
             var mvpMatrix = GetOverrideModelMatrix() * GetOverrideViewProjectMatrixOrDefault(target.CurrentDrawingTargetContext);
-            shader.PassUniform("ModelViewProjection", mvpMatrix);
+            shader.PassUniform(shader.ModelViewProjectionLocation, mvpMatrix);
 
             //backupPointSize = GL.GetFloat(GetPName.PointSize);
         }
@@ -108,7 +107,7 @@ namespace OngekiFumenEditor.Kernel.Graphics.OpenGL.Drawing.CircleDrawing
             GL.NamedBufferSubData(vbo, (IntPtr)0, (IntPtr)(VertexSize * currentPostCount), postData);
 
             GL.DrawArrays(PrimitiveType.Points, 0, currentPostCount);
-            target.PerfomenceMonitor.CountDrawCall(this);
+            target.RenderContext.PerfomenceMonitor.CountDrawCall();
         }
 
         private void Clear()
@@ -122,7 +121,6 @@ namespace OngekiFumenEditor.Kernel.Graphics.OpenGL.Drawing.CircleDrawing
             FlushDraw();
             GL.BindVertexArray(0);
             shader.End();
-            target.PerfomenceMonitor.OnAfterDrawing(this);
             target = default;
 
             //GL.PointSize(backupPointSize);

@@ -1,4 +1,4 @@
-using OngekiFumenEditor.Base.Attributes;
+﻿using OngekiFumenEditor.Base.Attributes;
 using OngekiFumenEditor.Base.OngekiObjects.Projectiles;
 using OngekiFumenEditor.Base.OngekiObjects.Projectiles.Attributes;
 using OngekiFumenEditor.Base.OngekiObjects.Projectiles.Enums;
@@ -166,7 +166,7 @@ namespace OngekiFumenEditor.Base.OngekiObjects.Projectiles
         }
 
         /// <summary>
-        /// �Ƿ��ܵ�����Ӱ��
+        /// 锟角凤拷锟杰碉拷锟斤拷锟斤拷影锟斤拷
         /// </summary>
         public bool IsEnableSoflan => ReferenceBulletPallete?.IsEnableSoflan ?? (TargetValue != Target.Player);
 
@@ -195,3 +195,4 @@ namespace OngekiFumenEditor.Base.OngekiObjects.Projectiles
         }
     }
 }
+

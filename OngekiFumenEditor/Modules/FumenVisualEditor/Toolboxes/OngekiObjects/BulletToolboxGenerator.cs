@@ -1,4 +1,4 @@
-﻿using Gemini.Modules.Toolbox;
+using Gemini.Modules.Toolbox;
 using OngekiFumenEditor.Base;
 using OngekiFumenEditor.Base.OngekiObjects;
 using OngekiFumenEditor.Base.OngekiObjects.Projectiles;

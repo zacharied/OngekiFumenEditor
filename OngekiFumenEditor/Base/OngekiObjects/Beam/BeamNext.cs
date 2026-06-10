@@ -37,3 +37,4 @@ namespace OngekiFumenEditor.Base.OngekiObjects.Beam
         }
     }
 }
+

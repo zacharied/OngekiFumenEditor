@@ -1,9 +1,9 @@
-﻿using Caliburn.Micro;
+using Caliburn.Micro;
 using OngekiFumenEditor.Base.EditorObjects.Svg;
 using OngekiFumenEditor.Kernel.Graphics;
 using OngekiFumenEditor.Kernel.Scheduler;
+using OngekiFumenEditor.Modules.EditorSvgObjectControlProvider;
 using OngekiFumenEditor.Utils;
-using OngekiFumenEditor.Utils.ObjectPool;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
@@ -23,7 +23,9 @@ namespace OngekiFumenEditor.Modules.FumenVisualEditor.Graphics.Drawing.TargetImp
 		private class CachedSvgGeneratedData
 		{
 			public SvgPrefabBase SvgPrefab { get; set; }
-			public List<LineVertex> GeneratedPoints { get; set; }
+			public IPooledList<LineVertex> GeneratedPointsPool { get; set; }
+
+			public IReadOnlyList<LineVertex> GeneratedPoints => GeneratedPointsPool;
 			public int SvgGeometryHashCode { get; set; } = int.MaxValue;
 			public Vector2 ViewSize { get; set; } = new(int.MinValue);
 			public DateTime LastAccessTime { get; set; }
@@ -32,8 +34,8 @@ namespace OngekiFumenEditor.Modules.FumenVisualEditor.Graphics.Drawing.TargetImp
 
 			public void CleanPoints()
 			{
-				ObjectPool<List<LineVertex>>.Return(GeneratedPoints);
-				GeneratedPoints = default;
+				GeneratedPointsPool?.Dispose();
+				GeneratedPointsPool = default;
 			}
 		}
 
@@ -58,7 +60,7 @@ namespace OngekiFumenEditor.Modules.FumenVisualEditor.Graphics.Drawing.TargetImp
 
 		private bool CheckCachedDataVailed(IDrawingContext target, CachedSvgGeneratedData data)
 		{
-			if (!(data.SvgPrefab?.ProcessingDrawingGroup?.GetHashCode() is int curHash && curHash == data.SvgGeometryHashCode))
+			if (!(data.SvgPrefab?.ProcessingVectorScene?.GetHashCode() is int curHash && curHash == data.SvgGeometryHashCode))
 				return false;
 
 			if (new Vector2(target.CurrentDrawingTargetContext.Rect.Width, target.CurrentDrawingTargetContext.Rect.Height) != data.ViewSize)
@@ -72,10 +74,9 @@ namespace OngekiFumenEditor.Modules.FumenVisualEditor.Graphics.Drawing.TargetImp
 
 		}
 
-		private List<LineVertex> GenerateLineVertexData(SvgPrefabBase svgPrefab)
+		private IPooledList<LineVertex> GenerateLineVertexData(SvgPrefabBase svgPrefab)
 		{
-			var list = ObjectPool<List<LineVertex>>.Get();
-			list.Clear();
+			var list = ObjectPool.GetPooledList<LineVertex>();
 
 			var segments = svgPrefab.GenerateLineSegments();
 
@@ -101,10 +102,11 @@ namespace OngekiFumenEditor.Modules.FumenVisualEditor.Graphics.Drawing.TargetImp
 			return list;
 		}
 
-		public List<LineVertex> GetRenderData(IDrawingContext target, SvgPrefabBase svgPrefab, out bool isCached, out Rect bound)
+		public IReadOnlyList<LineVertex> GetRenderData(IDrawingContext target, SvgPrefabBase svgPrefab, out bool isCached, out Rect bound)
 		{
 			var curTime = DateTime.Now;
 			isCached = true;
+			SvgPrefabBuildHelper.EnsureBuilt(svgPrefab);
 
 			if (!cachedDataMap.TryGetValue(svgPrefab, out var cachedItem))
 			{
@@ -119,10 +121,12 @@ namespace OngekiFumenEditor.Modules.FumenVisualEditor.Graphics.Drawing.TargetImp
 			{
 				cachedItem.CleanPoints();
 				var genData = GenerateLineVertexData(svgPrefab);
-				cachedItem.SvgGeometryHashCode = svgPrefab.ProcessingDrawingGroup?.GetHashCode() ?? MathUtils.Random(int.MinValue, int.MaxValue);
-				cachedItem.GeneratedPoints = genData;
+				cachedItem.SvgGeometryHashCode = svgPrefab.ProcessingVectorScene?.GetHashCode() ?? MathUtils.Random(int.MinValue, int.MaxValue);
+				cachedItem.GeneratedPointsPool = genData;
 				cachedItem.ViewSize = new Vector2(target.CurrentDrawingTargetContext.Rect.Width, target.CurrentDrawingTargetContext.Rect.Height);
-				cachedItem.Bound = svgPrefab.ProcessingDrawingGroup?.Bounds ?? default;
+				cachedItem.Bound = svgPrefab.ProcessingVectorScene is VectorScene scene
+					? new Rect(scene.Bounds.X, scene.Bounds.Y, scene.Bounds.Width, scene.Bounds.Height)
+					: default;
 				isCached = false;
 			}
 

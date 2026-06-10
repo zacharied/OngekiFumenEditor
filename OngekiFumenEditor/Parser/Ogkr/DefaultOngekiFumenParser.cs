@@ -1,5 +1,4 @@
-﻿using OngekiFumenEditor.Base;
-using OngekiFumenEditor.Utils.ObjectPool;
+using OngekiFumenEditor.Base;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.IO;
@@ -36,25 +35,30 @@ namespace OngekiFumenEditor.Parser.Ogkr
 			var genObjList = new List<(OngekiObjectBase obj, ICommandParser parser)>();
 			var fumen = new OngekiFumen();
 
-			var commandArg = ObjectPool<CommandArgs>.Get();
+			var commandArg = new CommandArgs();
 
-			while (!reader.EndOfStream)
+			// 同步 ReadLine 替代 ReadLineAsync:DeserializeAsync 已在调用线程之外执行,
+			// 每行一个 Task 的累计开销在大谱面上不可忽略;且整流读取是顺序的,async 无并发收益。
+			// 用 Task.Run 把整段读取调度到线程池,避免阻塞 caller 的同步上下文。
+			await Task.Run(() =>
 			{
-				var line = await reader.ReadLineAsync();
-				commandArg.Line = line;
-
-				var cmdName = commandArg.GetData<string>(0)?.Trim();
-				if (cmdName != null && CommandParsers.TryGetValue(cmdName, out var parser))
+				string line;
+				while ((line = reader.ReadLine()) != null)
 				{
-					if (parser.Parse(commandArg, fumen) is OngekiObjectBase obj)
+					commandArg.Line = line;
+
+					var cmdName = commandArg.GetData<string>(0);
+					if (!string.IsNullOrEmpty(cmdName)
+						&& CommandParsers.TryGetValue(cmdName, out var parser))
 					{
-						genObjList.Add((obj, parser));
-						fumen.AddObject(obj);
+						if (parser.Parse(commandArg, fumen) is OngekiObjectBase obj)
+						{
+							genObjList.Add((obj, parser));
+							fumen.AddObject(obj);
+						}
 					}
 				}
-			}
-
-			ObjectPool<CommandArgs>.Return(commandArg);
+			});
 
 			foreach (var pair in genObjList)
 			{

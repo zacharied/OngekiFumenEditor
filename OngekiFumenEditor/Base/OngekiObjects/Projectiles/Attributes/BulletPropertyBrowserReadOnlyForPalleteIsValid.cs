@@ -1,4 +1,4 @@
-﻿using OngekiFumenEditor.Base.Attributes;
+using OngekiFumenEditor.Base.Attributes;
 
 namespace OngekiFumenEditor.Base.OngekiObjects.Projectiles.Attributes
 {

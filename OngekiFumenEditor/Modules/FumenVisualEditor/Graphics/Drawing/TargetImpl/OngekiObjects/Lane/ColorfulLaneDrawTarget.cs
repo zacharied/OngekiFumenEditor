@@ -1,4 +1,4 @@
-﻿using OngekiFumenEditor.Base.OngekiObjects.ConnectableObject;
+using OngekiFumenEditor.Base.OngekiObjects.ConnectableObject;
 using OngekiFumenEditor.Base.OngekiObjects.Lane;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
@@ -7,7 +7,7 @@ using System.Numerics;
 namespace OngekiFumenEditor.Modules.FumenVisualEditor.Graphics.Drawing.TargetImpl.OngekiObjects.Lane
 {
 	[Export(typeof(IFumenEditorDrawingTarget))]
-	public class ColorfulLaneDrawTarget : NormalLaneDrawingTarget
+	public sealed class ColorfulLaneDrawTarget : NormalLaneDrawingTarget
 	{
 		public override Vector4 GetLanePointColor(ConnectableObjectBase obj)
 		{

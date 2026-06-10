@@ -1,4 +1,4 @@
-Ôªøusing System.Collections.Generic;
+using System.Collections.Generic;
 using Caliburn.Micro;
 using OngekiFumenEditor.Base.OngekiObjects.ConnectableObject;
 using OngekiFumenEditor.Modules.FumenObjectPropertyBrowser.Views;
@@ -21,7 +21,7 @@ namespace OngekiFumenEditor.Modules.FumenObjectPropertyBrowser.ViewModels
 		private readonly List<ILaneDockable> RedockedObjects = new();
 
 		/**
-		 ÂêàÂπ∂Ââç:
+		 ∫œ≤¢«∞:
             frontStart  frontChild
             o-----------o
 
@@ -30,7 +30,7 @@ namespace OngekiFumenEditor.Modules.FumenObjectPropertyBrowser.ViewModels
                         o--------o---------o
                         laterStart
 
-		ÂêàÂπ∂Âêé:
+		∫œ≤¢∫Û:
             frontStart  frontChild
             o-----------o
 			            |

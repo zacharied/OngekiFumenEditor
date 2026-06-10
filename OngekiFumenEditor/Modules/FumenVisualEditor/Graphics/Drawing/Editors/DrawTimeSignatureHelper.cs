@@ -1,15 +1,16 @@
-﻿using Caliburn.Micro;
+using Caliburn.Micro;
 using OngekiFumenEditor.Base;
 using OngekiFumenEditor.Base.OngekiObjects;
 using OngekiFumenEditor.Kernel.Graphics;
+using OngekiFumenEditor.Kernel.Graphics.Text;
+using OngekiFumenEditor.Kernel.Graphics.DrawCommands;
 using OngekiFumenEditor.Utils;
-using OngekiFumenEditor.Utils.ObjectPool;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Numerics;
-using System.Windows;
 using System.Windows.Input;
+using Point = System.Windows.Point;
 using static OngekiFumenEditor.Kernel.Graphics.ILineDrawing;
 
 namespace OngekiFumenEditor.Modules.FumenVisualEditor.Graphics.Drawing.Editors
@@ -24,16 +25,11 @@ namespace OngekiFumenEditor.Modules.FumenVisualEditor.Graphics.Drawing.Editors
 
         private List<CacheDrawTimeLineResult> drawLines = new();
 
-        private IStringDrawing stringDrawing;
-        private ILineDrawing lineDrawing;
-
         public void Initalize(IRenderManagerImpl renderImpl)
         {
-            stringDrawing = renderImpl.StringDrawing;
-            lineDrawing = renderImpl.SimpleLineDrawing;
         }
 
-        public void DrawLines(IFumenEditorDrawingContext target)
+        public void DrawLines(IFumenEditorDrawingContext target, IDrawCommandListBuilder builder)
         {
             drawLines.Clear();
 
@@ -59,7 +55,7 @@ namespace OngekiFumenEditor.Modules.FumenVisualEditor.Graphics.Drawing.Editors
             }
             else
             {
-                var currentY = TGridCalculator.ConvertAudioTimeToY_PreviewMode(target.CurrentPlayTime, target.Editor);
+                var currentY = target.Editor.ConvertAudioTimeToY_PreviewMode(target.CurrentPlayTime);
                 //todo 暂时显示默认的变速组
                 timelines = TGridCalculator.GetVisbleTimelines_PreviewMode(
                     fumen.SoflansMap.DefaultSoflanList,
@@ -85,8 +81,7 @@ namespace OngekiFumenEditor.Modules.FumenVisualEditor.Graphics.Drawing.Editors
                 minDispAlpha = maxDispAlpha;
             var eDisp = target.Editor.RectInDesignMode.Width - transDisp;
 
-            using var d = ObjectPool<List<LineVertex>>.GetWithUsingDisposable(out var list, out _);
-            list.Clear();
+            using var list = ObjectPool.GetPooledList<LineVertex>();
 
             var displayAudioTime = target.Editor.Setting.DisplayTimeFormat == Models.EditorSetting.TimeFormat.AudioTime;
 
@@ -96,7 +91,7 @@ namespace OngekiFumenEditor.Modules.FumenVisualEditor.Graphics.Drawing.Editors
                 var str = string.Empty;
                 if (displayAudioTime)
                 {
-                    var audioTime = TGridCalculator.ConvertTGridToAudioTime(t, target.Editor);
+                    var audioTime = target.Editor.ConvertTGridToAudioTime(t);
                     str = $"{audioTime.Minutes,-2}:{audioTime.Seconds,-2}:{audioTime.Milliseconds,-3}";
                 }
                 else
@@ -127,10 +122,10 @@ namespace OngekiFumenEditor.Modules.FumenVisualEditor.Graphics.Drawing.Editors
                 list.Add(new(new(target.Editor.RectInDesignMode.Width, fy), new(1, 1, 1, 0), VertexDash.Solider));
             }
 
-            lineDrawing.Draw(target, list, 1);
+            builder.DrawSimpleLines(list, 1);
         }
 
-        public void DrawTimeSigntureText(IFumenEditorDrawingContext target)
+        public void DrawTimeSigntureText(IFumenEditorDrawingContext target, IDrawCommandListBuilder builder)
         {
             var rightColor = Vector4.One;
             var leftColor = new Vector4(1, 1, 1, 0);
@@ -142,7 +137,7 @@ namespace OngekiFumenEditor.Modules.FumenVisualEditor.Graphics.Drawing.Editors
 
                 if (mouseXPercent >= 0.7)
                 {
-                    var alpha = OpenTK.Mathematics.MathHelper.MapRange(mouseXPercent, 0.7, 0.9, 1, 0);
+                    var alpha = (mouseXPercent - 0.7) / (0.9 - 0.7) * (0 - 1) + 1;
                     rightColor = new(1, 1, 1, (float)alpha);
                     leftColor = new(1, 1, 1, 1 - (float)alpha);
                 }
@@ -151,7 +146,7 @@ namespace OngekiFumenEditor.Modules.FumenVisualEditor.Graphics.Drawing.Editors
             if (rightColor.W > 0)
             {
                 foreach (var pair in drawLines)
-                    stringDrawing.Draw(
+                    builder.DrawString(
                     pair.Display,
                     new(target.Editor.ViewWidth - 2,
                     (float)pair.Y + 10),
@@ -160,17 +155,15 @@ namespace OngekiFumenEditor.Modules.FumenVisualEditor.Graphics.Drawing.Editors
                     0,
                     rightColor,
                     new(1, 0.5f),
-                    IStringDrawing.StringStyle.Normal,
-                    target,
-                    default,
-                    out _
+                    FontStyle.Normal,
+                    default
                 );
             }
 
             if (leftColor.W > 0)
             {
                 foreach (var pair in drawLines)
-                    stringDrawing.Draw(
+                    builder.DrawString(
                         pair.Display,
                         new(0 + 2,
                         (float)pair.Y + 10),
@@ -179,10 +172,8 @@ namespace OngekiFumenEditor.Modules.FumenVisualEditor.Graphics.Drawing.Editors
                         0,
                         leftColor,
                         new(0, 0.5f),
-                        IStringDrawing.StringStyle.Normal,
-                        target,
-                        default,
-                        out _
+                        FontStyle.Normal,
+                        default
                     );
             }
         }

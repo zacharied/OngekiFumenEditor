@@ -1,4 +1,4 @@
-﻿namespace OngekiFumenEditor.Base.EditorObjects
+namespace OngekiFumenEditor.Base.EditorObjects
 {
 	public class Comment : OngekiTimelineObjectBase
 	{

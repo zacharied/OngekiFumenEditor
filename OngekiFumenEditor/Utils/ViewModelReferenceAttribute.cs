@@ -7,3 +7,4 @@ namespace OngekiFumenEditor.Utils
 		public Type ViewModelType { get; set; }
 	}
 }
+

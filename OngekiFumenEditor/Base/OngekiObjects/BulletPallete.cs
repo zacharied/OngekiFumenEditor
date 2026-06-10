@@ -1,11 +1,9 @@
-ï»¿using OngekiFumenEditor.Base.EditorObjects;
+using OngekiFumenEditor.Base.EditorObjects;
 using OngekiFumenEditor.Base.OngekiObjects.Lane;
 using OngekiFumenEditor.Base.OngekiObjects.Projectiles.Enums;
-using OngekiFumenEditor.Modules.FumenVisualEditor;
-
 using System;
 using System.Linq;
-using System.Windows.Media;
+using OngekiFumenEditor.Base.ValueTypes;
 
 namespace OngekiFumenEditor.Base.OngekiObjects
 {
@@ -16,7 +14,7 @@ namespace OngekiFumenEditor.Base.OngekiObjects
         public static BulletPallete DummyCustomPallete { get; } = new BulletPallete()
         {
             StrID = "----",
-            EditorName = "è‡ªå®šä¹‰æ— æ¨¡æ¿",
+            EditorName = "×Ô¶¨ÒåÎŞÄ£°å",
         };
 
         static BulletPallete()
@@ -127,7 +125,7 @@ namespace OngekiFumenEditor.Base.OngekiObjects
         }
 
         /// <summary>
-        /// æ˜¯å¦å—åˆ°å˜é€Ÿå½±å“
+        /// ÊÇ·ñÊÜµ½±äËÙÓ°Ïì
         /// </summary>
         public bool IsEnableSoflan => TargetValue != Target.Player;
 

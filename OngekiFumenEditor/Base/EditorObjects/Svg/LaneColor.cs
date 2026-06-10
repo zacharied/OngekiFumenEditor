@@ -1,7 +1,7 @@
-﻿using OngekiFumenEditor.Base.OngekiObjects;
+using OngekiFumenEditor.Base.OngekiObjects;
 using System.Collections.Generic;
 using System.Linq;
-using System.Windows.Media;
+using OngekiFumenEditor.Base.ValueTypes;
 
 namespace OngekiFumenEditor.Base.EditorObjects.Svg
 {

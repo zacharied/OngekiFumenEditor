@@ -158,9 +158,16 @@ namespace OngekiFumenEditor.Base.EditorObjects
 
 		public override float CalculateSpeed(TGrid t)
 		{
-			var list = GenerateKeyframeSoflans();
-			var r = ((IList<IKeyframeSoflan>)list).LastOrDefaultByBinarySearch(t, x => x.TGrid);
-			return r?.Speed ?? 1;
+			IKeyframeSoflan result = null;
+			foreach (var item in GenerateKeyframeSoflans())
+			{
+				if (item.TGrid > t)
+					break;
+				result = item;
+			}
+
+			return result?.Speed ?? 1;
 		}
 	}
 }
+

@@ -1,4 +1,4 @@
-﻿using OngekiFumenEditor.Base;
+using OngekiFumenEditor.Base;
 using OngekiFumenEditor.Base.OngekiObjects;
 using OngekiFumenEditor.Base.OngekiObjects.ConnectableObject;
 using OngekiFumenEditor.Base.OngekiObjects.Lane.Base;
@@ -21,7 +21,7 @@ namespace OngekiFumenEditor.Modules.FumenVisualEditor.ViewModels.Interactives.Im
 		public override void OnMoveCanvas(OngekiObjectBase obj, Point relativePoint, FumenVisualEditorViewModel editor)
 		{
 			var ry = CheckAndAdjustY((ITimelineObject)obj, relativePoint.Y, editor);
-			if (ry is double y && TGridCalculator.ConvertYToTGrid_DesignMode(y, editor) is TGrid tGrid)
+			if (ry is double y && editor.ConvertYToTGrid_DesignMode(y) is TGrid tGrid)
 			{
 				if (((obj as HoldEnd)?.RefHold)?.ReferenceLaneStart is LaneStartBase start)
 				{

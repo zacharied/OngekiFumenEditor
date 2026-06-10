@@ -1,4 +1,4 @@
-﻿using OngekiFumenEditor.Base.OngekiObjects;
+using OngekiFumenEditor.Base.OngekiObjects;
 using System.ComponentModel;
 
 namespace OngekiFumenEditor.Base

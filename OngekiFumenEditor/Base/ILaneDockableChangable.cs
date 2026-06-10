@@ -1,4 +1,4 @@
-﻿namespace OngekiFumenEditor.Base
+namespace OngekiFumenEditor.Base
 {
 	public interface ILaneDockableChangable : ILaneDockable
 	{

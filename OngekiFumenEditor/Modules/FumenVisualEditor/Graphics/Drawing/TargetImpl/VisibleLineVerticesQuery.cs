@@ -1,20 +1,17 @@
-﻿using OngekiFumenEditor.Base;
+using OngekiFumenEditor.Base;
 using OngekiFumenEditor.Base.Collections;
 using OngekiFumenEditor.Base.OngekiObjects.ConnectableObject;
 using OngekiFumenEditor.Utils;
-using OngekiFumenEditor.Utils.ObjectPool;
 using System.Collections.Generic;
-using System.Linq;
 using System.Numerics;
 using System.Runtime.CompilerServices;
-using static OngekiFumenEditor.Base.Collections.SoflanList;
 using static OngekiFumenEditor.Kernel.Graphics.ILineDrawing;
 
 namespace OngekiFumenEditor.Modules.FumenVisualEditor.Graphics.Drawing.TargetImpl
 {
     public static class VisibleLineVerticesQuery
     {
-        public static void QueryVisibleLineVertices(IFumenEditorDrawingContext target, ConnectableStartObject start, SoflanList soflanList, VertexDash invailedDash, Vector4 color, List<LineVertex> outVertices)
+        public static void QueryVisibleLineVertices(IFumenEditorDrawingContext target, ConnectableStartObject start, SoflanList soflanList, VertexDash invailedDash, Vector4 color, IList<LineVertex> outVertices)
         {
             if (start is null)
                 return;
@@ -24,8 +21,7 @@ namespace OngekiFumenEditor.Modules.FumenVisualEditor.Graphics.Drawing.TargetImp
 
             //var soflanList = target.Editor._cacheSoflanGroupRecorder.GetCache(start);
 
-            var tempVertices = ObjectPool<List<LineVertex>>.Get();
-            tempVertices.Clear();
+            using var tempVertices = ObjectPool.GetPooledList<LineVertex>();
 
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             void PostPoint2(double tGridUnit, double xGridUnit, bool isVailed)
@@ -50,7 +46,7 @@ namespace OngekiFumenEditor.Modules.FumenVisualEditor.Graphics.Drawing.TargetImp
             var prevInvaild = true;
             var prevObj = start as ConnectableObjectBase;
             
-            //todo 再判断设计模式怎么钦定
+            //todo ���ж����ģʽ��ô�ն�
             var soflanPositionList = target.Editor.IsDesignMode ?
                 target.Editor.Fumen.SoflansMap.DefaultSoflanList.GetCachedSoflanPositionList_DesignMode(target.Editor.Fumen.BpmList) :
                 target.Editor._cacheSoflanGroupRecorder.GetCache(start)?.GetCachedSoflanPositionList_PreviewMode(target.Editor.Fumen.BpmList);
@@ -60,13 +56,7 @@ namespace OngekiFumenEditor.Modules.FumenVisualEditor.Graphics.Drawing.TargetImp
             var minIdx = soflanPositionList.LastOrDefaultIndexByBinarySearch(start.MinTGrid, x => x.TGrid);
             var maxIdx = soflanPositionList.LastOrDefaultIndexByBinarySearch(start.MaxTGrid, x => x.TGrid);
 
-            //enumerate all SoflanPoint which lane affected
-            var affectedSoflanPoints = ObjectPool<List<SoflanPoint>>.Get();
-            affectedSoflanPoints.Clear();
-
-            //make reverse manually to optimze List::RemoveAt()
-            for (int i = maxIdx; i >= minIdx + 1; i--)
-                affectedSoflanPoints.Add(soflanPositionList[i]);
+            var affectedSoflanPointIdx = minIdx + 1;
 
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             void CheckIfSoflanChanged(TGrid currentTGrid, bool isVailed)
@@ -77,9 +67,9 @@ namespace OngekiFumenEditor.Modules.FumenVisualEditor.Graphics.Drawing.TargetImp
                  Check if there is any SoflanPoint before connectable object
                  If exist, just interpolate a new point to insert
                  */
-                while (affectedSoflanPoints.Count > 0)
+                while (affectedSoflanPointIdx <= maxIdx)
                 {
-                    var checkTGrid = affectedSoflanPoints[^1].TGrid;
+                    var checkTGrid = soflanPositionList[affectedSoflanPointIdx].TGrid;
                     var diff = checkTGrid.TotalUnit - totalTGrid;
 
                     if (diff > 0)
@@ -92,7 +82,7 @@ namespace OngekiFumenEditor.Modules.FumenVisualEditor.Graphics.Drawing.TargetImp
                             PostPoint(checkTGrid, xGrid, isVailed);
                     }
 
-                    affectedSoflanPoints.RemoveAt(affectedSoflanPoints.Count - 1);
+                    affectedSoflanPointIdx++;
                 }
             }
 
@@ -159,10 +149,9 @@ namespace OngekiFumenEditor.Modules.FumenVisualEditor.Graphics.Drawing.TargetImp
             }
 
             //add remain vertices
-            outVertices.AddRange(tempVertices.Skip(idx));
+            for (; idx < tempVertices.Count; idx++)
+                outVertices.Add(tempVertices[idx]);
 
-            ObjectPool<List<SoflanPoint>>.Return(affectedSoflanPoints);
-            ObjectPool<List<LineVertex>>.Return(tempVertices);
         }
     }
 }

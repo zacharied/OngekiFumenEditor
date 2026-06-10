@@ -1,13 +1,14 @@
-﻿using Caliburn.Micro;
+using Caliburn.Micro;
 using OngekiFumenEditor.Base;
 using OngekiFumenEditor.Base.Collections;
 using OngekiFumenEditor.Base.OngekiObjects;
 using OngekiFumenEditor.Base.OngekiObjects.ConnectableObject;
 using OngekiFumenEditor.Base.OngekiObjects.Lane.Base;
 using OngekiFumenEditor.Kernel.Graphics;
+using OngekiFumenEditor.Kernel.Graphics.DrawCommands;
+using OngekiFumenEditor.Kernel.Graphics.DrawCommands.DefaultDrawCommands;
 using OngekiFumenEditor.Modules.FumenVisualEditor.Graphics.Drawing.TargetImpl.OngekiObjects.Lane;
 using OngekiFumenEditor.Utils;
-using OngekiFumenEditor.Utils.ObjectPool;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Linq;
@@ -16,9 +17,8 @@ using System.Numerics;
 namespace OngekiFumenEditor.Modules.FumenVisualEditor.Graphics.Drawing.TargetImpl.OngekiObjects
 {
     [Export(typeof(IFumenEditorDrawingTarget))]
-    internal class LaneBlockerDrawingTarget : CommonDrawTargetBase<OngekiTimelineObjectBase>
+    internal sealed class LaneBlockerDrawingTarget : CommonDrawTargetBase<OngekiTimelineObjectBase>
     {
-        private IPolygonDrawing polygonDrawing;
         private readonly HashSet<int> overdrawingDefferSet = new();
 
         public override IEnumerable<string> DrawTargetID { get; } = new[]
@@ -30,16 +30,15 @@ namespace OngekiFumenEditor.Modules.FumenVisualEditor.Graphics.Drawing.TargetImp
 
         public override void Initialize(IRenderManagerImpl impl)
         {
-            polygonDrawing = impl.PolygonDrawing;
         }
 
-        public override void Begin(IFumenEditorDrawingContext target)
+        public override void Begin(IFumenEditorDrawingContext target, IDrawCommandListBuilder builder)
         {
-            base.Begin(target);
+            base.Begin(target, builder);
             overdrawingDefferSet.Clear();
         }
 
-        public override void Draw(IFumenEditorDrawingContext target, OngekiTimelineObjectBase obj)
+        public override void Draw(IFumenEditorDrawingContext target, IDrawCommandListBuilder builder, OngekiTimelineObjectBase obj)
         {
             var lbk = obj switch
             {
@@ -64,6 +63,7 @@ namespace OngekiFumenEditor.Modules.FumenVisualEditor.Graphics.Drawing.TargetImp
             var colorF = color;
             colorF.W = 0f;
             (double, double) lastP = default;
+            using var polygonVertices = ObjectPool.GetPooledList<PolygonVertex>();
 
             #region Generate LBK lines
 
@@ -72,9 +72,8 @@ namespace OngekiFumenEditor.Modules.FumenVisualEditor.Graphics.Drawing.TargetImp
                 var x = (float)XGridCalculator.ConvertXGridToX(xGridTotalUnit, target.Editor);
                 var y = (float)target.ConvertToY(tGridTotalUnit, soflanList);
 
-                //lineDrawing.PostPoint(new(x, y), specifyColor ?? color);
-                polygonDrawing.PostPoint(new(x, y), Vector4.One);
-                polygonDrawing.PostPoint(new(x + offsetX, y), colorF);
+                polygonVertices.Add(new PolygonVertex(new(x, y), Vector4.One));
+                polygonVertices.Add(new PolygonVertex(new(x + offsetX, y), colorF));
 
                 lastP = (tGridTotalUnit, xGridTotalUnit);
             }
@@ -101,8 +100,7 @@ namespace OngekiFumenEditor.Modules.FumenVisualEditor.Graphics.Drawing.TargetImp
                 }
                 else
                 {
-                    using var d = ObjectPool<List<Vector2>>.GetWithUsingDisposable(out var list, out _);
-                    list.Clear();
+                    using var list = ObjectPool.GetPooledList<Vector2>();
 
                     foreach ((var gridVec2, var isVaild) in obj.GetConnectionPaths().Where(x => x.pos.Y <= maxTotalGrid && x.pos.Y >= minTotalGrid))
                     {
@@ -121,7 +119,7 @@ namespace OngekiFumenEditor.Modules.FumenVisualEditor.Graphics.Drawing.TargetImp
 
             void ProcessWallLane(LaneStartBase wallStartLane, TGrid minTGrid, TGrid maxTGrid)
             {
-                polygonDrawing.Begin(target, Primitive.TriangleStrip);
+                polygonVertices.Clear();
                 foreach (var child in wallStartLane.Children)
                 {
                     if (child.TGrid < minTGrid)
@@ -134,7 +132,7 @@ namespace OngekiFumenEditor.Modules.FumenVisualEditor.Graphics.Drawing.TargetImp
 
                     ProcessConnectable(child, childMinTGrid, childMaxTGrid);
                 }
-                polygonDrawing.End();
+                builder.DrawPolygon(Primitive.TriangleStrip, polygonVertices);
             }
 
             #endregion

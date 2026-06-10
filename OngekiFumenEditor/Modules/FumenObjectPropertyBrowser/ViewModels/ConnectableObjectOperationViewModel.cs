@@ -1,4 +1,4 @@
-﻿using Caliburn.Micro;
+using Caliburn.Micro;
 using Gemini.Modules.Toolbox;
 using OngekiFumenEditor.Base;
 using OngekiFumenEditor.Base.EditorObjects.LaneCurve;
@@ -213,8 +213,8 @@ namespace OngekiFumenEditor.Modules.FumenObjectPropertyBrowser.ViewModels
 				fumen.SoflansMap.DefaultSoflanList, //todo check this
 				fumen.BpmList,
 				fumen.MeterChanges,
-				TGridCalculator.ConvertTGridToY_DesignMode(beginTGrid, editor),
-				TGridCalculator.ConvertTGridToY_DesignMode(endTGrid, editor),
+				editor.ConvertTGridToY_DesignMode(beginTGrid),
+				editor.ConvertTGridToY_DesignMode(endTGrid),
 				0,
 				editor.Setting.BeatSplit,
 				editor.Setting.VerticalDisplayScale))

@@ -1,4 +1,4 @@
-﻿using OngekiFumenEditor.Base.EditorObjects.Svg;
+using OngekiFumenEditor.Base.EditorObjects.Svg;
 using OngekiFumenEditor.Modules.FumenVisualEditor.ViewModels;
 
 namespace OngekiFumenEditor.Modules.EditorSvgObjectControlProvider.ViewModels

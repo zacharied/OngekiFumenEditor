@@ -14,7 +14,7 @@ namespace OngekiFumenEditor.Base.OngekiObjects
         public Hold RefHold
         {
             get => refHold;
-            internal set => Set(ref refHold, value);
+            set => Set(ref refHold, value);
         }
 
         [ObjectPropertyBrowserHide]
@@ -27,7 +27,7 @@ namespace OngekiFumenEditor.Base.OngekiObjects
         [ObjectPropertyBrowserHide]
         public int ReferenceLaneStrId => ReferenceLaneStart?.RecordId ?? -1;
 
-        internal int? CacheRecoveryHoldObjectID { get; set; } = null;
+        public int? CacheRecoveryHoldObjectID { get; set; } = null;
 
         public void RedockXGrid()
         {
@@ -39,3 +39,4 @@ namespace OngekiFumenEditor.Base.OngekiObjects
         }
     }
 }
+
