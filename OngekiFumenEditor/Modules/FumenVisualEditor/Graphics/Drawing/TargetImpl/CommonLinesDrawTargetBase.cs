@@ -16,7 +16,7 @@ namespace OngekiFumenEditor.Modules.FumenVisualEditor.Graphics.Drawing.TargetImp
         public virtual int LineWidth { get; } = 2;
         private static VertexDash invailedDash = new VertexDash(6, 3);
 
-        private static readonly Vector4 GlowColor = new(252f / 255f, 1f, 75f / 255f, 0.6f);
+        public virtual float GlowAlpha => 0.6f;
         public virtual float GlowLineWidthMultiplier => 3f;
 
         public override void Initialize(IRenderManagerImpl impl)
@@ -31,7 +31,7 @@ namespace OngekiFumenEditor.Modules.FumenVisualEditor.Graphics.Drawing.TargetImp
             var soflanList = target.CurrentDrawingTargetContext.CurrentSoflanList;
 
             if (Properties.EditorGlobalSetting.Default.EnableHighlightSelectedLane)
-                VisibleLineVerticesQuery.QueryGlowLineVertices(target, start, soflanList, GlowColor,
+                VisibleLineVerticesQuery.QueryGlowLineVertices(target, start, soflanList, GetLanePointColor, GlowAlpha,
                     segment => builder.DrawSimpleLines(segment, LineWidth * GlowLineWidthMultiplier));
 
             using var list = ObjectPool.GetPooledList<LineVertex>();

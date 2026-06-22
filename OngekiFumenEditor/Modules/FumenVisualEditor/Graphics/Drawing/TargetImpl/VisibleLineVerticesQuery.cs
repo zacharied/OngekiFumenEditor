@@ -14,8 +14,9 @@ namespace OngekiFumenEditor.Modules.FumenVisualEditor.Graphics.Drawing.TargetImp
     {
         /// <summary>
         /// Emits one vertex segment (start->NextObject) per selected Connectable in the chain, for drawing a glow highlight.
+        /// The glow color is taken from <paramref name="getLaneColor"/> per segment, with its alpha replaced by <paramref name="glowAlpha"/>.
         /// </summary>
-        public static void QueryGlowLineVertices(IFumenEditorDrawingContext target, ConnectableStartObject start, SoflanList soflanList, Vector4 glowColor, Action<IReadOnlyList<LineVertex>> onSegment)
+        public static void QueryGlowLineVertices(IFumenEditorDrawingContext target, ConnectableStartObject start, SoflanList soflanList, Func<ConnectableObjectBase, Vector4> getLaneColor, float glowAlpha, Action<IReadOnlyList<LineVertex>> onSegment)
         {
             if (start is null || onSegment is null)
                 return;
@@ -23,7 +24,7 @@ namespace OngekiFumenEditor.Modules.FumenVisualEditor.Graphics.Drawing.TargetImp
             var resT = start.TGrid.ResT;
             var resX = start.XGrid.ResX;
 
-            LineVertex toVertex(double tGridUnit, double xGridUnit)
+            LineVertex toVertex(double tGridUnit, double xGridUnit, Vector4 glowColor)
             {
                 var x = (float)XGridCalculator.ConvertXGridToX(xGridUnit, target.Editor);
                 var y = (float)target.ConvertToY(tGridUnit, soflanList);
@@ -34,15 +35,18 @@ namespace OngekiFumenEditor.Modules.FumenVisualEditor.Graphics.Drawing.TargetImp
             {
                 using var segment = ObjectPool.GetPooledList<LineVertex>();
 
+                var laneColor = getLaneColor(from);
+                var glowColor = laneColor with { W = glowAlpha };
+
                 if (to.IsCurvePath)
                 {
                     foreach (var (pos, _) in to.GetConnectionPaths())
-                        segment.Add(toVertex(pos.Y / resT, pos.X / resX));
+                        segment.Add(toVertex(pos.Y / resT, pos.X / resX, glowColor));
                 }
                 else
                 {
-                    segment.Add(toVertex(from.TGrid.TotalUnit, from.XGrid.TotalUnit));
-                    segment.Add(toVertex(to.TGrid.TotalUnit, to.XGrid.TotalUnit));
+                    segment.Add(toVertex(from.TGrid.TotalUnit, from.XGrid.TotalUnit, glowColor));
+                    segment.Add(toVertex(to.TGrid.TotalUnit, to.XGrid.TotalUnit, glowColor));
                 }
 
                 if (segment.Count > 0)
