@@ -2314,7 +2314,19 @@
     <value>当物件到达判定线时，显示击打特效</value>
   </data>
   <data name="EnableHighlightSelectedLane" xml:space="preserve">
-    <value>高亮显示选中轨道物件的下一段</value>
+    <value>高亮显示选中轨道物件的相邻段</value>
+  </data>
+  <data name="LaneHighlightDirection" xml:space="preserve">
+    <value>高亮的段</value>
+  </data>
+  <data name="LaneHighlightDirection_After" xml:space="preserve">
+    <value>之后</value>
+  </data>
+  <data name="LaneHighlightDirection_Before" xml:space="preserve">
+    <value>之前</value>
+  </data>
+  <data name="LaneHighlightDirection_Both" xml:space="preserve">
+    <value>之前和之后</value>
   </data>
   <data name="BulletPalleteDisplayName" xml:space="preserve">
     <value>子弹模板</value>

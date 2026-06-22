@@ -31,8 +31,11 @@ namespace OngekiFumenEditor.Modules.FumenVisualEditor.Graphics.Drawing.TargetImp
             var soflanList = target.CurrentDrawingTargetContext.CurrentSoflanList;
 
             if (Properties.EditorGlobalSetting.Default.EnableHighlightSelectedLane)
-                VisibleLineVerticesQuery.QueryGlowLineVertices(target, start, soflanList, GetLanePointColor, GlowAlpha,
+            {
+                var direction = (LaneHighlightDirection)Properties.EditorGlobalSetting.Default.LaneHighlightDirection;
+                VisibleLineVerticesQuery.QueryGlowLineVertices(target, start, soflanList, direction, GetLanePointColor, GlowAlpha,
                     segment => builder.DrawSimpleLines(segment, LineWidth * GlowLineWidthMultiplier));
+            }
 
             using var list = ObjectPool.GetPooledList<LineVertex>();
             VisibleLineVerticesQuery.QueryVisibleLineVertices(target, start, soflanList, invailedDash, color, list);

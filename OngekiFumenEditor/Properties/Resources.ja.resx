@@ -1652,7 +1652,19 @@
     <value />
   </data>
   <data name="EnableHighlightSelectedLane" xml:space="preserve">
-    <value>選択した軌道オブジェクトの次のセグメントをハイライト表示する</value>
+    <value>選択した軌道オブジェクトの隣接セグメントをハイライト表示する</value>
+  </data>
+  <data name="LaneHighlightDirection" xml:space="preserve">
+    <value>ハイライトするセグメント</value>
+  </data>
+  <data name="LaneHighlightDirection_After" xml:space="preserve">
+    <value>後</value>
+  </data>
+  <data name="LaneHighlightDirection_Before" xml:space="preserve">
+    <value>前</value>
+  </data>
+  <data name="LaneHighlightDirection_Both" xml:space="preserve">
+    <value>前と後</value>
   </data>
   <data name="BulletPalleteDisplayName" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />

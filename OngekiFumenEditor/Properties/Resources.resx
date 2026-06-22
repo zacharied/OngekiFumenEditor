@@ -2323,7 +2323,19 @@
     <value>Display hit effects when objects reach the judgment line</value>
   </data>
   <data name="EnableHighlightSelectedLane" xml:space="preserve">
-    <value>Highlight the next segment of selected lane objects</value>
+    <value>Highlight the adjacent segment of selected lane objects</value>
+  </data>
+  <data name="LaneHighlightDirection" xml:space="preserve">
+    <value>Segment to highlight</value>
+  </data>
+  <data name="LaneHighlightDirection_After" xml:space="preserve">
+    <value>After</value>
+  </data>
+  <data name="LaneHighlightDirection_Before" xml:space="preserve">
+    <value>Before</value>
+  </data>
+  <data name="LaneHighlightDirection_Both" xml:space="preserve">
+    <value>Both</value>
   </data>
   <data name="BulletPalleteDisplayName" xml:space="preserve">
     <value>Bullet Palette</value>

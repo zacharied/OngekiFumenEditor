@@ -154,6 +154,20 @@
                 <CheckBox Margin="10,5,5,5" IsChecked="{Binding Setting.EnableHighlightSelectedLane}">
                     <TextBlock Text="{markup:Translate [EnableHighlightSelectedLane]}" TextWrapping="WrapWithOverflow" />
                 </CheckBox>
+                <StackPanel
+                    Margin="10,5,5,5"
+                    IsEnabled="{Binding Setting.EnableHighlightSelectedLane}"
+                    Orientation="Horizontal">
+                    <TextBlock VerticalAlignment="Center" Text="{markup:Translate [LaneHighlightDirection]}" />
+                    <ComboBox
+                        Width="120"
+                        Margin="5,0,0,0"
+                        SelectedIndex="{Binding Setting.LaneHighlightDirection}">
+                        <ComboBoxItem Content="{markup:Translate [LaneHighlightDirection_After]}" />
+                        <ComboBoxItem Content="{markup:Translate [LaneHighlightDirection_Before]}" />
+                        <ComboBoxItem Content="{markup:Translate [LaneHighlightDirection_Both]}" />
+                    </ComboBox>
+                </StackPanel>
                 <GroupBox Margin="5,0,5,5" Header="{markup:Translate [PreviewMode]}">
                     <StackPanel Margin="10">
                         <WrapPanel Orientation="Horizontal">

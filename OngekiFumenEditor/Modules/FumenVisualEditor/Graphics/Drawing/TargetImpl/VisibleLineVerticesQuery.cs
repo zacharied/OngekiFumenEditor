@@ -10,13 +10,21 @@ using static OngekiFumenEditor.Kernel.Graphics.ILineDrawing;
 
 namespace OngekiFumenEditor.Modules.FumenVisualEditor.Graphics.Drawing.TargetImpl
 {
+    public enum LaneHighlightDirection
+    {
+        After = 0,
+        Before = 1,
+        Both = 2,
+    }
+
     public static class VisibleLineVerticesQuery
     {
         /// <summary>
-        /// Emits one vertex segment (start->NextObject) per selected Connectable in the chain, for drawing a glow highlight.
+        /// Emits one vertex segment per selected Connectable in the chain, for drawing a glow highlight.
+        /// <paramref name="direction"/> controls whether the segment before, after, or both adjacent to the selected object are emitted.
         /// The glow color is taken from <paramref name="getLaneColor"/> per segment, with its alpha replaced by <paramref name="glowAlpha"/>.
         /// </summary>
-        public static void QueryGlowLineVertices(IFumenEditorDrawingContext target, ConnectableStartObject start, SoflanList soflanList, Func<ConnectableObjectBase, Vector4> getLaneColor, float glowAlpha, Action<IReadOnlyList<LineVertex>> onSegment)
+        public static void QueryGlowLineVertices(IFumenEditorDrawingContext target, ConnectableStartObject start, SoflanList soflanList, LaneHighlightDirection direction, Func<ConnectableObjectBase, Vector4> getLaneColor, float glowAlpha, Action<IReadOnlyList<LineVertex>> onSegment)
         {
             if (start is null || onSegment is null)
                 return;
@@ -53,13 +61,22 @@ namespace OngekiFumenEditor.Modules.FumenVisualEditor.Graphics.Drawing.TargetImp
                     onSegment(segment);
             }
 
-            if (start.IsSelected && start.NextObject is ConnectableChildObjectBase startNext)
-                emitSegment(start, startNext);
+            var includeAfter = direction is LaneHighlightDirection.After or LaneHighlightDirection.Both;
+            var includeBefore = direction is LaneHighlightDirection.Before or LaneHighlightDirection.Both;
+
+            if (start.IsSelected && includeAfter && start.NextObject is not null)
+                emitSegment(start, start.NextObject);
 
             foreach (var child in start.Children)
             {
-                if (child.IsSelected && child.NextObject is ConnectableChildObjectBase childNext)
-                    emitSegment(child, childNext);
+                if (!child.IsSelected)
+                    continue;
+
+                if (includeAfter && child.NextObject is not null)
+                    emitSegment(child, child.NextObject);
+
+                if (includeBefore && child.PrevObject is not null)
+                    emitSegment(child.PrevObject, child);
             }
         }
 
