@@ -16,6 +16,9 @@ namespace OngekiFumenEditor.Modules.FumenVisualEditor.Graphics.Drawing.TargetImp
         public virtual int LineWidth { get; } = 2;
         private static VertexDash invailedDash = new VertexDash(6, 3);
 
+        private static readonly Vector4 GlowColor = new(252f / 255f, 1f, 75f / 255f, 0.6f);
+        public virtual float GlowLineWidthMultiplier => 3f;
+
         public override void Initialize(IRenderManagerImpl impl)
         {
         }
@@ -25,9 +28,13 @@ namespace OngekiFumenEditor.Modules.FumenVisualEditor.Graphics.Drawing.TargetImp
         public void FillLine(IFumenEditorDrawingContext target, IDrawCommandListBuilder builder, T start)
         {
             var color = GetLanePointColor(start);
+            var soflanList = target.CurrentDrawingTargetContext.CurrentSoflanList;
+
+            VisibleLineVerticesQuery.QueryGlowLineVertices(target, start, soflanList, GlowColor,
+                segment => builder.DrawSimpleLines(segment, LineWidth * GlowLineWidthMultiplier));
 
             using var list = ObjectPool.GetPooledList<LineVertex>();
-            VisibleLineVerticesQuery.QueryVisibleLineVertices(target, start, target.CurrentDrawingTargetContext.CurrentSoflanList, invailedDash, color, list);
+            VisibleLineVerticesQuery.QueryVisibleLineVertices(target, start, soflanList, invailedDash, color, list);
             builder.DrawSimpleLines(list, LineWidth);
         }
 

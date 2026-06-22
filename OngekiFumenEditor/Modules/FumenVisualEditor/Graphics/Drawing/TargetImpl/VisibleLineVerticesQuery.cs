@@ -2,6 +2,7 @@ using OngekiFumenEditor.Base;
 using OngekiFumenEditor.Base.Collections;
 using OngekiFumenEditor.Base.OngekiObjects.ConnectableObject;
 using OngekiFumenEditor.Utils;
+using System;
 using System.Collections.Generic;
 using System.Numerics;
 using System.Runtime.CompilerServices;
@@ -11,6 +12,53 @@ namespace OngekiFumenEditor.Modules.FumenVisualEditor.Graphics.Drawing.TargetImp
 {
     public static class VisibleLineVerticesQuery
     {
+        /// <summary>
+        /// Emits one vertex segment (start->NextObject) per selected Connectable in the chain, for drawing a glow highlight.
+        /// </summary>
+        public static void QueryGlowLineVertices(IFumenEditorDrawingContext target, ConnectableStartObject start, SoflanList soflanList, Vector4 glowColor, Action<IReadOnlyList<LineVertex>> onSegment)
+        {
+            if (start is null || onSegment is null)
+                return;
+
+            var resT = start.TGrid.ResT;
+            var resX = start.XGrid.ResX;
+
+            LineVertex toVertex(double tGridUnit, double xGridUnit)
+            {
+                var x = (float)XGridCalculator.ConvertXGridToX(xGridUnit, target.Editor);
+                var y = (float)target.ConvertToY(tGridUnit, soflanList);
+                return new LineVertex(new(x, y), glowColor, VertexDash.Solider);
+            }
+
+            void emitSegment(ConnectableObjectBase from, ConnectableChildObjectBase to)
+            {
+                using var segment = ObjectPool.GetPooledList<LineVertex>();
+
+                if (to.IsCurvePath)
+                {
+                    foreach (var (pos, _) in to.GetConnectionPaths())
+                        segment.Add(toVertex(pos.Y / resT, pos.X / resX));
+                }
+                else
+                {
+                    segment.Add(toVertex(from.TGrid.TotalUnit, from.XGrid.TotalUnit));
+                    segment.Add(toVertex(to.TGrid.TotalUnit, to.XGrid.TotalUnit));
+                }
+
+                if (segment.Count > 0)
+                    onSegment(segment);
+            }
+
+            if (start.IsSelected && start.NextObject is ConnectableChildObjectBase startNext)
+                emitSegment(start, startNext);
+
+            foreach (var child in start.Children)
+            {
+                if (child.IsSelected && child.NextObject is ConnectableChildObjectBase childNext)
+                    emitSegment(child, childNext);
+            }
+        }
+
         public static void QueryVisibleLineVertices(IFumenEditorDrawingContext target, ConnectableStartObject start, SoflanList soflanList, VertexDash invailedDash, Vector4 color, IList<LineVertex> outVertices)
         {
             if (start is null)
