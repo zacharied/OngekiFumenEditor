@@ -2322,6 +2322,9 @@
   <data name="ShowHitObjectEffectInPreviewMode" xml:space="preserve">
     <value>Display hit effects when objects reach the judgment line</value>
   </data>
+  <data name="EnableHighlightSelectedLane" xml:space="preserve">
+    <value>Highlight the next segment of selected lane objects</value>
+  </data>
   <data name="BulletPalleteDisplayName" xml:space="preserve">
     <value>Bullet Palette</value>
   </data>

@@ -1651,6 +1651,9 @@
   <data name="ShowHitObjectEffectInPreviewMode" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
+  <data name="EnableHighlightSelectedLane" xml:space="preserve">
+    <value>選択した軌道オブジェクトの次のセグメントをハイライト表示する</value>
+  </data>
   <data name="BulletPalleteDisplayName" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>

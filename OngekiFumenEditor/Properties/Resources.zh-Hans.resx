@@ -2313,6 +2313,9 @@
   <data name="ShowHitObjectEffectInPreviewMode" xml:space="preserve">
     <value>当物件到达判定线时，显示击打特效</value>
   </data>
+  <data name="EnableHighlightSelectedLane" xml:space="preserve">
+    <value>高亮显示选中轨道物件的下一段</value>
+  </data>
   <data name="BulletPalleteDisplayName" xml:space="preserve">
     <value>子弹模板</value>
   </data>
