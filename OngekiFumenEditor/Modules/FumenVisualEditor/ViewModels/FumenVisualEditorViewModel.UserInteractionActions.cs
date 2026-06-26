@@ -37,6 +37,7 @@ using System.Threading;
 using OngekiFumenEditor.Modules.FumenVisualEditor.Commands.BatchModeToggle;
 using System.Windows.Controls;
 using Gemini.Framework.Threading;
+using Gemini.Modules.UndoRedo.UndoAction;
 using Microsoft.CodeAnalysis.Differencing;
 using OngekiFumenEditor.Kernel.Graphics.Performence;
 using OngekiFumenEditor.Modules.FumenSoflanGroupListViewer;
@@ -433,6 +434,97 @@ namespace OngekiFumenEditor.Modules.FumenVisualEditor.ViewModels
             start.Children.ForEach(c => c.IsSelected = true);
         }
 
+        public void SplitLaneAtFirstSelectedNode(ActionExecutionContext ctx)
+        {
+            if (!IsDesignMode)
+            {
+                ToastNotify(Resources.EditorMustBeDesignMode);
+                return;
+            }
+
+            var splitTGrid = SelectObjects.OfType<ITimelineObject>().Select(x => x.TGrid).DefaultIfEmpty().Min();
+            if (splitTGrid is null)
+                return;
+
+            var lanes = SelectObjects
+                .OfType<ConnectableObjectBase>()
+                .Select(x => x.ReferenceStartObject)
+                .Distinct()
+                .Where(lane => splitTGrid > lane.MinTGrid && splitTGrid < lane.MaxTGrid)
+                .ToList();
+
+            UndoRedoManager.BeginCombineAction();
+            foreach (var lane in lanes)
+                SplitLane(lane, splitTGrid);
+            UndoRedoManager.EndCombineAction(Resources.SplitLane);
+        }
+
+        public void SplitLane(ConnectableStartObject startObject, ConnectableObjectBase child)
+        {
+        }
+
+        public void SplitLane(ConnectableStartObject startObject, TGrid splitTGrid)
+        {
+            var splitXGrid = startObject.CalulateXGrid(splitTGrid);
+            if (splitXGrid is null)
+                return false;
+
+            var nextStartObject = (ConnectableStartObject)CacheLambdaActivator.CreateInstance(startObject.GetType());
+            nextStartObject.TGrid = splitTGrid.CopyNew();
+            nextStartObject.XGrid = splitXGrid;
+
+            var splitOutChildren = startObject.Children.Where(x => x.TGrid > splitTGrid).ToList();
+
+            var prevEndObject = startObject.Children.Any(x => x.TGrid == splitTGrid) ? null : startObject.CreateChildObject();
+            if (prevEndObject is not null)
+            {
+                prevEndObject.TGrid = splitTGrid.CopyNew();
+                prevEndObject.XGrid = splitXGrid;
+            }
+
+            //鎷嗗垎鐐逛箣鍚庣殑鍙仠闈犵墿浠堕渶閲嶆柊鎸傚埌鏂拌建閬?
+            var affectedObjects = Fumen.Taps.AsEnumerable<ILaneDockable>()
+                .Concat(Fumen.Holds)
+                .Where(x => x.ReferenceLaneStart == startObject && x.TGrid > splitTGrid)
+                .ToList();
+
+            UndoRedoManager.ExecuteAction(new LambdaUndoAction(Resources.SplitLane,
+                executeOrRedo: () =>
+                {
+                    foreach (var item in splitOutChildren)
+                    {
+                        startObject.RemoveChildObject(item);
+                        nextStartObject.InsertChildObject(item.TGrid, item);
+                    }
+
+                    if (prevEndObject is not null)
+                        startObject.AddChildObject(prevEndObject);
+
+                    Fumen.AddObject(nextStartObject);
+
+                    foreach (var affectedObj in affectedObjects)
+                        affectedObj.ReferenceLaneStart = nextStartObject as LaneStartBase;
+                },
+                undo: () =>
+                {
+                    foreach (var affectedObj in affectedObjects)
+                        affectedObj.ReferenceLaneStart = startObject as LaneStartBase;
+
+                    RemoveObject(nextStartObject);
+
+                    if (prevEndObject is not null)
+                        startObject.RemoveChildObject(prevEndObject);
+
+                    foreach (var item in splitOutChildren) {
+                        nextStartObject.RemoveChildObject(item);
+                        startObject.InsertChildObject(item.TGrid, item);
+                    }
+                }
+            ));
+
+            return true;
+        }
+
         private Dictionary<ITimelineObject, double> cacheObjectAudioTime = new();
         private OngekiObjectBase mouseDownHitObject;
         private Point? mouseDownHitObjectPosition;
@@ -557,10 +649,10 @@ namespace OngekiFumenEditor.Modules.FumenVisualEditor.ViewModels
         public void KeyboardAction_ChangeDockableLaneType(ActionExecutionContext e)
         {
             if (!(
-                SelectObjects.IsOnlyOne(out var r) &&
-                r is ConnectableObjectBase connectable &&
-                connectable.ReferenceStartObject is LaneStartBase start &&
-                start.IsDockableLane))
+                    SelectObjects.IsOnlyOne(out var r) &&
+                    r is ConnectableObjectBase connectable &&
+                    connectable.ReferenceStartObject is LaneStartBase start &&
+                    start.IsDockableLane))
             {
                 ToastNotify(Resources.SelectOneDockableLaneOnly);
                 return;
