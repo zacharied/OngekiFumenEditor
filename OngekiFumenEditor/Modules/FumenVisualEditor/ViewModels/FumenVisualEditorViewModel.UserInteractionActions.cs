@@ -434,7 +434,7 @@ namespace OngekiFumenEditor.Modules.FumenVisualEditor.ViewModels
             start.Children.ForEach(c => c.IsSelected = true);
         }
 
-        public void SplitLaneAtFirstSelectedNode(ActionExecutionContext ctx)
+        public void Interaction_SplitLanesAtFirstSelectedNode(ActionExecutionContext ctx)
         {
             if (!IsDesignMode)
             {
@@ -442,32 +442,60 @@ namespace OngekiFumenEditor.Modules.FumenVisualEditor.ViewModels
                 return;
             }
 
-            var splitTGrid = SelectObjects.OfType<ITimelineObject>().Select(x => x.TGrid).DefaultIfEmpty().Min();
-            if (splitTGrid is null)
-                return;
-
-            var lanes = SelectObjects
+            var lanesToSplitPoint = SelectObjects
                 .OfType<ConnectableObjectBase>()
                 .Select(x => x.ReferenceStartObject)
                 .Distinct()
-                .Where(lane => splitTGrid > lane.MinTGrid && splitTGrid < lane.MaxTGrid)
-                .ToList();
+                .ToDictionary(x => x, x => x.Children.First(c => c.IsSelected));
 
             UndoRedoManager.BeginCombineAction();
-            foreach (var lane in lanes)
-                SplitLane(lane, splitTGrid);
+            foreach (var (start, splitNode) in lanesToSplitPoint)
+                SplitLane(start, splitNode.TGrid);
             UndoRedoManager.EndCombineAction(Resources.SplitLane);
         }
 
-        public void SplitLane(ConnectableStartObject startObject, ConnectableObjectBase child)
+        public void Interaction_SplitLanesAtLastSelectedNode(ActionExecutionContext ctx)
         {
+            if (!IsDesignMode)
+            {
+                ToastNotify(Resources.EditorMustBeDesignMode);
+                return;
+            }
+
+            var lanesToSplitPoint = SelectObjects
+                .OfType<ConnectableObjectBase>()
+                .Select(x => x.ReferenceStartObject)
+                .Distinct()
+                .ToDictionary(x => x, x => x.Children.Last(c => c.IsSelected));
+
+            UndoRedoManager.BeginCombineAction();
+            foreach (var (start, splitNode) in lanesToSplitPoint)
+                SplitLane(start, splitNode.TGrid);
+            UndoRedoManager.EndCombineAction(Resources.SplitLane);
+        }
+
+        public void Interaction_SplitSelectedLaneSegments(ActionExecutionContext ctx)
+        {
+            if (!IsDesignMode)
+            {
+                ToastNotify(Resources.EditorMustBeDesignMode);
+                return;
+            }
+
+            UndoRedoManager.BeginCombineAction();
+            Interaction_SplitLanesAtFirstSelectedNode(ctx);
+            Interaction_SplitLanesAtLastSelectedNode(ctx);
+            UndoRedoManager.EndCombineAction(Resources.SplitLane);
         }
 
         public void SplitLane(ConnectableStartObject startObject, TGrid splitTGrid)
         {
             var splitXGrid = startObject.CalulateXGrid(splitTGrid);
             if (splitXGrid is null)
-                return false;
+            {
+                Log.LogWarn($"XGrid at split point {splitTGrid} is null");
+                return;
+            }
 
             var nextStartObject = (ConnectableStartObject)CacheLambdaActivator.CreateInstance(startObject.GetType());
             nextStartObject.TGrid = splitTGrid.CopyNew();
@@ -482,7 +510,6 @@ namespace OngekiFumenEditor.Modules.FumenVisualEditor.ViewModels
                 prevEndObject.XGrid = splitXGrid;
             }
 
-            //鎷嗗垎鐐逛箣鍚庣殑鍙仠闈犵墿浠堕渶閲嶆柊鎸傚埌鏂拌建閬?
             var affectedObjects = Fumen.Taps.AsEnumerable<ILaneDockable>()
                 .Concat(Fumen.Holds)
                 .Where(x => x.ReferenceLaneStart == startObject && x.TGrid > splitTGrid)
@@ -521,8 +548,6 @@ namespace OngekiFumenEditor.Modules.FumenVisualEditor.ViewModels
                     }
                 }
             ));
-
-            return true;
         }
 
         private Dictionary<ITimelineObject, double> cacheObjectAudioTime = new();
