@@ -1,4 +1,4 @@
-﻿<UserControl
+<UserControl
     x:Class="OngekiFumenEditor.Modules.FumenVisualEditor.Views.FumenVisualEditorView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -102,7 +102,6 @@
                         Header="{markup:Translate [MenuMirrorSelectionXGrid]}"
                         IsEnabled="{Binding SelectObjects, Converter={StaticResource SelectionMovableItemsCheckConverter}}" />
                     <MenuItem
-                        Command="Undo"
                         cal:Message.Attach="MenuItemAction_MirrorLaneColors($executionContext)"
                         Header="{markup:Translate [MenuMirrorSelectionLaneColors]}"
                         IsEnabled="{Binding SelectObjects, Converter={StaticResource SelectionFullLaneCheckConverter}}" />
